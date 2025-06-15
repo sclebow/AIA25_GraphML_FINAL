@@ -1,0 +1,562 @@
+Tag-Uniformat 1,Tag-Uniformat 2,Tag-Uniformat 3,Tag-Uniformat 4,Tag-CSI 1,Tag-CSI 2,Tag-Cost Type,Description,Unit,Units,Consumption,Waste Factor,Unit Cost,Source Qty
+G - BUILDING SITEWORK  ,,,,,,,BUILDING SITEWORK  ,-,-,1.0,1.0,0.0,1
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,,,,,,Site Preparation  ,-,-,1.0,1.0,0.0,1
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,,,,Cut and Fill,CY,CY/CY,1.0,1.0,0.0,G1031.001_Cut and Fill.Net Volume
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,,Mass Excavation to Reduce levels,CY,CY/CY,1.0,1.0,0.0,G1031.001_Cut and Fill.Net Volume
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,Labor,Excavation Labor,HR,HR/CY,0.096,1.0,0.0,Parent.Quantity
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,Machinery,Excavator,HR,HR/CY,0.096,1.0,0.0,Parent.Quantity
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 20 - Excavation and Fill        ,,Mass Fill to Make up levels,CY,CY/CY,1.0,1.0,0.0,G1031.001_Cut and Fill.Net Volume
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 20 - Excavation and Fill        ,Labor,Excavation Labor,HR,HR/CY,0.026,1.0,0.0,Parent.Quantity
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 20 - Excavation and Fill        ,Machinery,Excavator,HR,HR/CY,0.026,1.0,0.0,Parent.Quantity
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 20 - Excavation and Fill        ,Material,Imported Fill Material,HR,HR/CY,0.026,1.0,0.0,Parent.Quantity
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 30 - Excavation and Fill        ,,Remove Surplus Excavated Material,CY,CY/CY,1.0,1.0,0.0,G1031.001_Cut and Fill.Net Volume
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 30 - Excavation and Fill        ,Labor,Excavation Labor,HR,HR/CY,0.07,1.0,0.0,Parent.Quantity
+G - BUILDING SITEWORK  ,G10 - Site Preparation  ,G1030 - Site Earthwork  ,G1031 - Site Grading Excavation  ,31 - EARTHWORK,31 23 30 - Excavation and Fill        ,Machinery,Haul Spoils off Site,CY,CY/CY,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,,,,,,,SUBSTRUCTURE   ,-,,1.0,1.0,0.0,1
+A - SUBSTRUCTURE   ,A10 - Foundations   ,,,,,,Foundations   ,-,,1.0,1.0,0.0,1
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,,,,,Standard   ,-,,1.0,1.0,0.0,1
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,,,,CIP Pad Footing-ID,CY,,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,,Excavate Pad Footings,CY,CY/CY,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,Labor,Excavation Labor,HR,HR/CY,0.2,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,Machinery,JCB 3C,HR,HR/CY,0.4,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,,Excavate layback for excavation,CY,CY/CY,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,Labor,Excavation Labor,HR,HR/CY,0.2,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 00 - Excavation and Fill        ,Machinery,JCB 3C,HR,HR/CY,0.4,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 20 - Excavation and Fill        ,,Backfill Excavation to Pad Footings,CY,CY/CY,1.0,1.0,0.0,(A1012_001_CIP Pad Footing-ID.Net Top Surface Area*XX)+(A1012_001_CIP Pad Footing-ID.Edge Surface Area*1)
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 20 - Excavation and Fill        ,Labor,Excavation Labor,HR,HR/CY,0.64,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 20 - Excavation and Fill        ,Machinery,JCB 3C,HR,HR/CY,0.32,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 30 - Excavation and Fill        ,,Remove Surplus Excavated Material,CY,CY/CY,1.0,1.1,0.0,A1012_001_CIP Pad Footing-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 30 - Excavation and Fill        ,Labor,Excavation Labor,HR,HR/CY,0.07,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,31 - EARTHWORK,31 23 30 - Excavation and Fill        ,Machinery,Haul Spoils off Site,CY,CY/CY,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 62 00 - Non-Shrink Grouting         ,,Grout Base Plates,EA,EA/EA,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Count
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 62 00 - Non-Shrink Grouting         ,Labor,Concrete Pourer,HR,HR/EA,0.75,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 62 00 - Non-Shrink Grouting         ,Material,Base Plates,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 62 00 - Non-Shrink Grouting         ,,Fix Anchor Bolts,EA,EA/EA,4.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Count
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 62 00 - Non-Shrink Grouting         ,Labor,Concrete Pourer,HR,HR/EA,0.33,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 62 00 - Non-Shrink Grouting         ,Material,Anchor Bolts,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 05 00 - Common Work Results for Concrete      ,,Layout Concrete - CIP Pad Footing,LF,LF/LF,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Edge Perimeter
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 05 00 - Common Work Results for Concrete      ,Labor,Concrete Misc. Labor,HR,HR/LF,0.02,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 05 10 - Common Work Results for Concrete      ,,Fine Grade Bottom at - CIP Pad Footing,SF,SF/SF,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Net Bottom Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 05 10 - Common Work Results for Concrete      ,Labor,Concrete Misc. Labor,HR,HR/SF,0.005,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Erect Forms to CIP Concrete -  CIP Pad Footing,SF,SF/SF,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.14,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Erect Forms - CIP Pad Footing - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Strip Forms to CIP Concrete -  CIP Pad Footing,SF,SF/SF,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.023,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Strip Forms - CIP Pad Footing - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,,Reinforcement Steel to - CIP Pad Footing,TON,TON/CY,0.1,1.0,0.0,A1012_001_CIP Pad Footing-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Labor,Rodman,HR,HR/TON,16.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Material,Re Steel - CIP Pad Footing - Materials,TON,TON/TON,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,,Casting Concrete in place to - CIP Pad Footing,CY,CY/CY,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Labor,Concrete Pourer,HR,HR/CY,0.6,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Material,Concrete - CIP Pad Footing - Materials,CY,CY/CY,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,,Concrete finishing to - CIP Pad Footing,SF,SF/SF,1.0,1.0,0.0,A1012_001_CIP Pad Footing-ID.Net Top Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Labor,Concrete Pourer,HR,HR/SF,0.005,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Material,Finishing to - CIP Pad Footing - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,,,,CIP Pedestal-ID,CY,,1.0,1.0,0.0,A1012_004_CIP Pedestal-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Erect Forms to CIP Concrete -  CIP Pedestal,SF,SF/SF,1.0,1.0,0.0,A1012_004_CIP Pedestal-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.14,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Erect Forms - CIP Pedestal - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Strip Forms to CIP Concrete -  CIP Pedestal,SF,SF/SF,1.0,1.0,0.0,A1012_004_CIP Pedestal-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.023,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Strip Forms - CIP Pedestal - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,,Reinforcement Steel to - CIP Pedestal,TON,TON/CY,0.1,1.0,0.0,A1012_004_CIP Pedestal-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Labor,Rodman,HR,HR/TON,16.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Material,Re Steel - CIP Pedestal - Materials,TON,TON/TON,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,,Casting Concrete in place to - CIP Pedestal,CY,CY/CY,1.0,1.0,0.0,A1012_004_CIP Pedestal-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Labor,Concrete Pourer,HR,HR/CY,0.6,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Material,Concrete - CIP Pedestal - Materials,CY,CY/CY,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,,Concrete finishing to - CIP Pedestal,SF,SF/SF,1.0,1.0,0.0,A1012_004_CIP Pedestal-ID.Net Top Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Labor,Concrete Pourer,HR,HR/SF,0.005,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1012 - Column Foundations & Pile Caps,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Material,Finishing to - CIP Pedestal - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1013 - Perimeter Drainage & Insulation ,,,,Perimeter Drainage-ID,LF,,1.0,1.0,0.0,A1013_001_Perimeter Drainage-ID.Length
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1013 - Perimeter Drainage & Insulation ,33 - UTILITIES,33 46 00 - Subdrainage          ,,Perimeter Drainage,LF,LF/LF,1.0,1.0,0.0,A1013_001_Perimeter Drainage-ID.Length
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1013 - Perimeter Drainage & Insulation ,33 - UTILITIES,33 46 00 - Subdrainage          ,Labor,Groundworks Laborer,HR,HR/LF,0.02,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1010 - Standard   ,A1013 - Perimeter Drainage & Insulation ,33 - UTILITIES,33 46 00 - Subdrainage          ,Material,Perimeter Drainage - Materials,LF,LF/LF,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,,,,Structural Slab on Grade-ID,CY,,1.0,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Placement of granular sub-base material -  Structural Slab on Grade,SF,SF/SF,1.0,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Groundworks Laborer,HR,HR/SF,0.14,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Place gravel - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,07 - THERMAL & MOISTURE PROTECTION,07 21 13 - Board Insulation        ,,Install Thermal Insulation Board - Slab on Grade,SF,SF/SF,1.0,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Net Bottom Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,07 - THERMAL & MOISTURE PROTECTION,07 21 13 - Board Insulation        ,Labor,Bricklaying gang (2+1),HR,HR/SF,0.008,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,07 - THERMAL & MOISTURE PROTECTION,07 21 13 - Board Insulation        ,Material,Rigid XPS Board Insulation,SF,SF/SF,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,07 - THERMAL & MOISTURE PROTECTION,07 26 00 - Vapor Retarders         ,,Vapor Barrier to CIP Concrete - Slab on Grade,SF,SF/SF,1.0,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Net Bottom Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,07 - THERMAL & MOISTURE PROTECTION,07 26 00 - Vapor Retarders         ,Labor,Concrete Misc. Labor,HR,HR/SF,0.002,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,07 - THERMAL & MOISTURE PROTECTION,07 26 00 - Vapor Retarders         ,Material,Vapor Barrier at SOG - Material,SF,SF/SF,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Erect Forms to CIP Concrete -  Structural Slab on Grade,SF,SF/SF,1.0,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.14,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Erect Forms - Structural Slab on Grade - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Strip Forms to CIP Concrete -  Structural Slab on Grade,SF,SF/SF,1.0,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.023,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Strip Forms - Structural Slab on Grade - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,,Reinforcement Steel to - Structural Slab on Grade,TON,TON/CY,0.075,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Labor,Rodman,HR,HR/TON,16.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Material,Re Steel - Structural Slab on Grade - Materials,TON,TON/TON,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,,Casting Concrete in place to - Structural Slab on Grade,CY,CY/CY,1.0,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Labor,Concrete Pourer,HR,HR/CY,0.65,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Material,Concrete - Structural Slab on Grade - Materials,CY,CY/CY,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,,Concrete finishing to - Structural Slab on Grade,SF,SF/SF,1.0,1.0,0.0,A1032_001_Structural Slab on Grade-ID.Net Top Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Labor,Concrete Pourer,HR,HR/SF,0.005,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,A1032 - Structural Slab on Grade ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Material,Finishing to - Structural Slab on Grade - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",,,,Elevator Pit Wall-ID,CY,,1.0,1.0,0.0,A1034_005_Elevator Pit Wall-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Erect Forms to CIP Concrete -  Elevator Pit Wall Side 1,SF,SF/SF,1.0,1.0,0.0,A1034_005_Elevator Pit Wall-ID.Net Reference Side Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.15,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Erect Forms - Elevator Pit Wall - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Erect Forms to CIP Concrete -  Elevator Pit Wall Side 2,SF,SF/SF,1.0,1.0,0.0,A1034_005_Elevator Pit Wall-ID.Net Reference Side Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.15,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Erect Forms - Elevator Pit Wall - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Strip Forms to CIP Concrete -  Elevator Pit Wall,SF,SF/SF,2.0,1.0,0.0,A1034_005_Elevator Pit Wall-ID.Net Reference Side Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.023,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Strip Forms - Elevator Pit Wall - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,,Reinforcement Steel to - Elevator Pit Wall,TON,TON/CY,0.06,1.0,0.0,A1034_005_Elevator Pit Wall-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Labor,Rodman,HR,HR/TON,16.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Material,Re Steel - Elevator Pit Wall - Materials,TON,TON/TON,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 31 00 - Structural Concrete         ,,Casting Concrete in place to - Elevator Pit Wall,CY,CY/CY,1.0,1.0,0.0,A1034_005_Elevator Pit Wall-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Labor,Concrete Pourer,HR,HR/CY,1.25,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Material,Concrete - Elevator Pit Wall - Materials,CY,CY/CY,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,,Concrete finishing to - Elevator Pit Wall,SF,SF/SF,1.0,1.0,0.0,A1034_005_Elevator Pit Wall-ID.Top Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Labor,Concrete Pourer,HR,HR/SF,0.005,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Material,Finishing to - Elevator Pit Wall - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",,,,Elevator Pit Slab-ID,CY,,1.0,1.0,0.0,A1034_006_Elevator Pit Slab-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Erect Forms to CIP Concrete -  Elevator Pit Slab,SF,SF/SF,1.0,1.0,0.0,A1034_006_Elevator Pit Slab-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.14,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Erect Forms - Elevator Pit Slab - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Strip Forms to CIP Concrete -  Elevator Pit Slab,SF,SF/SF,1.0,1.0,0.0,A1034_006_Elevator Pit Slab-ID.Edge Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.023,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Strip Forms - Elevator Pit Slab - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,,Reinforcement Steel to - Elevator Pit Slab,TON,TON/CY,0.06,1.0,0.0,A1034_006_Elevator Pit Slab-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Labor,Rodman,HR,HR/TON,16.0,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Material,Re Steel - Elevator Pit Slab - Materials,TON,TON/TON,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 31 00 - Structural Concrete         ,,Casting Concrete in place to - Elevator Pit Slab,CY,CY/CY,1.0,1.0,0.0,A1034_006_Elevator Pit Slab-ID.Net Volume
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Labor,Concrete Pourer,HR,HR/CY,1.25,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Material,Concrete - Elevator Pit Slab - Materials,CY,CY/CY,1.0,1.05,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,,Concrete finishing to - Elevator Pit Slab,SF,SF/SF,1.0,1.0,0.0,A1034_006_Elevator Pit Slab-ID.Net Top Surface Area
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Labor,Concrete Pourer,HR,HR/SF,0.005,1.0,0.0,Parent.Quantity
+A - SUBSTRUCTURE   ,A10 - Foundations   ,A1030 - Slab on Grade ,"A1034 - Trenches, Pits & Bases ",03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Material,Finishing to - Elevator Pit Slab - Materials,SF,SF/SF,1.0,1.0,0.0,Parent.Quantity
+B - SHELL   ,,,,,,,SHELL   ,-,,1.0,1.0,,1
+B - SHELL   ,B10 - Superstructure   ,,,,,,Superstructure   ,-,,1.0,1.0,,1
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,,,,,Floor Construction  ,-,,1.0,1.0,,1
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,,,,CIP RC Elevator Core Wall-ID,SF,,1.0,1.0,,B1011_026_CIP RC Elevator Core Wall-ID.Net Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Erect Forms to CIP Concrete -  Elevator Core Wall,SF,SF/SF,1.0,1.0,,B1011_026_CIP RC Elevator Core Wall-ID.Net Reference Side Surface Area+B1011_026_CIP RC Elevator Core Wall-ID.Net Opposite Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.15,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Erect Forms - Elevator Core Wall - Materials,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Strip Forms to CIP Concrete -  Elevator Core Wall,SF,SF/SF,1.0,1.0,,B1011_026_CIP RC Elevator Core Wall-ID.Net Reference Side Surface Area+B1011_026_CIP RC Elevator Core Wall-ID.Net Opposite Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.023,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Strip Forms - Elevator Core Wall - Materials,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,,Reinforcement Steel to - CIP RC Elevator Core Wall,TON,TON/CY,0.15,1.0,,B1011_026_CIP RC Elevator Core Wall-ID.Net Volume
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Labor,Rodman,HR,HR/TON,16.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Material,Re Steel - CIP RC Elevator Core Wall - Materials,TON,TON/TON,1.0,1.05,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,,Casting Concrete in place to - Elevator Core Wall,CY,CY/CY,1.0,1.0,,B1011_026_CIP RC Elevator Core Wall-ID.Net Volume
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Labor,Concrete Pourer,HR,HR/CY,0.75,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Material,Concrete - Elevator Core Wall - Materials,CY,CY/CY,1.0,1.025,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,,Concrete finishing to - CIP RC Elevator Core Wall,SF,SF/SF,1.0,1.0,,B1011_026_CIP RC Elevator Core Wall-ID.Net Reference Side Surface Area+B1011_026_CIP RC Elevator Core Wall-ID.Net Opposite Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Labor,Concrete Pourer,HR,HR/SF,0.005,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Material,Finishing to - CIP RC Elevator Core Wall - Materials,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,,,,CIP RC Stair Core Wall-ID,SF,,1.0,1.0,,B1011_027_CIP RC Stair Core Wall-ID.Net Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Erect Forms to CIP Concrete -  Stair Core Wall,SF,SF/SF,1.0,1.0,,B1011_027_CIP RC Stair Core Wall-ID.Net Reference Side Surface Area+B1011_027_CIP RC Stair Core Wall-ID.Net Opposite Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.15,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Erect Forms - Stair Core Wall - Materials,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,,Strip Forms to CIP Concrete -  Stair Core Wall,SF,SF/SF,1.0,1.0,,B1011_027_CIP RC Stair Core Wall-ID.Net Reference Side Surface Area+B1011_027_CIP RC Stair Core Wall-ID.Net Opposite Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Labor,Formwork Carpenter,HR,HR/SF,0.023,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 11 00 - Concrete Forming         ,Material,Strip Forms - Stair Core Wall - Materials,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,,Reinforcement Steel to - CIP RC Stair Core Wall,TON,TON/CY,0.15,1.0,,B1011_027_CIP RC Stair Core Wall-ID.Net Volume
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Labor,Rodman,HR,HR/TON,16.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Material,Re Steel - CIP RC Stair Core Wall - Materials,TON,TON/TON,1.0,1.05,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,,Casting Concrete in place to - Stair Core Wall,CY,CY/CY,1.0,1.0,,B1011_027_CIP RC Stair Core Wall-ID.Net Volume
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Labor,Concrete Pourer,HR,HR/CY,0.75,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Material,Concrete - Stair Core Wall - Materials,CY,CY/CY,1.0,1.025,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,,Concrete finishing to - CIP RC Stair Core Wall,SF,SF/SF,1.0,1.0,,B1011_027_CIP RC Stair Core Wall-ID.Net Reference Side Surface Area+B1011_027_CIP RC Stair Core Wall-ID.Net Opposite Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Labor,Concrete Pourer,HR,HR/SF,0.005,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1011 - Suspended Basement Floors  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Material,Finishing to - CIP RC Stair Core Wall - Materials,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,,,,HSS Steel Column-12x12x3/8,FT,,1.0,1.0,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Height
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 12 60 - Structural Steel Framing        ,,Erect Structural Steel Column (Weight) type HSS12X12X3/8,TON,TON/FT,0.0290153965847078,1.0,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Height
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 12 60 - Structural Steel Framing        ,Material,Structural Steel Section type HSS12X12X3/8,TON,TON/TON,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 12 60 - Structural Steel Framing        ,,Erect Structural Steel Column (Count) type HSS12X12X3/8,EA,EA/EA,1.0,1.0,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Count
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 12 60 - Structural Steel Framing        ,Labor,Structural Steelwork Labor,HR,HR/EA,1.5,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 81 00 - Applied Fireproofing         ,,Sprayed Fire Protection to Steelwork,SF,SF/SF,1.0,1.0,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Vertical Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 81 00 - Applied Fireproofing         ,Labor,Fire Protection Labor,HR,HR/SF,0.008,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 81 00 - Applied Fireproofing         ,Material,Fire Protection Spray,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,,,,W Steel Beam-12x96,LF,,1.0,1.0,,B1012_W-B.217_W Steel Beam-12x96.Length
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 12 10 - Structural Steel Framing        ,,Erect Structural Steel Beam (Weight) type W12X96,TON,TON/FT,0.048,1.0,,B1012_W-B.217_W Steel Beam-12x96.Length
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 12 10 - Structural Steel Framing        ,Material,Structural Steel Section type W12X96,TON,TON/TON,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 12 10 - Structural Steel Framing        ,,Erect Structural Steel Beam (Count) type W12X96,EA,EA/EA,1.0,1.0,,B1012_W-B.217_W Steel Beam-12x96.Count
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 12 10 - Structural Steel Framing        ,Labor,Structural Steelwork Labor,HR,HR/EA,1.1,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 81 00 - Applied Fireproofing         ,,Sprayed Fire Protection to Steelwork,SF,SF/SF,1.0,1.0,,B1012_W-B.217_W Steel Beam-12x96.Top Surface Area+B1012_W-B.217_W Steel Beam-12x96.Bottom Surface Area+B1012_W-B.217_W Steel Beam-12x96.Reference Side Surface Area+B1012_W-B.217_W Steel Beam-12x96.Opposite Reference Side Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 81 00 - Applied Fireproofing         ,Labor,Fire Protection Labor,HR,HR/SF,0.008,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 81 00 - Applied Fireproofing         ,Material,Fire Protection Spray,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,,,,Slab on Deck-ID,SF,,1.0,1.0,,B1012_001_Slab on Deck-ID.Net Top Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 05 00 - Common Work Results for Concrete      ,,Layout Concrete - Slab on Deck,SF,SF/SF,1.0,1.0,,B1012_001_Slab on Deck-ID.Net Top Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 05 00 - Common Work Results for Concrete      ,Labor,Concrete Misc. Labor,HR,HR/SF,0.002,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,,Reinforcing to - Slab on Deck,TON,TON/CY,0.025,1.0,,B1012_001_Slab on Deck-ID.Net Volume
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Labor,Rodman,HR,HR/TON,16.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 21 00 - Reinforcing Steel         ,Material,Re Steel - Slab on Deck - Materials,TON,TON/TON,1.0,1.1,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,,Casting Concrete to - Slab on Deck,CY,CY/CY,1.0,1.0,,B1012_001_Slab on Deck-ID.Net Volume
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Labor,Concrete Pourer,HR,HR/CY,0.8,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 31 00 - Structural Concrete         ,Material,Concrete - Slab on Deck - Materials,CY,CY/CY,1.0,1.025,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,,Concrete finishing to - Slab on Deck,SF,SF/SF,1.0,1.0,,B1012_001_Slab on Deck-ID.Net Top Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Labor,Concrete Pourer,HR,HR/SF,0.005,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,03 - CONCRETE          ,03 35 00 - Concrete Finishing         ,Material,Finishing to - Slab on Deck - Materials,SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 31 00 - Steel Decking         ,,Erect Metal Decking to - Slab on Deck,SF,SF/SF,1.0,1.0,,B1012_001_Slab on Deck-ID.Net Bottom Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 31 00 - Steel Decking         ,Labor,Structural Steelwork Labor,HR,HR/SF,0.009,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 31 00 - Steel Decking         ,Material,Metal Decking to - Slab on Deck - Materials,SF,SF/SF,1.0,1.05,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 31 00 - Steel Decking         ,,SOMD Edge Closure Form - Slab on Deck,LF,LF/LF,1.0,1.0,,B1012_001_Slab on Deck-ID.Edge Perimeter
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 31 00 - Steel Decking         ,Labor,Structural Steelwork Labor,HR,HR/LF,0.025,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1010 - Floor Construction  ,B1012 - Upper Floors Construction  ,05 - METALS,05 31 00 - Steel Decking         ,Material,SOMD Edge Closure Form - Slab on Deck - Materials,LF,LF/LF,1.0,1.05,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1020 - Roof Construction  ,,,,,Roof Construction  ,-,,1.0,1.0,,1
+B - SHELL   ,B10 - Superstructure   ,B1020 - Roof Construction  ,B1021 - Flat Roof Construction  ,,,,Green Roof-ID,SF,,1.0,1.0,,B1021_019_Green Roof-ID.Net Top Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1020 - Roof Construction  ,B1021 - Flat Roof Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 52 00 - Modified Bituminous Membrane Roofing       ,,Green Roof,SF,SF/SF,1.0,1.0,,B1021_019_Green Roof-ID.Net Top Surface Area
+B - SHELL   ,B10 - Superstructure   ,B1020 - Roof Construction  ,B1021 - Flat Roof Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 52 00 - Modified Bituminous Membrane Roofing       ,Labor,Felt roofer,HR,HR/SF,0.15,1.0,,Parent.Quantity
+B - SHELL   ,B10 - Superstructure   ,B1020 - Roof Construction  ,B1021 - Flat Roof Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 52 00 - Modified Bituminous Membrane Roofing       ,Material,Green Roof on CIP RC Slab - Materials,SF,SF/SF,1.0,1.05,,Parent.Quantity
+B - SHELL   ,B20 - Exterior Enclosure  ,,,,,,Exterior Enclosure  ,-,,1.0,1.0,,1
+B - SHELL   ,B20 - Exterior Enclosure  ,B2010 - Exterior Walls  ,,,,,Exterior Walls  ,-,,1.0,1.0,,1
+B - SHELL   ,B20 - Exterior Enclosure  ,B2010 - Exterior Walls  ,B2011 - Exterior Wall Construction  ,,,,Rainscreen (Wall)-ID,SF,,1.0,1.0,,B2011_150_Rainscreen (Wall)-ID.Net Reference Side Surface Area
+B - SHELL   ,B20 - Exterior Enclosure  ,B2010 - Exterior Walls  ,B2011 - Exterior Wall Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 42 00 - Wall Panels         ,,Rainscreen,SF,SF/SF,1.0,1.0,,B2011_150_Rainscreen (Wall)-ID.Net Reference Side Surface Area
+B - SHELL   ,B20 - Exterior Enclosure  ,B2010 - Exterior Walls  ,B2011 - Exterior Wall Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 42 00 - Wall Panels         ,Labor,Roofing and Cladding Labor,HR,HR/SF,0.05,1.0,,Parent.Quantity
+B - SHELL   ,B20 - Exterior Enclosure  ,B2010 - Exterior Walls  ,B2011 - Exterior Wall Construction  ,07 - THERMAL & MOISTURE PROTECTION,07 42 00 - Wall Panels         ,Material,Rainscreen  - Materials,SF,SF/SF,1.0,1.05,,Parent.Quantity
+B - SHELL   ,,B2020 - Exterior Windows  ,,,,,Exterior Windows  ,-,SF,1.0,1.0,,1
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,,,,"Ext Punched Windows, Stucco-ID",SF,,1.0,1.0,,"B2021_011_Ext Punched Windows, Stucco-ID.Width*B2021_011_Ext Punched Windows, Stucco-ID.Height"
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,08 - OPENINGS,08 51 00 - Metal Windows         ,,"Alum. Framed Glazing System, Punched Windows",SF,SF/SF,1.0,1.0,,"B2021_011_Ext Punched Windows, Stucco-ID.Width*B2021_011_Ext Punched Windows, Stucco-ID.Height"
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,08 - OPENINGS,08 51 00 - Metal Windows         ,Labor,Glazing and Curtain Wall Labor,HR,HR/SF,0.08,1.0,,Parent.Quantity
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,08 - OPENINGS,08 51 00 - Metal Windows         ,Material,"Alum. Framed Glazing System, Punched Windows",SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,08 - OPENINGS,08 81 00 - Glass Glazing         ,,"Exterior Glazing, Clear to punched windows",SF,SF/SF,1.0,1.0,,"B2021_011_Ext Punched Windows, Stucco-ID.Net_Surface_Area"
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,08 - OPENINGS,08 81 00 - Glass Glazing         ,Labor,Glazing and Curtain Wall Labor,HR,HR/SF,0.133,1.0,,Parent.Quantity
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,08 - OPENINGS,08 81 00 - Glass Glazing         ,Material,"Exterior Glazing, Clear",SF,SF/SF,1.0,1.0,,Parent.Quantity
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,09 - FINISHES,09 24 00 - Portland Cement Plastering        ,,Window Surrounds in Plaster,EA,EA/EA,1.0,1.0,,"B2021_011_Ext Punched Windows, Stucco-ID.Count"
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,09 - FINISHES,09 24 00 - Portland Cement Plastering        ,Labor,Finish Carpenter,HR,HR/EA,1.0,1.0,,Parent.Quantity
+B - SHELL   ,,B2020 - Exterior Windows  ,B2021 - Windows    ,09 - FINISHES,09 24 00 - Portland Cement Plastering        ,Material,Window Surrounds in Plaster,SF,SF/EA,1.0,1.05,,Parent.Quantity
+B - SHELL   ,,B2030 - Exterior Doors  ,,,,,Exterior Doors  ,-,,1.0,1.0,,1
+B - SHELL   ,,B2030 - Exterior Doors  ,B2032 - Solid Exterior Doors  ,,,,External Entrance Door-ID,EA,,1.0,1.0,,B2032_025_External Entrance Door-ID.Count
+B - SHELL   ,,B2030 - Exterior Doors  ,B2032 - Solid Exterior Doors  ,08 - OPENINGS,08 14 00 - Wood Doors         ,,External Entrance Door,EA,EA/EA,1.0,1.0,,B2032_025_External Entrance Door-ID.Count
+B - SHELL   ,,B2030 - Exterior Doors  ,B2032 - Solid Exterior Doors  ,08 - OPENINGS,08 14 00 - Wood Doors         ,Labor,Finish Carpenter,HR,HR/EA,2.0,1.0,,Parent.Quantity
+B - SHELL   ,,B2030 - Exterior Doors  ,B2032 - Solid Exterior Doors  ,08 - OPENINGS,08 14 00 - Wood Doors         ,Material,External Entrance Door - Materials,EA,EA/EA,1.0,1.0,,Parent.Quantity
+C - INTERIORS   ,,,,,,,INTERIORS   ,-,,1.0,1.0,0.0,1
+C - INTERIORS   ,C20 - Stairs   ,,,,,,Stairs   ,-,,1.0,1.0,0.0,1
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2011 - Regular Stairs   ,,,,Internal Precast Concrete Stair-ID,EA,,1.0,1.0,0.0,C2011_004_Internal Precast Concrete Stair-ID.Count
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2011 - Regular Stairs   ,03 - CONCRETE          ,03 41 00 - Precast Structural Concrete        ,,Install Interior Precast Concrete Stair,EA,EA/EA,1.0,1.0,0.0,C2011_004_Internal Precast Concrete Stair-ID.Count
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2011 - Regular Stairs   ,03 - CONCRETE          ,03 41 00 - Precast Structural Concrete        ,Labor,Precast Concrete Labor,HR,HR/EA,8.0,1.0,0.0,Parent.Quantity
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2011 - Regular Stairs   ,03 - CONCRETE          ,03 41 00 - Precast Structural Concrete        ,Material,Interior Precast Concrete Stair - Materials,EA,EA/EA,1.0,1.01,0.0,Parent.Quantity
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2011 - Regular Stairs   ,,,,Internal Precast Concrete Stair Landing-ID,EA,,1.0,1.0,0.0,C2011_005_Internal Precast Concrete Stair Landing-ID.Count
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2011 - Regular Stairs   ,03 - CONCRETE          ,03 41 00 - Precast Structural Concrete        ,,Install Interior Precast Concrete Stair Landing,EA,EA/EA,1.0,1.0,0.0,C2011_005_Internal Precast Concrete Stair Landing-ID.Count
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2011 - Regular Stairs   ,03 - CONCRETE          ,03 41 00 - Precast Structural Concrete        ,Labor,Precast Concrete Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2011 - Regular Stairs   ,03 - CONCRETE          ,03 41 00 - Precast Structural Concrete        ,Material,Interior Precast Concrete Stair Landing - Materials,EA,EA/EA,1.0,1.01,0.0,Parent.Quantity
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2014 - Stair Handrails and Balustrades ,,,,Stair Handrail-ID,LF,,1.0,1.0,0.0,C2014_001_Stair Handrail-ID.Length
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2014 - Stair Handrails and Balustrades ,"06 - WOODS, PLASTICS, COMPOSITES",06 81 00 - Composite Railings         ,,Fix Stair Handrail,LF,LF/LF,1.0,1.0,0.0,C2014_001_Stair Handrail-ID.Length
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2014 - Stair Handrails and Balustrades ,"06 - WOODS, PLASTICS, COMPOSITES",06 81 00 - Composite Railings         ,Labor,Finish Carpenter,HR,HR/LF,0.1,1.0,0.0,Parent.Quantity
+C - INTERIORS   ,C20 - Stairs   ,C2010 - Stair Construction  ,C2014 - Stair Handrails and Balustrades ,"06 - WOODS, PLASTICS, COMPOSITES",06 81 00 - Composite Railings         ,Material,Stair Handrail - Materials,LF,LF/LF,1.0,1.0,0.0,Parent.Quantity
+D - SERVICES   ,,,,,,,SERVICES   ,-,,1.0,1.0,0.0,1
+D - SERVICES   ,D10 - Conveying   ,,,,,,Conveying   ,-,,1.0,1.0,0.0,1
+D - SERVICES   ,D10 - Conveying   ,D1010 - Elevators & Lifts ,,,,,Elevators & Lifts ,-,,1.0,1.0,0.0,1
+D - SERVICES   ,D10 - Conveying   ,D1010 - Elevators & Lifts ,D1011 - Passenger Elevators   ,,,,Passenger Elevators-ID,EA,,1.0,1.0,0.0,D1011_010_Passenger Elevators-ID.Count
+D - SERVICES   ,D10 - Conveying   ,D1010 - Elevators & Lifts ,D1011 - Passenger Elevators   ,05 - METALS,05 51 10 - Metal Stairs         ,,Elevator Pit Ladders,EA,EA/EA,1.0,1.0,0.0,D1011_010_Passenger Elevators-ID.Count
+D - SERVICES   ,D10 - Conveying   ,D1010 - Elevators & Lifts ,D1011 - Passenger Elevators   ,05 - METALS,05 51 10 - Metal Stairs         ,Labor,Elevator Installation Labor,HR,HR/EA,1.502,1.0,0.0,Parent.Quantity
+D - SERVICES   ,D10 - Conveying   ,D1010 - Elevators & Lifts ,D1011 - Passenger Elevators   ,05 - METALS,05 51 10 - Metal Stairs         ,Material,Elevator Pit Ladders,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+D - SERVICES   ,D10 - Conveying   ,D1010 - Elevators & Lifts ,D1011 - Passenger Elevators   ,14 - CONVEYING EQUIPMENT,14 21 21 - Electric Traction Elevators        ,,Passenger Elevator,EA,EA/EA,1.0,1.0,0.0,D1011_010_Passenger Elevators-ID.Count
+D - SERVICES   ,D10 - Conveying   ,D1010 - Elevators & Lifts ,D1011 - Passenger Elevators   ,14 - CONVEYING EQUIPMENT,14 21 21 - Electric Traction Elevators        ,Labor,Elevator Installation Labor,HR,HR/EA,320.0,1.0,0.0,Parent.Quantity
+D - SERVICES   ,D10 - Conveying   ,D1010 - Elevators & Lifts ,D1011 - Passenger Elevators   ,14 - CONVEYING EQUIPMENT,14 21 21 - Electric Traction Elevators        ,Material,Passenger Elevator,SF,SF/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,,,,,,,ZONES,-,-,1.0,1.0,0.0,1
+X - ZONES,X20 - Area Function,,,,,,Area Function,-,,1.0,1.0,0.0,1
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Residential,-,,1.0,1.0,0.0,1
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Residential Unit Module,EA,,1.0,1.0,0.0,X2040_09_Residential Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Hoist 3x3m module to floor slab using crane ,TON,TON/FT,0.0094931745404478,1.0,0.0,X2040_09_Residential Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Building Laborer,TON,TON/TON,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Coles 10 t mobile crane,HR,HR/EA,1.502,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Align module guides/brackets with slab connections,EA,EA/EA,1.0,1.0,0.0,X2040_09_Residential Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Structural Steelwork Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Bolt or pin modules together using mechanical joinery,EA,EA/EA,1.0,1.0,0.0,X2040_09_Residential Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Structural Steelwork Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,"Apply sealants, tape, or gaskets to seams for airtightness",EA,EA/EA,1.0,1.0,0.0,X2040_09_Residential Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Structural Steelwork Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,"Plug-and-play MEP connections for water, power, ventilation",EA,EA/EA,1.0,1.0,0.0,X2040_09_Residential Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Electrician,HR,HR/EA,0.1,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Plumber,HR,HR/EA,0.1,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Mechanic,HR,HR/EA,0.1,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Use shear brackets and structural anchors for permanent fixation,EA,EA/EA,1.0,1.0,0.0,X2040_09_Residential Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Structural Steelwork Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Common Unit Module,SF,SF/SF,1.0,1.0,0.0,X2040_09_Common Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Hoist 3x3m module to floor slab using crane ,TON,TON/FT,0.0094931745404478,1.0,0.0,X2040_09_Common Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Building Laborer,TON,TON/TON,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Coles 10 t mobile crane,HR,HR/EA,1.502,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Align module guides/brackets with slab connections,EA,EA/EA,1.0,1.0,0.0,X2040_09_Common Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Structural Steelwork Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Bolt or pin modules together using mechanical joinery,EA,EA/EA,1.0,1.0,0.0,X2040_09_Common Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Structural Steelwork Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,"Apply sealants, tape, or gaskets to seams for airtightness",EA,EA/EA,1.0,1.0,0.0,X2040_09_Common Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Structural Steelwork Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,"Plug-and-play MEP connections for water, power, ventilation",EA,EA/EA,1.0,1.0,0.0,X2040_09_Common Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Electrician,HR,HR/EA,0.1,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Plumber,HR,HR/EA,0.1,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Mechanic,HR,HR/EA,0.1,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Use shear brackets and structural anchors for permanent fixation,EA,EA/EA,1.0,1.0,0.0,X2040_09_Common Unit Module.Count
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Structural Steelwork Labor,HR,HR/EA,1.0,1.0,0.0,Parent.Quantity
+X - ZONES,X20 - Area Function,X2040 - Residential,,,,,Beam clamp Set,EA,EA/EA,1.0,1.0,0.0,Parent.Quantity
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,BDG Quantities Required
+,,,,,,,,,,,,,Source Qty
+,,,,,,,,,,,,,1
+,,,,,,,,,,,,,G1031.001_Cut and Fill.Net Volume
+,,,,,,,,,,,,,Parent.Quantity
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Net Volume
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Edge Surface Area
+,,,,,,,,,,,,,(A1012_001_CIP Pad Footing-ID.Net Top Surface Area*XX)+(A1012_001_CIP Pad Footing-ID.Edge Surface Area*1)
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Count
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Edge Perimeter
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Net Bottom Surface Area
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Net Top Surface Area
+,,,,,,,,,,,,,A1012_004_CIP Pedestal-ID.Net Volume
+,,,,,,,,,,,,,A1012_004_CIP Pedestal-ID.Edge Surface Area
+,,,,,,,,,,,,,A1012_004_CIP Pedestal-ID.Net Top Surface Area
+,,,,,,,,,,,,,A1013_001_Perimeter Drainage-ID.Length
+,,,,,,,,,,,,,A1032_001_Structural Slab on Grade-ID.Net Volume
+,,,,,,,,,,,,,A1032_001_Structural Slab on Grade-ID.Edge Surface Area
+,,,,,,,,,,,,,A1032_001_Structural Slab on Grade-ID.Net Bottom Surface Area
+,,,,,,,,,,,,,A1032_001_Structural Slab on Grade-ID.Net Top Surface Area
+,,,,,,,,,,,,,A1034_005_Elevator Pit Wall-ID.Net Volume
+,,,,,,,,,,,,,A1034_005_Elevator Pit Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,A1034_005_Elevator Pit Wall-ID.Top Surface Area
+,,,,,,,,,,,,,A1034_006_Elevator Pit Slab-ID.Net Volume
+,,,,,,,,,,,,,A1034_006_Elevator Pit Slab-ID.Edge Surface Area
+,,,,,,,,,,,,,A1034_006_Elevator Pit Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1011_026_CIP RC Elevator Core Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B1011_026_CIP RC Elevator Core Wall-ID.Net Reference Side Surface Area+B1011_026_CIP RC Elevator Core Wall-ID.Net Opposite Reference Side Surface Area
+,,,,,,,,,,,,,B1011_026_CIP RC Elevator Core Wall-ID.Net Volume
+,,,,,,,,,,,,,B1011_027_CIP RC Stair Core Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B1011_027_CIP RC Stair Core Wall-ID.Net Reference Side Surface Area+B1011_027_CIP RC Stair Core Wall-ID.Net Opposite Reference Side Surface Area
+,,,,,,,,,,,,,B1011_027_CIP RC Stair Core Wall-ID.Net Volume
+,,,,,,,,,,,,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Height
+,,,,,,,,,,,,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Count
+,,,,,,,,,,,,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Vertical Surface Area
+,,,,,,,,,,,,,B1012_W-B.217_W Steel Beam-12x96.Length
+,,,,,,,,,,,,,B1012_W-B.217_W Steel Beam-12x96.Count
+,,,,,,,,,,,,,B1012_W-B.217_W Steel Beam-12x96.Top Surface Area+B1012_W-B.217_W Steel Beam-12x96.Bottom Surface Area+B1012_W-B.217_W Steel Beam-12x96.Reference Side Surface Area+B1012_W-B.217_W Steel Beam-12x96.Opposite Reference Side Surface Area
+,,,,,,,,,,,,,B1012_001_Slab on Deck-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1012_001_Slab on Deck-ID.Net Volume
+,,,,,,,,,,,,,B1012_001_Slab on Deck-ID.Net Bottom Surface Area
+,,,,,,,,,,,,,B1012_001_Slab on Deck-ID.Edge Perimeter
+,,,,,,,,,,,,,B1021_019_Green Roof-ID.Net Top Surface Area
+,,,,,,,,,,,,,B2011_150_Rainscreen (Wall)-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,"B2021_011_Ext Punched Windows, Stucco-ID.Width*B2021_011_Ext Punched Windows, Stucco-ID.Height"
+,,,,,,,,,,,,,"B2021_011_Ext Punched Windows, Stucco-ID.Net_Surface_Area"
+,,,,,,,,,,,,,"B2021_011_Ext Punched Windows, Stucco-ID.Count"
+,,,,,,,,,,,,,B2032_025_External Entrance Door-ID.Count
+,,,,,,,,,,,,,C2011_004_Internal Precast Concrete Stair-ID.Count
+,,,,,,,,,,,,,C2011_005_Internal Precast Concrete Stair Landing-ID.Count
+,,,,,,,,,,,,,C2014_001_Stair Handrail-ID.Length
+,,,,,,,,,,,,,D1011_010_Passenger Elevators-ID.Count
+,,,,,,,,,,,,,X2040_09_Residential Unit Module.Count
+,,,,,,,,,,,,,X2040_09_Common Unit Module.Count
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Net Volume
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Edge Surface Area
+,,,,,,,,,,,,,(A1012_001_CIP Pad Footing-ID.Net Top Surface Area*XX)+(A1012_001_CIP Pad Footing-ID.Edge Surface Area*1)
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Count
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Edge Perimeter
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Net Bottom Surface Area
+,,,,,,,,,,,,,A1012_001_CIP Pad Footing-ID.Net Top Surface Area
+,,,,,,,,,,,,,A1012_004_CIP Pedestal-ID.Net Volume
+,,,,,,,,,,,,,A1012_004_CIP Pedestal-ID.Edge Surface Area
+,,,,,,,,,,,,,A1012_004_CIP Pedestal-ID.Net Top Surface Area
+,,,,,,,,,,,,,A1013_001_Perimeter Drainage-ID.Length
+,,,,,,,,,,,,,A1032_001_Structural Slab on Grade-ID.Net Volume
+,,,,,,,,,,,,,A1032_001_Structural Slab on Grade-ID.Edge Surface Area
+,,,,,,,,,,,,,B2011_010_Ext Metal Wall Panel-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,A1032_001_Structural Slab on Grade-ID.Net Bottom Surface Area
+,,,,,,,,,,,,,A1032_001_Structural Slab on Grade-ID.Net Top Surface Area
+,,,,,,,,,,,,,A1034_005_Elevator Pit Wall-ID.Net Volume
+,,,,,,,,,,,,,A1034_005_Elevator Pit Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,A1034_005_Elevator Pit Wall-ID.Top Surface Area
+,,,,,,,,,,,,,A1034_006_Elevator Pit Slab-ID.Net Volume
+,,,,,,,,,,,,,A1034_006_Elevator Pit Slab-ID.Edge Surface Area
+,,,,,,,,,,,,,A1034_006_Elevator Pit Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,B1011_026_CIP RC Elevator Core Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B1011_026_CIP RC Elevator Core Wall-ID.Net Reference Side Surface Area+B1011_026_CIP RC Elevator Core Wall-ID.Net Opposite Reference Side Surface Area
+,,,,,,,,,,,,,B1011_026_CIP RC Elevator Core Wall-ID.Net Volume
+,,,,,,,,,,,,,B1011_027_CIP RC Stair Core Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B1011_027_CIP RC Stair Core Wall-ID.Net Reference Side Surface Area+B1011_027_CIP RC Stair Core Wall-ID.Net Opposite Reference Side Surface Area
+,,,,,,,,,,,,,B1011_027_CIP RC Stair Core Wall-ID.Net Volume
+,,,,,,,,,,,,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Height
+,,,,,,,,,,,,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Count
+,,,,,,,,,,,,,B1012_HSS-C.060_HSS Steel Column-12x12x3/8.Vertical Surface Area
+,,,,,,,,,,,,,B1012_W-B.217_W Steel Beam-12x96.Length
+,,,,,,,,,,,,,B1012_W-B.217_W Steel Beam-12x96.Count
+,,,,,,,,,,,,,B1012_W-B.217_W Steel Beam-12x96.Top Surface Area+B1012_W-B.217_W Steel Beam-12x96.Bottom Surface Area+B1012_W-B.217_W Steel Beam-12x96.Reference Side Surface Area+B1012_W-B.217_W Steel Beam-12x96.Opposite Reference Side Surface Area
+,,,,,,,,,,,,,B1012_001_Slab on Deck-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1012_001_Slab on Deck-ID.Net Volume
+,,,,,,,,,,,,,B1012_001_Slab on Deck-ID.Net Bottom Surface Area
+,,,,,,,,,,,,,B1012_001_Slab on Deck-ID.Edge Perimeter
+,,,,,,,,,,,,,B1021_001_Roof Slab on Deck-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_001_Roof Slab on Deck-ID.Net Volume
+,,,,,,,,,,,,,B1021_001_Roof Slab on Deck-ID.Edge Perimeter
+,,,,,,,,,,,,,B1021_002_CIP RC Roof Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_002_CIP RC Roof Slab-ID.Net Bottom Surface Area+B1021_002_CIP RC Roof Slab-ID.Edge Surface Area
+,,,,,,,,,,,,,B1021_002_CIP RC Roof Slab-ID.Net Volume
+,,,,,,,,,,,,,B1021_003_Roof Level Topping-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_004_Roof Slope Topping-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_005_Precast Solid Roof Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_006_Precast Hollow Core Roof Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_009_Steel Roof Deck-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_010_Steel Roof Structure-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_011_Wood Roof Deck-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_012_Wood Roof Structure-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_013_Beam & Block Roof Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_014_Membrane Roofing-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_019_Green Roof-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_022_Ballasted Membrane Roof on CIP RC Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_027_Ballasted Protected Membrane Roof on CIP RC Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_030_Ballasted Protected Membrane Green Roof on CIP RC Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_033_Mechanically Fastened Membrane Roof on CIP RC Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1021_040_Adhered Membrane Roof on CIP RC Slab-ID.Net Top Surface Area
+,,,,,,,,,,,,,B1022_013_Wood Roof Decking-ID.Top Surface Area
+,,,,,,,,,,,,,B1022_014_Roof Sheathing-ID.Top Surface Area
+,,,,,,,,,,,,,B2011_020_Ext Plaster Stucco-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2011_030_CMU/Brick Cavity Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2011_035_Block Masonry-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2011_040_Stone Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2011_050_Brick Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2011_120_Cladding (Wall)-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2011_150_Rainscreen (Wall)-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2011_170_External Render (Wall)-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2012_010_Parapet Metal Wall Panel-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2012_010_Parapet Metal Wall Panel-ID.Net Reference Side Surface Area+B2012_010_Parapet Metal Wall Panel-ID.Net Opposite Reference Side Surface Area
+,,,,,,,,,,,,,B2012_010_Parapet Metal Wall Panel-ID.Length
+,,,,,,,,,,,,,B2012_020_Parapet Plaster Stucco-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2012_020_Parapet Plaster Stucco-ID.Length
+,,,,,,,,,,,,,B2012_030_Parapet Railing (Object)-ID.Length
+,,,,,,,,,,,,,B2012_035_Parapet CMU/Brick Cavity Wall-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2012_035_Parapet CMU/Brick Cavity Wall-ID.Length
+,,,,,,,,,,,,,B2012_040_Parapet Railing (Wall)-ID.Length
+,,,,,,,,,,,,,B2014_011_Solar Shade (Wall)-ID.Length
+,,,,,,,,,,,,,B2015_060_Aluminium Trellis (Wall)-ID.Length
+,,,,,,,,,,,,,B2015_070_External Railing (Wall)-ID.Length
+,,,,,,,,,,,,,B2015_080_Ext Metal Railing (Wall)-ID.Length
+,,,,,,,,,,,,,B2015_090_Ext Glass Railing (Wall)-ID.Length
+,,,,,,,,,,,,,B2015_100_Balcony Balustrade (Wall)-ID.Length
+,,,,,,,,,,,,,"B2021_011_Ext Punched Windows, Stucco-ID.Width*B2021_011_Ext Punched Windows, Stucco-ID.Height"
+,,,,,,,,,,,,,"B2021_011_Ext Punched Windows, Stucco-ID.Net_Surface_Area"
+,,,,,,,,,,,,,"B2021_011_Ext Punched Windows, Stucco-ID.Count"
+,,,,,,,,,,,,,B2021_020_External Window-ID.Count
+,,,,,,,,,,,,,"B2022_010_Ext Glazing System, clear-ID.Net Reference Side Surface Area"
+,,,,,,,,,,,,,"B2022_010_Ext Glazing System, clear-ID.Length"
+,,,,,,,,,,,,,"B2022_011_Ext Glazing System, spandrel-ID.Net Reference Side Surface Area"
+,,,,,,,,,,,,,"B2022_011_Ext Glazing System, spandrel-ID.Length"
+,,,,,,,,,,,,,B2022_020_Curtain Wall (Object)-ID.Count
+,,,,,,,,,,,,,B2022_030_Curtain Wall (Wall)-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2023_001_Store Front-ID.Net Reference Side Surface Area
+,,,,,,,,,,,,,B2031_001_External Empty Opening-ID.Count
+,,,,,,,,,,,,,B2031_010_Automatic Bi-parting Sliding Door-ID.Count
+,,,,,,,,,,,,,B2031_020_Automatic Telescoping Sliding Door-ID.Count
+,,,,,,,,,,,,,B2031_030_Double Storefront Door-ID.Count
+,,,,,,,,,,,,,B2031_040_Emergency Dept Storefront Door-ID.Count
+,,,,,,,,,,,,,B2031_050_Aluminium Door-ID.Count
+,,,,,,,,,,,,,B2031_060_Storefront Door-ID.Count
+,,,,,,,,,,,,,B2031_070_Glass Door-ID.Count
+,,,,,,,,,,,,,B2031_080_Alu-Glass Door-ID.Count
+,,,,,,,,,,,,,B2031_090_Sliding Terrace Door-ID.Count
+,,,,,,,,,,,,,"B2032_010_Ext Metal Door, Single Unrated-ID.Count"
+,,,,,,,,,,,,,B2032_012_External Door-ID.Count
+,,,,,,,,,,,,,"B2032_020_Ext Metal Door, Double Unrated-ID.Count"
+,,,,,,,,,,,,,"B2032_021_Ext Metal Door, Double Fire Rated-ID.Count"
+,,,,,,,,,,,,,B2032_025_External Entrance Door-ID.Count
+,,,,,,,,,,,,,"B2034_010_Overhead Coiling Door, Fire Rated-ID.Count"
+,,,,,,,,,,,,,"B2034_010_Overhead Coiling Door, Fire Rated-ID.Width*B2034_010_Overhead Coiling Door, Fire Rated-ID.Height"
+,,,,,,,,,,,,,C2011_004_Internal Precast Concrete Stair-ID.Count
+,,,,,,,,,,,,,C2011_005_Internal Precast Concrete Stair Landing-ID.Count
+,,,,,,,,,,,,,C2014_001_Stair Handrail-ID.Length
+,,,,,,,,,,,,,D1011_010_Passenger Elevators-ID.Count
+,,,,,,,,,,,,,X2040_09_Residential Unit Module.Count
+,,,,,,,,,,,,,X2040_09_Common Unit Module.Count
