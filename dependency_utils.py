@@ -4,20 +4,55 @@
 
 import pandas as pd
 
-WBS_FILE_PATH = 'wbs_data.csv'  # Path to the WBS file
+def get_wbs_from_directory(directory):
+    """
+    Get the latest WBS file from the specified directory.
+    This function searches for CSV or Excel files in the given directory and returns the path to the most recently modified file.
+    If no WBS files are found, it raises a FileNotFoundError.
+    If the directory does not exist, it raises a FileNotFoundError.
 
-def load_wbs(file_path):
+    :param directory: Directory to search for WBS files.
+    :return: Path to the latest WBS file.    
     """
-    Load the Work Breakdown Structure (WBS) from an Excel file.
-    
-    Args:
-        file_path (str): Path to the Excel file containing the WBS.
-        
-    Returns:
-        pd.DataFrame: DataFrame containing the WBS data.
+
+    import os
+    import glob
+
+    # Ensure the directory exists
+    if not os.path.exists(directory):
+        raise FileNotFoundError(f"The directory '{directory}' does not exist.")
+
+    # Get all CSV or excel files in the directory
+    wbs_files = glob.glob(os.path.join(directory, '*.csv')) + glob.glob(os.path.join(directory, '*.xlsx'))
+
+    if not wbs_files:
+        raise FileNotFoundError("No WBS files found in the specified directory.")
+
+    # Sort files by modification time and return the latest one
+    latest_file = max(wbs_files, key=os.path.getmtime)
+    return latest_file
+
+def load_wbs(directory):
     """
+    Load the Work Breakdown Structure (WBS) from a file in the specified directory.
+    This function retrieves the latest WBS file from the directory, reads it into a pandas DataFrame,
+    and returns the DataFrame. It also prints some information about the loaded data.
+    If the file cannot be loaded, it prints an error message and returns None.
+
+    :param directory: Directory where the WBS file is located.
+    :return: DataFrame containing the WBS data.
+    """
+    # Get the latest WBS file from the specified directory
+    file_path = get_wbs_from_directory(directory)
+    print(f"Loading WBS from file: {file_path}")
+
     try:
-        wbs_df = pd.read_csv(file_path)
+        if file_path.lower().endswith('.csv'):
+            wbs_df = pd.read_csv(file_path)
+        elif file_path.lower().endswith('.xlsx'):
+            wbs_df = pd.read_excel(file_path)
+        else:
+            raise ValueError("Unsupported file format for WBS. Only .csv and .xlsx are supported.")
 
         # Print some information about the loaded DataFrame
         print(f"WBS loaded successfully with {len(wbs_df)} rows and {len(wbs_df.columns)} columns.")
@@ -30,6 +65,3 @@ def load_wbs(file_path):
     except Exception as e:
         print(f"Error loading WBS file: {e}")
         return None
-
-df = load_wbs(WBS_FILE_PATH)
-
