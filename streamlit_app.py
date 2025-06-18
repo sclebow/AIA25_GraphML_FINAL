@@ -1,8 +1,10 @@
 import streamlit as st
 import os
-from main import load_ifc_file, create_all_elements_dict, assign_levels, assign_work_zones
 import plotly.graph_objects as go
 import pandas as pd
+
+from main import load_ifc_file, create_all_elements_dict, assign_levels, assign_work_zones
+from dependency_utils import get_wbs_from_directory, load_wbs
 
 st.set_page_config(page_title="IFC Level & Work Zone Visualizer", layout="wide")
 st.title("IFC Level & Work Zone Visualizer")
@@ -30,11 +32,11 @@ with st.spinner("Loading IFC file and processing..."):
 if ifc_file:
     all_elements_dict = create_all_elements_dict(ifc_file)
     # Display a table of elements
-    st.subheader("Elements Overview")
-    st.dataframe(pd.DataFrame.from_dict(all_elements_dict, orient='index'))
-    st.subheader("Unique Element Names")
-    unique_names = sorted(set(e['name'] for e in all_elements_dict.values() if e['name']))
-    st.table(pd.DataFrame(unique_names, columns=["Unique Element Names"]))
+    with st.expander("Elements Overview"):
+        st.dataframe(pd.DataFrame.from_dict(all_elements_dict, orient='index'))
+    with st.expander("View unique element names", expanded=False):
+        unique_names = sorted(set(e['name'] for e in all_elements_dict.values() if e['name']))
+        st.table(pd.DataFrame(unique_names, columns=["Unique Element Names"]))
     
     st.markdown("---")
     st.markdown("### Assign Levels")
@@ -59,7 +61,14 @@ if ifc_file:
         st.plotly_chart(work_zones_fig, use_container_width=True)
 
     # Optionally show a table of elements
-    if st.checkbox("Show elements table"):
-        import pandas as pd
+    with st.expander("Elements Data Table", expanded=True):
         df = pd.DataFrame(list(all_elements_dict.values()))
         st.dataframe(df)
+
+    # Load the WBS file
+    wbs_dir = st.text_input("Enter the directory to load WBS files", "./wbs")
+    
+    wbs_df = load_wbs(wbs_dir)
+
+    if wbs_df is not None:
+        st.dataframe(wbs_df)
