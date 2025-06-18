@@ -66,9 +66,16 @@ if ifc_file:
         st.dataframe(df)
 
     # Load the WBS file
+    st.markdown("---")
+    st.markdown("### Load Work Breakdown Structure (WBS)")
     wbs_dir = st.text_input("Enter the directory to load WBS files", "./wbs")
-    
     wbs_df = load_wbs(wbs_dir)
 
-    if wbs_df is not None:
-        st.dataframe(wbs_df)
+    if wbs_df is None:
+        st.error("Failed to load WBS file.")
+        st.stop()
+
+    st.success("WBS loaded successfully.")
+    st.dataframe(wbs_df)
+
+    # Find matching elements between WBS and Element Names
