@@ -153,59 +153,42 @@ def assign_levels(all_elements_dict, ifc_file, threshold=0.1, plot=False):
 
     return all_elements_dict, fig if plot else None
 
-def assign_work_zones(all_elements_dict, ifc_file, threshold=1, plot=False):
+def assign_work_zones(all_elements_dict, ifc_file, num_clusters=6, plot=False):
     """
     Assign work zones to elements in the dictionary based on their placement.
-    Using a clustering algorithm to group elements by their X and Y coordinates, defining a specific threshold for work zones, but not a specific number of zones.
+    Using a clustering algorithm to group elements by their X and Y coordinates without defining a specific threshold or zone count.
 
     :param all_elements_dict: Dictionary of all elements.
     :param ifc_file: Loaded IFC object.
     :param plot: Whether to plot the results using plotly.
-    :return: Dictionary with work zones assigned to elements.
+    :return: Dictionary with work zones assigned to elements. 
+    :return: Plotly figure if plot is True, otherwise None.
     """
-    from sklearn.cluster import DBSCAN
+    from sklearn.cluster import KMeans
     import numpy as np
     if plot:
         import plotly.graph_objects as go
 
     # Extract X and Y coordinates from element locations
     coordinates = np.array([[element['location']['x'], element['location']['y']] for element in all_elements_dict.values()])
-    
-    # Use DBSCAN to cluster elements based on their X and Y coordinates
-    clustering = DBSCAN(eps=threshold, min_samples=2).fit(coordinates)
-    labels = clustering.labels_
+    # Use KMeans to cluster elements based on their X and Y coordinates
+    kmeans = KMeans(n_clusters=num_clusters, random_state=42)
+    kmeans.fit(coordinates)
+    labels = kmeans.labels_
+    centers = kmeans.cluster_centers_
 
-    # Assign work zones based on cluster labels
+    # Sort the cluster centers by their X and Y coordinates
+    sorted_indices = np.lexsort((centers[:, 1], centers[:, 0]))
+    sorted_labels = np.array(sorted_indices)
+    label_to_zone = {label: f"Zone {i+1}" for i, label in enumerate(sorted_labels)}
+
+    # Assign work zones to elements
     for element, label in zip(all_elements_dict.values(), labels):
         if label == -1:
             element['work_zone'] = 'Unassigned'
         else:
-            element['work_zone'] = f'Zone {label + 1}'
+            element['work_zone'] = label_to_zone[label]
 
-    # Reorder the work zone labels to ensure consistent naming
-    # The order is determined by sum of X and Y coordinates for each zone
-    zone_to_coords = {}
-    for element, label in zip(all_elements_dict.values(), labels):
-        if label != -1:
-            zone_key = f'Zone {label + 1}'
-            if zone_key not in zone_to_coords:
-                zone_to_coords[zone_key] = []
-            zone_to_coords[zone_key].append((element['location']['x'], element['location']['y']))
-
-    # Compute mean coordinates for each zone
-    zone_mean_coords = {zone: np.mean(coords, axis=0) for zone, coords in zone_to_coords.items()}
-
-    # Sort zones by their mean coordinates (ascending)
-    sorted_zones = sorted(zone_mean_coords, key=lambda z: (zone_mean_coords[z][0], zone_mean_coords[z][1]))
-
-    # Create a mapping from old zone names to new ordered names
-    zone_to_new_name = {zone: f'Zone {i + 1}' for i, zone in enumerate(sorted_zones)}
-
-    # Assign new zone names
-    for element in all_elements_dict.values():
-        if element['work_zone'] != 'Unassigned':
-            element['work_zone'] = zone_to_new_name[element['work_zone']]
-    
     if plot:
         # Prepare data for plotting
         xs = [element['location']['x'] for element in all_elements_dict.values()]
@@ -217,7 +200,6 @@ def assign_work_zones(all_elements_dict, ifc_file, threshold=1, plot=False):
         unique_zones = sorted(set(work_zones))
         zone_to_int = {zone: i for i, zone in enumerate(unique_zones)}
         work_zone_ints = [zone_to_int[zone] for zone in work_zones]
-        hover_texts = [f"{name} ({zone})" for name, zone in zip(names, work_zones)]
         
         fig = go.Figure(data=[
             go.Scatter3d(
@@ -232,7 +214,7 @@ def assign_work_zones(all_elements_dict, ifc_file, threshold=1, plot=False):
                     colorbar=dict(title='Work Zone'),
                     opacity=0.8
                 ),
-                text=hover_texts,
+                text=names,
                 hoverinfo='text+x+y+z'
             )
         ])
@@ -242,7 +224,7 @@ def assign_work_zones(all_elements_dict, ifc_file, threshold=1, plot=False):
                 yaxis_title='Y',
                 zaxis_title='Z',
             ),
-            title='IFC Elements by Work Zone (DBSCAN Clustering)',
+            title='IFC Elements by Work Zone (KMeans Clustering)',
             margin=dict(l=0, r=0, b=0, t=40)
         )
         # Show the plot interactively
@@ -263,7 +245,7 @@ def main():
     """
     ifc_directory = "./ifc" # Change this to your IFC directory
     ifc_file = load_latest_ifc_file(ifc_directory)
-    print(f"Loaded IFC file: {ifc_file}")
+    
     if not ifc_file:
         print("Failed to load IFC file.")
         return
@@ -272,11 +254,8 @@ def main():
     print(f"Created dictionary of all elements")
     all_elements_dict, fig = assign_levels(all_elements_dict, ifc_file, plot=True)
     print(f"Assigned levels to elements")
-    print(f"Unique levels found: {set(element['level'] for element in all_elements_dict.values())}")
     all_elements_dict, fig = assign_work_zones(all_elements_dict, ifc_file, plot=True)
     print(f"Assigned work zones to elements")
-    print(f"Unique work zones found: {set(element['work_zone'] for element in all_elements_dict.values())}")
-    # pprint(all_elements_dict)
-
+    
 if __name__ == "__main__":
     main()
