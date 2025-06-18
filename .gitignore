@@ -1,3 +1,4 @@
 .~lock.processed_wbs_data.csv#
 .~lock.wbs_data.csv#
 plots/
+__pycache__/main.cpython-311.pyc

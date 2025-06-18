@@ -69,7 +69,7 @@ def create_all_elements_dict(ifc_file):
         all_elements_dict[element.id()] = element_dict
     return all_elements_dict
 
-def assign_levels(all_elements_dict, ifc_file, plot=False):
+def assign_levels(all_elements_dict, ifc_file, threshold=0.1, plot=False):
     """
     Assign levels to elements in the dictionary based on their placement using clustering.  
     Using a clustering algorithm to group elements by their Z-coordinate without defining a specific threshold or level count.
@@ -88,7 +88,7 @@ def assign_levels(all_elements_dict, ifc_file, plot=False):
     # Extract Z-coordinates from element locations
     z_coordinates = np.array([element['location']['z'] for element in all_elements_dict.values()]).reshape(-1, 1)
     # Use DBSCAN to cluster elements based on their Z-coordinates
-    clustering = DBSCAN(eps=0.1, min_samples=2).fit(z_coordinates)
+    clustering = DBSCAN(eps=threshold, min_samples=2).fit(z_coordinates)
     labels = clustering.labels_
 
     # Reorder cluster labels so that level 1 is the lowest Z cluster
@@ -153,7 +153,7 @@ def assign_levels(all_elements_dict, ifc_file, plot=False):
 
     return all_elements_dict, fig if plot else None
 
-def assign_work_zones(all_elements_dict, ifc_file, plot=False):
+def assign_work_zones(all_elements_dict, ifc_file, threshold=1, plot=False):
     """
     Assign work zones to elements in the dictionary based on their placement.
     Using a clustering algorithm to group elements by their X and Y coordinates, defining a specific threshold for work zones, but not a specific number of zones.
@@ -171,7 +171,6 @@ def assign_work_zones(all_elements_dict, ifc_file, plot=False):
     # Extract X and Y coordinates from element locations
     coordinates = np.array([[element['location']['x'], element['location']['y']] for element in all_elements_dict.values()])
     
-    threshold = 6.0  # Define a threshold for clustering (can be adjusted)
     # Use DBSCAN to cluster elements based on their X and Y coordinates
     clustering = DBSCAN(eps=threshold, min_samples=2).fit(coordinates)
     labels = clustering.labels_
