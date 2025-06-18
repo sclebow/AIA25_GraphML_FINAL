@@ -31,6 +31,14 @@ with st.spinner("Loading IFC file and processing..."):
 
 if ifc_file:
     all_elements_dict = create_all_elements_dict(ifc_file)
+
+    # Filter elements by Name
+    # Name does not start with 'LVL' or '1000'
+    df_elements = pd.DataFrame.from_dict(all_elements_dict, orient='index')
+    df_elements = df_elements[~df_elements['name'].str.startswith(('LVL', '1000', 'Stair'), na=False)]
+    df_elements = df_elements[df_elements['name'].notna() & (df_elements['name'] != '')]
+    all_elements_dict = df_elements.to_dict(orient='index')
+
     # Display a table of elements
     with st.expander("Elements Overview"):
         st.dataframe(pd.DataFrame.from_dict(all_elements_dict, orient='index'))
@@ -76,6 +84,19 @@ if ifc_file:
         st.stop()
 
     st.success("WBS loaded successfully.")
+
+    # Replace 'Parent.Quantity' with None in 'Source Qty' column
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].replace('Parent.Quantity', None)
+    # Fill down in 'Source Qty' column
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].fillna(method='ffill')
+    # 'Input Unit' is 'Units' split by '/' and take the last part
+    wbs_df['Input Unit'] = wbs_df['Units'].apply(lambda x: x.split('/')[-1] if isinstance(x, str) else None)
+    # Keep only relevant columns
+    wbs_df = wbs_df[['Source Qty', 'Unit', 'Input Unit', 'Consumption']]
+    # Filter out columns that are not 'HR' in Unit
+    wbs_df = wbs_df[wbs_df['Unit'] == 'HR']
+
     st.dataframe(wbs_df)
 
     # Find matching elements between WBS and Element Names
+    source_qty_list = wbs_df['Source Qty'].tolist()

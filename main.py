@@ -63,6 +63,8 @@ def create_all_elements_dict(ifc_file):
         return element_dict
 
     elements = ifc_file.by_type("IfcElement")
+    footings = ifc_file.by_type("IfcFooting")
+    elements.extend(footings)  # Include footings as well
     all_elements_dict = {}
     for element in elements:
         element_dict = create_element_dict(element)
@@ -146,9 +148,9 @@ def assign_levels(all_elements_dict, ifc_file, threshold=0.1, plot=False):
             margin=dict(l=0, r=0, b=0, t=40)
         )
         # Show the plot interactively
-        fig.show()
+        # fig.show()
         # Save the plot as an HTML file
-        fig.write_html("./plots/levels_plot.html")
+        # fig.write_html("./plots/levels_plot.html")
         print("Plot saved as plot.html. Open this file in your browser to view the plot.")
 
     return all_elements_dict, fig if plot else None
@@ -228,9 +230,9 @@ def assign_work_zones(all_elements_dict, ifc_file, num_clusters=6, plot=False):
             margin=dict(l=0, r=0, b=0, t=40)
         )
         # Show the plot interactively
-        fig.show()
+        # fig.show()
         # Save the plot as an HTML file
-        fig.write_html("./plots/work_zones_plot.html")
+        # fig.write_html("./plots/work_zones_plot.html")
         print("Plot saved as work_zones_plot.html. Open this file in your browser to view the plot.")
 
     if plot:
