@@ -1,0 +1,5 @@
+# Add your project dependencies below, one per line.
+ifcopenshell
+pandas
+scikit-learn
+plotly
