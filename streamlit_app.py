@@ -32,7 +32,12 @@ if ifc_file:
     # Display a table of elements
     st.subheader("Elements Overview")
     st.dataframe(pd.DataFrame.from_dict(all_elements_dict, orient='index'))
-
+    st.subheader("Unique Element Names")
+    unique_names = sorted(set(e['name'] for e in all_elements_dict.values() if e['name']))
+    st.table(pd.DataFrame(unique_names, columns=["Unique Element Names"]))
+    
+    st.markdown("---")
+    st.markdown("### Assign Levels")
     level_threshold = st.slider("Level clustering threshold (Z, meters)", min_value=0.01, max_value=2.0, value=0.1, step=0.01)
     all_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
     st.success("Levels assigned.")
@@ -42,6 +47,8 @@ if ifc_file:
     if levels_fig:
         st.plotly_chart(levels_fig, use_container_width=True)
     
+    st.markdown("---")
+    st.markdown("### Assign Work Zones")
     number_of_zones = st.slider("Number of work zones to assign", min_value=1, max_value=20, value=6, step=1)
     all_elements_dict, work_zones_fig = assign_work_zones(all_elements_dict, ifc_file, num_clusters=number_of_zones, plot=True)
     st.success("Work zones assigned.")
