@@ -4,7 +4,18 @@
 
 import ifcopenshell
 import ifcopenshell.util.element
+
+import ifcopenshell.geom
+import ifcopenshell.util.shape
 from pprint import pprint
+import os
+
+from sklearn.cluster import DBSCAN, KMeans
+import numpy as np
+
+import plotly.graph_objects as go
+
+settings = ifcopenshell.geom.settings()
 
 def load_ifc_file(file_path):
     """
@@ -43,6 +54,8 @@ def create_all_elements_dict(ifc_file):
     :param ifc_file: Loaded IFC object.
     :return: Dictionary of all elements.
     """
+    ifc_elements = ['IfcWall', 'IfcSlab', 'IfcBeam', 'IfcColumn', 'IfcFooting', 'IfcStair', 'IfcRamp']
+
     def create_element_dict(element):
         """
         Create a dictionary representation of an IFC element.
@@ -50,17 +63,26 @@ def create_all_elements_dict(ifc_file):
         :param element: IFC element to convert.
         :return: Dictionary representation of the element.
         """
-        element_dict = {
-            'id': element.id(),
-            'type': element.is_a(),
-            'name': getattr(element, 'Name', None),
-            'location': {
-                'x': element.ObjectPlacement.RelativePlacement.Location.Coordinates[0],
-                'y': element.ObjectPlacement.RelativePlacement.Location.Coordinates[1],
-                'z': element.ObjectPlacement.RelativePlacement.Location.Coordinates[2]
+        if element.is_a() not in ifc_elements:
+            return None
+        else:
+
+            element_dict = {
+                'id': element.id(),
+                'type': element.is_a(),
+                'name': getattr(element, 'Name', None),
+                'location': {
+                    'x': element.ObjectPlacement.RelativePlacement.Location.Coordinates[0],
+                    'y': element.ObjectPlacement.RelativePlacement.Location.Coordinates[1],
+                    'z': element.ObjectPlacement.RelativePlacement.Location.Coordinates[2]
+                },
+                'height': ifcopenshell.util.shape.get_z(element),
+                'length': ifcopenshell.util.shape.get_max_xyz(element),
+                'volume': ifcopenshell.util.shape.get_volume(element),
+                'area': ifcopenshell.util.shape.get_max_side_area(element),
+
             }
-        }
-        return element_dict
+            return element_dict
 
     elements = ifc_file.by_type("IfcElement")
     footings = ifc_file.by_type("IfcFooting")
@@ -82,10 +104,7 @@ def assign_levels(all_elements_dict, ifc_file, threshold=0.1, plot=False):
     :return: Dictionary with levels assigned to elements.
     """
     
-    from sklearn.cluster import DBSCAN
-    import numpy as np
-    if plot:
-        import plotly.graph_objects as go
+    
 
     # Extract Z-coordinates from element locations
     z_coordinates = np.array([element['location']['z'] for element in all_elements_dict.values()]).reshape(-1, 1)
@@ -166,10 +185,7 @@ def assign_work_zones(all_elements_dict, ifc_file, num_clusters=6, plot=False):
     :return: Dictionary with work zones assigned to elements. 
     :return: Plotly figure if plot is True, otherwise None.
     """
-    from sklearn.cluster import KMeans
-    import numpy as np
-    if plot:
-        import plotly.graph_objects as go
+
 
     # Extract X and Y coordinates from element locations
     coordinates = np.array([[element['location']['x'], element['location']['y']] for element in all_elements_dict.values()])
@@ -202,7 +218,7 @@ def assign_work_zones(all_elements_dict, ifc_file, num_clusters=6, plot=False):
         unique_zones = sorted(set(work_zones))
         zone_to_int = {zone: i for i, zone in enumerate(unique_zones)}
         work_zone_ints = [zone_to_int[zone] for zone in work_zones]
-        
+
         fig = go.Figure(data=[
             go.Scatter3d(
                 x=xs,
@@ -212,7 +228,7 @@ def assign_work_zones(all_elements_dict, ifc_file, num_clusters=6, plot=False):
                 marker=dict(
                     size=6,
                     color=work_zone_ints,
-                    colorscale='Viridis',
+                    colorscale='portland',
                     colorbar=dict(title='Work Zone'),
                     opacity=0.8
                 ),

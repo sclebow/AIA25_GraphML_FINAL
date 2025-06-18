@@ -88,7 +88,7 @@ if ifc_file:
     # Replace 'Parent.Quantity' with None in 'Source Qty' column
     wbs_df['Source Qty'] = wbs_df['Source Qty'].replace('Parent.Quantity', None)
     # Fill down in 'Source Qty' column
-    wbs_df['Source Qty'] = wbs_df['Source Qty'].fillna(method='ffill')
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].ffill()
     # 'Input Unit' is 'Units' split by '/' and take the last part
     wbs_df['Input Unit'] = wbs_df['Units'].apply(lambda x: x.split('/')[-1] if isinstance(x, str) else None)
     # Keep only relevant columns
@@ -100,3 +100,5 @@ if ifc_file:
 
     # Find matching elements between WBS and Element Names
     source_qty_list = wbs_df['Source Qty'].tolist()
+    print('element columns is {}'.format(df_elements.columns))
+    # df_elements['hours'] = wbs_df.loc[wbs_df['Source Qty'].isin(df_elements['name']), 'Consumption'].values
