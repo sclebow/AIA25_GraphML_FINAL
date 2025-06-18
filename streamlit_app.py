@@ -20,7 +20,11 @@ if not ifc_files:
     st.error("No IFC files found in the './ifc' directory.")
     st.stop()
 
-selected_ifc = st.selectbox("Select IFC file", ifc_files)
+latest_ifc_index = max(range(len(ifc_files)), key=lambda i: os.path.getmtime(os.path.join(ifc_dir, ifc_files[i])))
+ifc_files.sort(key=lambda f: os.path.getmtime(os.path.join(ifc_dir, f)), reverse=False)
+st.write(f"Latest IFC file: {ifc_files[latest_ifc_index]}")
+
+selected_ifc = st.selectbox("Select IFC file", ifc_files, index=latest_ifc_index)
 ifc_path = os.path.join(ifc_dir, selected_ifc)
 
 with st.spinner("Loading IFC file and processing..."):

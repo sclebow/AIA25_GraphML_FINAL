@@ -14,6 +14,7 @@ from sklearn.cluster import DBSCAN, KMeans
 import numpy as np
 
 import plotly.graph_objects as go
+from tqdm import tqdm
 
 settings = ifcopenshell.geom.settings()
 
@@ -66,7 +67,17 @@ def create_all_elements_dict(ifc_file):
         if element.is_a() not in ifc_elements:
             return None
         else:
+            # Generate Geometry for the element
+            try:
+                shape = ifcopenshell.geom.create_shape(settings, element)
+                if not shape.geometry:
+                    return None  # Skip elements without geometry
+                # print(f"Creating shape for element {element.id()} of type {element.is_a()}")
+            except Exception as e:
+                # print(f"Error creating shape for element {element.id()}: {e}")
+                return None
 
+            # Create a dictionary with relevant attributes
             element_dict = {
                 'id': element.id(),
                 'type': element.is_a(),
@@ -76,10 +87,10 @@ def create_all_elements_dict(ifc_file):
                     'y': element.ObjectPlacement.RelativePlacement.Location.Coordinates[1],
                     'z': element.ObjectPlacement.RelativePlacement.Location.Coordinates[2]
                 },
-                'height': ifcopenshell.util.shape.get_z(element),
-                'length': ifcopenshell.util.shape.get_max_xyz(element),
-                'volume': ifcopenshell.util.shape.get_volume(element),
-                'area': ifcopenshell.util.shape.get_max_side_area(element),
+                'height': ifcopenshell.util.shape.get_z(shape.geometry),
+                'length': ifcopenshell.util.shape.get_max_xyz(shape.geometry),
+                'volume': ifcopenshell.util.shape.get_volume(shape.geometry),
+                'area': ifcopenshell.util.shape.get_max_side_area(shape.geometry),
 
             }
             return element_dict
@@ -88,7 +99,7 @@ def create_all_elements_dict(ifc_file):
     footings = ifc_file.by_type("IfcFooting")
     elements.extend(footings)  # Include footings as well
     all_elements_dict = {}
-    for element in elements:
+    for element in tqdm(elements, desc="Processing IFC elements"):
         element_dict = create_element_dict(element)
         all_elements_dict[element.id()] = element_dict
     return all_elements_dict

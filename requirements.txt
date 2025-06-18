@@ -3,3 +3,4 @@ ifcopenshell
 pandas
 scikit-learn
 plotly
+tqdm
