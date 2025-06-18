@@ -47,7 +47,12 @@ def load_wbs(directory):
     print(f"Loading WBS from file: {file_path}")
 
     try:
-        wbs_df = pd.read_csv(file_path)
+        if file_path.lower().endswith('.csv'):
+            wbs_df = pd.read_csv(file_path)
+        elif file_path.lower().endswith('.xlsx'):
+            wbs_df = pd.read_excel(file_path)
+        else:
+            raise ValueError("Unsupported file format for WBS. Only .csv and .xlsx are supported.")
 
         # Print some information about the loaded DataFrame
         print(f"WBS loaded successfully with {len(wbs_df)} rows and {len(wbs_df.columns)} columns.")
