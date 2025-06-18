@@ -151,7 +151,7 @@ def assign_levels(all_elements_dict, ifc_file, plot=False):
         fig.write_html("./plots/levels_plot.html")
         print("Plot saved as plot.html. Open this file in your browser to view the plot.")
 
-    return all_elements_dict
+    return all_elements_dict, fig if plot else None
 
 def assign_work_zones(all_elements_dict, ifc_file, plot=False):
     """
@@ -252,7 +252,11 @@ def assign_work_zones(all_elements_dict, ifc_file, plot=False):
         fig.write_html("./plots/work_zones_plot.html")
         print("Plot saved as work_zones_plot.html. Open this file in your browser to view the plot.")
 
-    return all_elements_dict
+    if plot:
+        return all_elements_dict, fig
+    
+    else:
+        return all_elements_dict, None
 
 def main():
     """
@@ -267,10 +271,10 @@ def main():
     
     all_elements_dict = create_all_elements_dict(ifc_file)
     print(f"Created dictionary of all elements")
-    all_elements_dict = assign_levels(all_elements_dict, ifc_file, plot=True)
+    all_elements_dict, fig = assign_levels(all_elements_dict, ifc_file, plot=True)
     print(f"Assigned levels to elements")
     print(f"Unique levels found: {set(element['level'] for element in all_elements_dict.values())}")
-    all_elements_dict = assign_work_zones(all_elements_dict, ifc_file, plot=True)
+    all_elements_dict, fig = assign_work_zones(all_elements_dict, ifc_file, plot=True)
     print(f"Assigned work zones to elements")
     print(f"Unique work zones found: {set(element['work_zone'] for element in all_elements_dict.values())}")
     # pprint(all_elements_dict)
