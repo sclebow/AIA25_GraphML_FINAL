@@ -229,7 +229,8 @@ def assign_work_zones(all_elements_dict, ifc_file, num_clusters=6, plot=False):
     # Sort the cluster centers by their X and Y coordinates
     sorted_indices = np.lexsort((centers[:, 1], centers[:, 0]))
     sorted_labels = np.array(sorted_indices)
-    label_to_zone = {label: f"Zone {i+1}" for i, label in enumerate(sorted_labels)}
+    # label_to_zone = {label: f"Zone {i+1}" for i, label in enumerate(sorted_labels)}
+    label_to_zone = {label: i+1 for i, label in enumerate(sorted_labels)}
 
     # Assign work zones to elements
     for element, label in zip(all_elements_dict.values(), labels):

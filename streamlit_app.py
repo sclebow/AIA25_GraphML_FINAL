@@ -66,9 +66,8 @@ if ifc_file:
     st.markdown("---")
     st.markdown("### Assign Levels")
     level_threshold = st.slider("Level clustering threshold (Z, meters)", min_value=0.01, max_value=2.0, value=0.1, step=0.01)
-    updated_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
+    all_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
     st.success("Levels assigned.")
-    all_elements_dict = updated_elements_dict
     unique_levels = sorted(set(e['level'] for e in all_elements_dict.values() if e['level'] != -1))
     st.write(f"**Number of unique levels found:** {len(unique_levels)}")
     st.subheader("Levels Plot")
@@ -88,8 +87,8 @@ if ifc_file:
 
     # Optionally show a table of elements
     with st.expander("Elements Data Table", expanded=True):
-        df = pd.DataFrame(list(all_elements_dict.values()))
-        st.dataframe(df)
+        df_elements = pd.DataFrame(list(all_elements_dict.values()))
+        st.dataframe(df_elements)
 
     # Load the WBS file
     st.markdown("---")
@@ -177,6 +176,17 @@ if ifc_file:
 
     import networkx as nx
 
+    levels = df_elements['level'].unique()
     G = nx.DiGraph()
+    for workey_zoney in range(1,number_of_zones+1):
+        workzone_elements = df_elements[df_elements['work_zone']==workey_zoney]
+        for level in unique_levels:
+            level_elements = workzone_elements[workzone_elements['level']==level]
+            st.dataframe(level_elements)
+            # break
+        break
+
+            # for element in level_elements:
+                
 
     
