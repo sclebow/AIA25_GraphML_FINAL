@@ -150,15 +150,18 @@ if ifc_file:
         volume_consumption = total_work_hours.loc[mask_volume, 'Consumption'].sum()
         # mask_weight = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'TON')
         # weight_consumption = total_work_hours.loc[mask_weight, 'Consumption'].sum()
+        quanity_mask = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'EA')
+        quantity_consumption = total_work_hours.loc[quanity_mask, 'Consumption'].sum()
 
         # Update the element with the calculated work hours
         length_hours = length_consumption * element['length']
         area_hours = area_consumption * element['area']
         volume_hours = volume_consumption * element['volume']
+        quantity_hours = quantity_consumption * 1 # Assuming quantity is one per element
         # weight_hours = weight_consumption * 0.6  # Assuming weight is converted to hours with a factor of 0.6
 
         # total_hours = length_hours + area_hours + volume_hours + weight_hours
-        total_hours = length_hours + area_hours + volume_hours
+        total_hours = length_hours + area_hours + volume_hours + quantity_hours
         # Store the result in the DataFrame
         df_elements.at[element.name, 'total_work_hours'] = total_hours
 
@@ -166,5 +169,14 @@ if ifc_file:
     st.dataframe(df_elements[['name', 'total_work_hours']])
 
     st.markdown("---")
-    st.markdown("### Full Elements Data with Work Hours")
-    st.dataframe(df_elements)
+    with st.expander("Full Elements Data with Work Hours"):
+        st.dataframe(df_elements)
+
+    st.markdown("---")
+    st.markdown("### Build the Network Graph")
+
+    import networkx as nx
+
+    G = nx.DiGraph()
+
+    
