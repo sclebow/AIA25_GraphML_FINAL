@@ -180,13 +180,54 @@ if ifc_file:
     G = nx.DiGraph()
     for workey_zoney in range(1,number_of_zones+1):
         workzone_elements = df_elements[df_elements['work_zone']==workey_zoney]
-        for level in unique_levels:
+        node_index = 0
+        node_lists = []
+        for level in workzone_elements['level'].unique():
             level_elements = workzone_elements[workzone_elements['level']==level]
-            st.dataframe(level_elements)
-            # break
-        break
+            # st.dataframe(level_elements)
+            
+            for name in level_elements['name'].unique():
+                name_elements = level_elements[level_elements['name'] == name]
+                node_list = []
+                for _, element in name_elements.iterrows():
+                    G.add_node(element['name'], level=element['level'], work_zone=element['work_zone'], total_work_hours=element.get('total_work_hours', 0))
+                    node_list.append(node_index)
+                    node_index += 1
+                node_lists.append(node_list)
+        
+        # Build edges between lists of nodes
+        for index, node_list in enumerate(node_lists):
+            if index == 0:
+                continue
 
-            # for element in level_elements:
-                
+            previous_node_list = node_lists[index - 1]
 
-    
+            # Create edges between all nodes in the previous list and the current list
+            for prev_node in previous_node_list:
+                for curr_node in node_list:
+                    G.add_edge(prev_node, curr_node)
+
+    # import gravis as gv
+    # renderer = gv.three(
+    #             G,
+    #             use_node_size_normalization=True, 
+    #             node_size_normalization_max=30,
+    #             use_edge_size_normalization=True,
+    #             edge_size_data_source='weight', 
+    #             edge_curvature=0.3,
+    #             node_hover_neighborhood=True,
+    #             show_edge_label=True,
+    #             edge_label_data_source='weight',
+    #             node_label_size_factor=0.5,
+    #             edge_size_factor=0.5,
+    #             edge_label_size_factor=0.5,
+    #             node_size_data_source='depth',
+    #             layout_algorithm_active=True,
+    #             # use_links_force=True,
+    #             # links_force_distance=200,
+    #             use_many_body_force=True,
+    #             many_body_force_strength=-300,
+    #             zoom_factor=1.5,
+    #             graph_height=550,
+    #         )
+    # st.components.v1.html(renderer.to_html(), height=550)
