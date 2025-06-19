@@ -119,14 +119,28 @@ if ifc_file:
     wbs_df = wbs_df[wbs_df['Source Qty'].isin(unique_names)]
     wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
 
-    
-
-
-
-
-    # # Find matching elements between WBS and Element Names
-    # source_qty_list = wbs_df['Source Qty'].tolist()
-    # print('element columns is {}'.format(df_elements.columns))
-    # df_elements['hours'] = wbs_df.loc[wbs_df['Source Qty'].isin(df_elements['name']), 'Consumption'].values
-    
+    st.markdown("### Filtered WBS Data")
     st.dataframe(wbs_df)
+
+    st.markdown("---")
+    st.markdown("### Calculate Total Work Hours for Each Element")
+
+    # Calculate total work hours for each element
+    # First combine the 'Consumption' for each unique pair of 'Source Qty' and 'Input Unit'
+    wbs_df['Consumption'] = pd.to_numeric(wbs_df['Consumption'], errors='coerce')
+    total_work_hours = wbs_df.groupby(['Source Qty', 'Input Unit'])['Consumption'].sum().reset_index()
+    total_work_hours = total_work_hours.rename(columns={'Source Qty': 'Element Name', 'Consumption': 'Total Work Hours'})
+    total_work_hours = total_work_hours[total_work_hours['Total Work Hours'] > 0]
+    total_work_hours = total_work_hours[total_work_hours['Element Name'].isin(unique_names)]
+
+    st.markdown("### Total Work Hours for Each Pair of Source Qty and Input Unit")
+    st.dataframe(total_work_hours)
+
+    # Calculate total work hours for each element
+    # Assume 'Consumption' is in hours
+    # Assume the input units are the same as the element units
+    input_unit_map = {
+        'LF': 'length',
+        'SF': 'area',
+        'CY': 'volume',
+    }
