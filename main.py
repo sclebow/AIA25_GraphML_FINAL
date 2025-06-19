@@ -33,8 +33,7 @@ def load_ifc_file(file_path):
         return ifc_file
     except Exception as e:
         print(f"Error loading IFC file: {e}")
-        return None
-    
+        return None 
     
 def load_latest_ifc_file(directory):
     """
@@ -82,7 +81,7 @@ def create_all_elements_dict(ifc_file):
                 },
                 # 'height': ifcopenshell.util.shape.get_z(geometry)*unit_scale,
                 'length': ifcopenshell.util.shape.get_max_xyz(geometry)*unit_scale*3.28,  # Convert to feet
-                'area': ifcopenshell.util.shape.get_max_side_area(geometry)*unit_scale**2 * 10.764,  # Convert to square feet
+                'area': ifcopenshell.util.shape.get_max_side_area(geometry)*unit_scale**2 * 3.28**2,  # Convert to square feet
                 'volume': ifcopenshell.util.shape.get_volume(geometry)*unit_scale**3 * 1.09**3,  # Convert to cubic yards
             }
 
@@ -229,7 +228,8 @@ def assign_work_zones(all_elements_dict, ifc_file, num_clusters=6, plot=False):
     # Sort the cluster centers by their X and Y coordinates
     sorted_indices = np.lexsort((centers[:, 1], centers[:, 0]))
     sorted_labels = np.array(sorted_indices)
-    label_to_zone = {label: f"Zone {i+1}" for i, label in enumerate(sorted_labels)}
+    # label_to_zone = {label: f"Zone {i+1}" for i, label in enumerate(sorted_labels)}
+    label_to_zone = {label: i+1 for i, label in enumerate(sorted_labels)}
 
     # Assign work zones to elements
     for element, label in zip(all_elements_dict.values(), labels):

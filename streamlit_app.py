@@ -2,9 +2,10 @@ import streamlit as st
 import os
 import plotly.graph_objects as go
 import pandas as pd
-
+import random
 from main import load_ifc_file, create_all_elements_dict, assign_levels, assign_work_zones
 from dependency_utils import get_wbs_from_directory, load_wbs
+import numpy as np
 
 st.set_page_config(page_title="IFC Level & Work Zone Visualizer", layout="wide")
 st.title("IFC Level & Work Zone Visualizer")
@@ -66,9 +67,8 @@ if ifc_file:
     st.markdown("---")
     st.markdown("### Assign Levels")
     level_threshold = st.slider("Level clustering threshold (Z, meters)", min_value=0.01, max_value=2.0, value=0.1, step=0.01)
-    updated_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
+    all_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
     st.success("Levels assigned.")
-    all_elements_dict = updated_elements_dict
     unique_levels = sorted(set(e['level'] for e in all_elements_dict.values() if e['level'] != -1))
     st.write(f"**Number of unique levels found:** {len(unique_levels)}")
     st.subheader("Levels Plot")
@@ -88,8 +88,8 @@ if ifc_file:
 
     # Optionally show a table of elements
     with st.expander("Elements Data Table", expanded=True):
-        df = pd.DataFrame(list(all_elements_dict.values()))
-        st.dataframe(df)
+        df_elements = pd.DataFrame(list(all_elements_dict.values()))
+        st.dataframe(df_elements)
 
     # Load the WBS file
     st.markdown("---")
@@ -150,15 +150,18 @@ if ifc_file:
         volume_consumption = total_work_hours.loc[mask_volume, 'Consumption'].sum()
         # mask_weight = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'TON')
         # weight_consumption = total_work_hours.loc[mask_weight, 'Consumption'].sum()
+        quanity_mask = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'EA')
+        quantity_consumption = total_work_hours.loc[quanity_mask, 'Consumption'].sum()
 
         # Update the element with the calculated work hours
         length_hours = length_consumption * element['length']
         area_hours = area_consumption * element['area']
         volume_hours = volume_consumption * element['volume']
+        quantity_hours = quantity_consumption * 1 # Assuming quantity is one per element
         # weight_hours = weight_consumption * 0.6  # Assuming weight is converted to hours with a factor of 0.6
 
         # total_hours = length_hours + area_hours + volume_hours + weight_hours
-        total_hours = length_hours + area_hours + volume_hours
+        total_hours = length_hours + area_hours + volume_hours + quantity_hours
         # Store the result in the DataFrame
         df_elements.at[element.name, 'total_work_hours'] = total_hours
 
@@ -166,5 +169,42 @@ if ifc_file:
     st.dataframe(df_elements[['name', 'total_work_hours']])
 
     st.markdown("---")
-    st.markdown("### Full Elements Data with Work Hours")
-    st.dataframe(df_elements)
+    with st.expander("Full Elements Data with Work Hours"):
+        st.dataframe(df_elements)
+
+    st.markdown("---")
+    st.markdown("### Build the Network Graph")
+
+    from build_graph import build_wbs_graph
+
+    graph_fig, edges = build_wbs_graph(df_elements=df_elements[df_elements['work_zone']==1])
+
+    st.plotly_chart(graph_fig, use_container_width=True)
+    st.success("Network graph built successfully.")
+
+    st.dataframe(edges)
+
+    # import gravis as gv
+    # renderer = gv.three(
+    #             G,
+    #             use_node_size_normalization=True, 
+    #             node_size_normalization_max=30,
+    #             use_edge_size_normalization=True,
+    #             edge_size_data_source='weight', 
+    #             edge_curvature=0.3,
+    #             node_hover_neighborhood=True,
+    #             show_edge_label=True,
+    #             edge_label_data_source='weight',
+    #             node_label_size_factor=0.5,
+    #             edge_size_factor=0.5,
+    #             edge_label_size_factor=0.5,
+    #             node_size_data_source='depth',
+    #             layout_algorithm_active=True,
+    #             # use_links_force=True,
+    #             # links_force_distance=200,
+    #             use_many_body_force=True,
+    #             many_body_force_strength=-300,
+    #             zoom_factor=1.5,
+    #             graph_height=550,
+    #         )
+    # st.components.v1.html(renderer.to_html(), height=550)
