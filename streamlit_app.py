@@ -15,13 +15,30 @@ if not os.path.exists(ifc_dir):
     st.error(f"IFC directory '{ifc_dir}' not found.")
     st.stop()
 
+# ifc_files = [f for f in os.listdir(ifc_dir) if f.endswith('.ifc')]
+# if not ifc_files:
+#     st.error("No IFC files found in the './ifc' directory.")
+#     st.stop()
+
+# selected_ifc = st.selectbox("Select IFC file", ifc_files)
+# ifc_path = os.path.join(ifc_dir, selected_ifc)
 ifc_files = [f for f in os.listdir(ifc_dir) if f.endswith('.ifc')]
 if not ifc_files:
     st.error("No IFC files found in the './ifc' directory.")
     st.stop()
 
-selected_ifc = st.selectbox("Select IFC file", ifc_files)
+latest_ifc_index = max(range(len(ifc_files)), key=lambda i: os.path.getmtime(os.path.join(ifc_dir, ifc_files[i])))
+ifc_files.sort(key=lambda f: os.path.getmtime(os.path.join(ifc_dir, f)), reverse=False)
+st.write(f"Latest IFC file: {ifc_files[latest_ifc_index]}")
+
+selected_ifc = st.selectbox("Select IFC file", ifc_files, index=latest_ifc_index)
 ifc_path = os.path.join(ifc_dir, selected_ifc)
+
+with st.spinner("Loading IFC file and processing..."):
+    ifc_file = load_ifc_file(ifc_path)
+    if ifc_file is None:
+        st.error("Failed to load IFC file.")
+        st.stop()
 
 with st.spinner("Loading IFC file and processing..."):
     ifc_file = load_ifc_file(ifc_path)
@@ -31,6 +48,14 @@ with st.spinner("Loading IFC file and processing..."):
 
 if ifc_file:
     all_elements_dict = create_all_elements_dict(ifc_file)
+
+    # Filter elements by Name
+    # Name does not start with 'LVL' or '1000'
+    df_elements = pd.DataFrame.from_dict(all_elements_dict, orient='index')
+    df_elements = df_elements[~df_elements['name'].str.startswith(('LVL', '1000', 'Stair'), na=False)]
+    df_elements = df_elements[df_elements['name'].notna() & (df_elements['name'] != '')]
+    all_elements_dict = df_elements.to_dict(orient='index')
+
     # Display a table of elements
     with st.expander("Elements Overview"):
         st.dataframe(pd.DataFrame.from_dict(all_elements_dict, orient='index'))
@@ -41,8 +66,9 @@ if ifc_file:
     st.markdown("---")
     st.markdown("### Assign Levels")
     level_threshold = st.slider("Level clustering threshold (Z, meters)", min_value=0.01, max_value=2.0, value=0.1, step=0.01)
-    all_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
+    updated_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
     st.success("Levels assigned.")
+    all_elements_dict = updated_elements_dict
     unique_levels = sorted(set(e['level'] for e in all_elements_dict.values() if e['level'] != -1))
     st.write(f"**Number of unique levels found:** {len(unique_levels)}")
     st.subheader("Levels Plot")
@@ -76,6 +102,69 @@ if ifc_file:
         st.stop()
 
     st.success("WBS loaded successfully.")
+    with st.expander("WBS Data Overview before Filtering", expanded=False):
+        st.dataframe(wbs_df)
+        st.markdown("---")
+    with st.expander("Unique Names in WBS"):
+        unique_names_in_wbs = sorted(set(wbs_df['Source Qty'].dropna().astype(str).unique()))
+        st.table(pd.DataFrame(unique_names_in_wbs, columns=["Unique Names in WBS"]))
+
+    # Replace 'Parent.Quantity' with None in 'Source Qty' column
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].replace('Parent.Quantity', None)
+    # Fill down in 'Source Qty' column
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].ffill()
+    # 'Input Unit' is 'Units' split by '/' and take the last part
+    wbs_df['Input Unit'] = wbs_df['Units'].apply(lambda x: x.split('/')[-1] if isinstance(x, str) else None)
+    # Keep only relevant columns
+    wbs_df = wbs_df[['Source Qty', 'Unit', 'Input Unit', 'Consumption']]
+    # Filter out columns that are not 'HR' in Unit
+    wbs_df = wbs_df[wbs_df['Unit'] == 'HR']
+
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].astype(str).str.split('.').str[:-1].str.join('.')  # Split by '.' and join all but last part
+
+    wbs_df = wbs_df[wbs_df['Source Qty'].apply(lambda x: any(name in str(x) for name in unique_names))]
+    wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
+
+    st.markdown("### Filtered WBS Data")
     st.dataframe(wbs_df)
 
-    # Find matching elements between WBS and Element Names
+    st.markdown("---")
+    st.markdown("### Calculate Total Work Hours for Each Element")
+
+    # Calculate total work hours for each element
+    # First combine the 'Consumption' for each unique pair of 'Source Qty' and 'Input Unit'
+    wbs_df['Consumption'] = pd.to_numeric(wbs_df['Consumption'], errors='coerce')
+    total_work_hours = wbs_df.groupby(['Source Qty', 'Input Unit'])['Consumption'].sum().reset_index()
+    
+    st.markdown("### Total Work Hours for Each Pair of Source Qty and Input Unit")
+    st.dataframe(total_work_hours)
+
+    # Calculate total work hours for each element
+    # Assume 'Consumption' is in hours
+    for _, element in df_elements.iterrows():
+        mask_length = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'LF')
+        length_consumption = total_work_hours.loc[mask_length, 'Consumption'].sum()
+        mask_area = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'SF')
+        area_consumption = total_work_hours.loc[mask_area, 'Consumption'].sum()
+        mask_volume = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'CY')
+        volume_consumption = total_work_hours.loc[mask_volume, 'Consumption'].sum()
+        # mask_weight = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'TON')
+        # weight_consumption = total_work_hours.loc[mask_weight, 'Consumption'].sum()
+
+        # Update the element with the calculated work hours
+        length_hours = length_consumption * element['length']
+        area_hours = area_consumption * element['area']
+        volume_hours = volume_consumption * element['volume']
+        # weight_hours = weight_consumption * 0.6  # Assuming weight is converted to hours with a factor of 0.6
+
+        # total_hours = length_hours + area_hours + volume_hours + weight_hours
+        total_hours = length_hours + area_hours + volume_hours
+        # Store the result in the DataFrame
+        df_elements.at[element.name, 'total_work_hours'] = total_hours
+
+    st.markdown("### Total Work Hours for Each Element")
+    st.dataframe(df_elements[['name', 'total_work_hours']])
+
+    st.markdown("---")
+    st.markdown("### Full Elements Data with Work Hours")
+    st.dataframe(df_elements)
