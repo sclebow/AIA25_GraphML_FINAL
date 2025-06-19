@@ -123,7 +123,7 @@ if ifc_file:
     wbs_df['Source Qty'] = wbs_df['Source Qty'].astype(str).str.split('.').str[:-1].str.join('.')  # Split by '.' and join all but last part
 
     wbs_df = wbs_df[wbs_df['Source Qty'].apply(lambda x: any(name in str(x) for name in unique_names))]
-    # wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
+    wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
 
     st.markdown("### Filtered WBS Data")
     st.dataframe(wbs_df)
