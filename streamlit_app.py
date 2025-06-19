@@ -197,7 +197,7 @@ if ifc_file:
                         level=element['level'], 
                         work_zone=element['work_zone'], 
                         total_work_hours=element.get('total_work_hours', 0), 
-                        position=element['location'].values)
+                        position=element['location'])
                     node_list.append(node_index)
                     node_index += 1
                 node_lists.append(node_list)
@@ -219,10 +219,20 @@ if ifc_file:
     import numpy as np
     pos_3d = nx.random_layout(G, dim=3, seed=420)
 
-    for i in range(len(df_elements)):
-        pos_3d[i] = np.array(df_elements['location'].values)
+    for node, data in G.nodes(data='position'):
+        # Convert position to a numpy array for easier manipulation
+        if data:
+            print(f"Node: {node}, Position: {data}")
+            print(f"Type: {type(data)}")
+            pos_3d[node] = np.array([data['x'], data['y'], data['z']])
+        else:
+            pos_3d[node] = np.array([0, 0, 0])  # Default position if no data is available
+        # break
+
+    # st.stop()
+
     # unique_labels = sorted(set(G.nodes['label']))
-    nx.draw(G, pos_3d, with_labels=True)
+    # nx.draw(G, pos_3d, with_labels=True)
     unique_labels = df_elements['type'].unique()
     color_map = {label: f"rgb({random.randint(0, 255)},{random.randint(0, 255)},{random.randint(0, 255)})" for label in unique_labels}
 
@@ -239,25 +249,19 @@ if ifc_file:
             hoverinfo='none'
         ))
     
-    # node_trace = go.Scatter3d(
-    #     x=[pos_3d[node['id']][0] for node in G.nodes],
-    #     y=[pos_3d[node['id']][1] for node in G.nodes],
-    #     z=[pos_3d[node['id']][2] for node in G.nodes],
-    #     mode='markers',
-    #     text=[
-    #         f"Name: {node['name']}<br>"
-    #         f"Label: {node['label']}<br>"
-    #         f"Neo4j Id: {node['id']}<br>"
-    #         f"GlobalId: {node.get('Id', 'N/A')}"
-    #         for node in G.nodes
-    #     ],
-    #     hoverinfo='text',
-    #     marker=dict(
-    #         size=5,
-    #         color=[color_map.get(node['label'], 'lightgray') for node in G.nodes],
-    #         opacity=0.9
-    #     )
-    # )
+    node_trace = go.Scatter3d(
+        x = [pos_3d[node][0] for node in G.nodes],
+        y = [pos_3d[node][1] for node in G.nodes],
+        z = [pos_3d[node][2] for node in G.nodes],
+        mode='markers',
+        text=[f"Label: {data}<br>" for node, data in G.nodes(data=True)],
+        hoverinfo='text',
+        marker=dict(
+            size=5,
+            # color=[color_map.get(data['label'], 'lightgray') for node, data in G.nodes(data=True)],
+            opacity=0.9
+        )
+    )
 
     graph_fig = go.Figure(data=edge_traces)
     graph_fig.update_layout(
@@ -267,7 +271,7 @@ if ifc_file:
         showlegend=False
     )
     st.plotly_chart(graph_fig, use_container_width=True)
-
+    st.success("Network graph built successfully.")
 
     # import gravis as gv
     # renderer = gv.three(
