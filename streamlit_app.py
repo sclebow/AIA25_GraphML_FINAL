@@ -117,7 +117,7 @@ if ifc_file:
     wbs_df['Source Qty'] = wbs_df['Source Qty'].astype(str).str.split('.').str[0]  # Split by '.' and take the first part
 
     wbs_df = wbs_df[wbs_df['Source Qty'].isin(unique_names)]
-    wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
+    # wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
 
     st.markdown("### Filtered WBS Data")
     st.dataframe(wbs_df)
@@ -129,18 +129,32 @@ if ifc_file:
     # First combine the 'Consumption' for each unique pair of 'Source Qty' and 'Input Unit'
     wbs_df['Consumption'] = pd.to_numeric(wbs_df['Consumption'], errors='coerce')
     total_work_hours = wbs_df.groupby(['Source Qty', 'Input Unit'])['Consumption'].sum().reset_index()
-    total_work_hours = total_work_hours.rename(columns={'Source Qty': 'Element Name', 'Consumption': 'Total Work Hours'})
-    total_work_hours = total_work_hours[total_work_hours['Total Work Hours'] > 0]
-    total_work_hours = total_work_hours[total_work_hours['Element Name'].isin(unique_names)]
-
+    
     st.markdown("### Total Work Hours for Each Pair of Source Qty and Input Unit")
     st.dataframe(total_work_hours)
 
     # Calculate total work hours for each element
     # Assume 'Consumption' is in hours
-    # Assume the input units are the same as the element units
-    input_unit_map = {
-        'LF': 'length',
-        'SF': 'area',
-        'CY': 'volume',
-    }
+    for _, element in df_elements.iterrows():
+        mask_length = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'LF')
+        length_consumption = total_work_hours.loc[mask_length, 'Consumption'].sum()
+        mask_area = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'SF')
+        area_consumption = total_work_hours.loc[mask_area, 'Consumption'].sum()
+        mask_volume = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'CY')
+        volume_consumption = total_work_hours.loc[mask_volume, 'Consumption'].sum()
+        mask_weight = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'TON')
+        weight_consumption = total_work_hours.loc[mask_weight, 'Consumption'].sum()
+
+        # Update the element with the calculated work hours
+        length_hours = length_consumption * element['length']
+        area_hours = area_consumption * element['area']
+        volume_hours = volume_consumption * element['volume']
+        weight_hours = weight_consumption * 0.6  # Assuming weight is converted to hours with a factor of 0.6
+
+        total_hours = length_hours + area_hours + volume_hours + weight_hours
+        # Store the result in the DataFrame
+        df_elements.at[element.name, 'total_work_hours'] = total_hours
+            
+
+    st.markdown("### Total Work Hours for Each Element")
+    st.dataframe(df_elements[['name', 'total_work_hours']])
