@@ -16,7 +16,7 @@ from sklearn.cluster import DBSCAN, KMeans
 import numpy as np
 
 import plotly.graph_objects as go
-import ifcopenshell.util.unit
+from tqdm import tqdm
 
 settings = ifcopenshell.geom.settings()
 
