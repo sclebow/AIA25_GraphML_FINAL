@@ -33,8 +33,7 @@ def load_ifc_file(file_path):
         return ifc_file
     except Exception as e:
         print(f"Error loading IFC file: {e}")
-        return None
-    
+        return None 
     
 def load_latest_ifc_file(directory):
     """
