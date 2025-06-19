@@ -102,6 +102,12 @@ if ifc_file:
         st.stop()
 
     st.success("WBS loaded successfully.")
+    with st.expander("WBS Data Overview before Filtering", expanded=False):
+        st.dataframe(wbs_df)
+        st.markdown("---")
+    with st.expander("Unique Names in WBS"):
+        unique_names_in_wbs = sorted(set(wbs_df['Source Qty'].dropna().astype(str).unique()))
+        st.table(pd.DataFrame(unique_names_in_wbs, columns=["Unique Names in WBS"]))
 
     # Replace 'Parent.Quantity' with None in 'Source Qty' column
     wbs_df['Source Qty'] = wbs_df['Source Qty'].replace('Parent.Quantity', None)
@@ -114,9 +120,9 @@ if ifc_file:
     # Filter out columns that are not 'HR' in Unit
     wbs_df = wbs_df[wbs_df['Unit'] == 'HR']
 
-    wbs_df['Source Qty'] = wbs_df['Source Qty'].astype(str).str.split('.').str[0]  # Split by '.' and take the first part
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].astype(str).str.split('.').str[:-1].str.join('.')  # Split by '.' and join all but last part
 
-    wbs_df = wbs_df[wbs_df['Source Qty'].isin(unique_names)]
+    wbs_df = wbs_df[wbs_df['Source Qty'].apply(lambda x: any(name in str(x) for name in unique_names))]
     # wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
 
     st.markdown("### Filtered WBS Data")
@@ -142,19 +148,23 @@ if ifc_file:
         area_consumption = total_work_hours.loc[mask_area, 'Consumption'].sum()
         mask_volume = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'CY')
         volume_consumption = total_work_hours.loc[mask_volume, 'Consumption'].sum()
-        mask_weight = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'TON')
-        weight_consumption = total_work_hours.loc[mask_weight, 'Consumption'].sum()
+        # mask_weight = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'TON')
+        # weight_consumption = total_work_hours.loc[mask_weight, 'Consumption'].sum()
 
         # Update the element with the calculated work hours
         length_hours = length_consumption * element['length']
         area_hours = area_consumption * element['area']
         volume_hours = volume_consumption * element['volume']
-        weight_hours = weight_consumption * 0.6  # Assuming weight is converted to hours with a factor of 0.6
+        # weight_hours = weight_consumption * 0.6  # Assuming weight is converted to hours with a factor of 0.6
 
-        total_hours = length_hours + area_hours + volume_hours + weight_hours
+        # total_hours = length_hours + area_hours + volume_hours + weight_hours
+        total_hours = length_hours + area_hours + volume_hours
         # Store the result in the DataFrame
         df_elements.at[element.name, 'total_work_hours'] = total_hours
-            
 
     st.markdown("### Total Work Hours for Each Element")
     st.dataframe(df_elements[['name', 'total_work_hours']])
+
+    st.markdown("---")
+    st.markdown("### Full Elements Data with Work Hours")
+    st.dataframe(df_elements)

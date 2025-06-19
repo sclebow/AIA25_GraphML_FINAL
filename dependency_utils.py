@@ -56,10 +56,10 @@ def load_wbs(directory):
 
         # Print some information about the loaded DataFrame
         print(f"WBS loaded successfully with {len(wbs_df)} rows and {len(wbs_df.columns)} columns.")
-        print("Columns in WBS:", wbs_df.columns.tolist())
-        # Optionally, display the first few rows of the DataFrame
-        print("First few rows of WBS:")
-        print(wbs_df.head())
+        # print("Columns in WBS:", wbs_df.columns.tolist())
+        # # Optionally, display the first few rows of the DataFrame
+        # print("First few rows of WBS:")
+        # print(wbs_df.head())
 
         return wbs_df
     except Exception as e:
