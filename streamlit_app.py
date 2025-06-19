@@ -15,13 +15,30 @@ if not os.path.exists(ifc_dir):
     st.error(f"IFC directory '{ifc_dir}' not found.")
     st.stop()
 
+# ifc_files = [f for f in os.listdir(ifc_dir) if f.endswith('.ifc')]
+# if not ifc_files:
+#     st.error("No IFC files found in the './ifc' directory.")
+#     st.stop()
+
+# selected_ifc = st.selectbox("Select IFC file", ifc_files)
+# ifc_path = os.path.join(ifc_dir, selected_ifc)
 ifc_files = [f for f in os.listdir(ifc_dir) if f.endswith('.ifc')]
 if not ifc_files:
     st.error("No IFC files found in the './ifc' directory.")
     st.stop()
 
-selected_ifc = st.selectbox("Select IFC file", ifc_files)
+latest_ifc_index = max(range(len(ifc_files)), key=lambda i: os.path.getmtime(os.path.join(ifc_dir, ifc_files[i])))
+ifc_files.sort(key=lambda f: os.path.getmtime(os.path.join(ifc_dir, f)), reverse=False)
+st.write(f"Latest IFC file: {ifc_files[latest_ifc_index]}")
+
+selected_ifc = st.selectbox("Select IFC file", ifc_files, index=latest_ifc_index)
 ifc_path = os.path.join(ifc_dir, selected_ifc)
+
+with st.spinner("Loading IFC file and processing..."):
+    ifc_file = load_ifc_file(ifc_path)
+    if ifc_file is None:
+        st.error("Failed to load IFC file.")
+        st.stop()
 
 with st.spinner("Loading IFC file and processing..."):
     ifc_file = load_ifc_file(ifc_path)
@@ -49,8 +66,9 @@ if ifc_file:
     st.markdown("---")
     st.markdown("### Assign Levels")
     level_threshold = st.slider("Level clustering threshold (Z, meters)", min_value=0.01, max_value=2.0, value=0.1, step=0.01)
-    all_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
+    updated_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
     st.success("Levels assigned.")
+    all_elements_dict = updated_elements_dict
     unique_levels = sorted(set(e['level'] for e in all_elements_dict.values() if e['level'] != -1))
     st.write(f"**Number of unique levels found:** {len(unique_levels)}")
     st.subheader("Levels Plot")
@@ -96,9 +114,19 @@ if ifc_file:
     # Filter out columns that are not 'HR' in Unit
     wbs_df = wbs_df[wbs_df['Unit'] == 'HR']
 
-    st.dataframe(wbs_df)
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].astype(str).str.split('.').str[0]  # Split by '.' and take the first part
 
-    # Find matching elements between WBS and Element Names
-    source_qty_list = wbs_df['Source Qty'].tolist()
-    print('element columns is {}'.format(df_elements.columns))
+    wbs_df = wbs_df[wbs_df['Source Qty'].isin(unique_names)]
+    wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
+
+
+
+
+
+
+    # # Find matching elements between WBS and Element Names
+    # source_qty_list = wbs_df['Source Qty'].tolist()
+    # print('element columns is {}'.format(df_elements.columns))
     # df_elements['hours'] = wbs_df.loc[wbs_df['Source Qty'].isin(df_elements['name']), 'Consumption'].values
+    
+    st.dataframe(wbs_df)
