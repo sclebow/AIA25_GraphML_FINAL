@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import plotly.graph_objects as go
 import pandas as pd
-
+import random
 from main import load_ifc_file, create_all_elements_dict, assign_levels, assign_work_zones
 from dependency_utils import get_wbs_from_directory, load_wbs
 
@@ -190,11 +190,19 @@ if ifc_file:
                 name_elements = level_elements[level_elements['name'] == name]
                 node_list = []
                 for _, element in name_elements.iterrows():
-                    G.add_node(element['name'], level=element['level'], work_zone=element['work_zone'], total_work_hours=element.get('total_work_hours', 0))
+                    G.add_node(
+                        element['id'], 
+                        wbs=element['name'], 
+                        label=element['type'],
+                        level=element['level'], 
+                        work_zone=element['work_zone'], 
+                        total_work_hours=element.get('total_work_hours', 0), 
+                        position=element['location'].values)
                     node_list.append(node_index)
                     node_index += 1
                 node_lists.append(node_list)
-        
+        edge_index = 0
+        edge_list = []
         # Build edges between lists of nodes
         for index, node_list in enumerate(node_lists):
             if index == 0:
@@ -206,6 +214,60 @@ if ifc_file:
             for prev_node in previous_node_list:
                 for curr_node in node_list:
                     G.add_edge(prev_node, curr_node)
+                    edge_list.append(edge_index)
+                    edge_index += 1
+    import numpy as np
+    pos_3d = nx.random_layout(G, dim=3, seed=420)
+
+    for i in range(len(df_elements)):
+        pos_3d[i] = np.array(df_elements['location'].values)
+    # unique_labels = sorted(set(G.nodes['label']))
+    nx.draw(G, pos_3d, with_labels=True)
+    unique_labels = df_elements['type'].unique()
+    color_map = {label: f"rgb({random.randint(0, 255)},{random.randint(0, 255)},{random.randint(0, 255)})" for label in unique_labels}
+
+    edge_traces = []
+    for source, target in G.edges():
+        x0, y0, z0 = pos_3d[source]
+        x1, y1, z1 = pos_3d[target]
+        edge_traces.append(go.Scatter3d(
+            x=[x0, x1, None],
+            y=[y0, y1, None],
+            z=[z0, z1, None],
+            mode='lines',
+            line=dict(color='gray', width=1),
+            hoverinfo='none'
+        ))
+    
+    # node_trace = go.Scatter3d(
+    #     x=[pos_3d[node['id']][0] for node in G.nodes],
+    #     y=[pos_3d[node['id']][1] for node in G.nodes],
+    #     z=[pos_3d[node['id']][2] for node in G.nodes],
+    #     mode='markers',
+    #     text=[
+    #         f"Name: {node['name']}<br>"
+    #         f"Label: {node['label']}<br>"
+    #         f"Neo4j Id: {node['id']}<br>"
+    #         f"GlobalId: {node.get('Id', 'N/A')}"
+    #         for node in G.nodes
+    #     ],
+    #     hoverinfo='text',
+    #     marker=dict(
+    #         size=5,
+    #         color=[color_map.get(node['label'], 'lightgray') for node in G.nodes],
+    #         opacity=0.9
+    #     )
+    # )
+
+    graph_fig = go.Figure(data=edge_traces)
+    graph_fig.update_layout(
+        title="3D Spring Layout of IFC Graph",
+        scene=dict(xaxis=dict(title='X'), yaxis=dict(title='Y'), zaxis=dict(title='Z')),
+        margin=dict(l=0, r=0, b=0, t=40),
+        showlegend=False
+    )
+    st.plotly_chart(graph_fig, use_container_width=True)
+
 
     # import gravis as gv
     # renderer = gv.three(
