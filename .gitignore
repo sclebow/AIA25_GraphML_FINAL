@@ -5,3 +5,4 @@ __pycache__/main.cpython-311.pyc
 __pycache__/dependency_utils.cpython-311.pyc
 *.ifc
 *.pyc
+csv/*

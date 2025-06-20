@@ -148,10 +148,13 @@ def load_to_neo4j(G, reset=False):
     nodes = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient='index')
 
 
-    path_to_node_csv = 'file:///'+ (os.path.join(os.path.abspath(os.getcwd()), 'csv','nodes01.csv'))
-    nodes.to_csv(path_to_node_csv, index=False)
-    with driver.session(database=DATABASE) as session:
-        session.run("LOAD CSV WITH HEADERS FROM '{}' AS row".format( path_to_node_csv )) 
+    # path_to_node_csv = 'file:///'+ os.path.join(os.getcwd(), 'csv','nodes01.csv')
+    # nodes.to_csv(path_to_node_csv, index=False)
+    # with driver.session(database=DATABASE) as session:
+    #     session.run("""
+    #                 LOAD CSV WITH HEADERS FROM '{}' AS row
+    #                 MERGE 
+    #                 """.format(path_to_node_csv)) 
 
     def replace_nans(df):
         for col in df.columns:
