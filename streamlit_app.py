@@ -179,7 +179,7 @@ if ifc_file:
 
     from build_graph import build_wbs_graph, shortest_path, build_gds_graph
 
-    graph_fig, edges = build_wbs_graph(df_elements=df_elements[df_elements['work_zone']==1])
+    graph_fig, edges = build_wbs_graph(df_elements=df_elements)
 
     # st.plotly_chart(graph_fig, use_container_width=True)
     st.success("Network graph built successfully.")
@@ -207,6 +207,6 @@ if ifc_file:
 
     critical_fig = plot_critical_path(df_elements)
 
-    st.plotly_chart(critical_fig)
+    # st.plotly_chart(critical_fig)
 
     write_parameters_to_ifc(ifc_file, './updated_ifc', df_elements=df_elements)

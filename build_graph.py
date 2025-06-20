@@ -137,7 +137,7 @@ def build_wbs_graph(df_elements, key_path_nodes=None):
 
     edges = pd.DataFrame(G.edges(data=True), columns=['source', 'target', 'attributes'])
 
-    # load_to_neo4j(G)
+    load_to_neo4j(G)
 
     return graph_fig, edges
 
