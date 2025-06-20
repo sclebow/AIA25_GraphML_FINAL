@@ -2,10 +2,11 @@ import streamlit as st
 import os
 import plotly.graph_objects as go
 import pandas as pd
-import random
-from main import load_ifc_file, create_all_elements_dict, assign_levels, assign_work_zones
+# import random
+from main import load_ifc_file, create_all_elements_dict, assign_levels, assign_work_zones, write_parameters_to_ifc, plot_critical_path
 from dependency_utils import get_wbs_from_directory, load_wbs
-import numpy as np
+# import numpy as np
+import json
 
 
 st.set_page_config(page_title="IFC Level & Work Zone Visualizer", layout="wide")
@@ -178,7 +179,7 @@ if ifc_file:
 
     from build_graph import build_wbs_graph, shortest_path, build_gds_graph
 
-    # graph_fig, edges = build_wbs_graph(df_elements=df_elements[df_elements['work_zone']==1])
+    graph_fig, edges = build_wbs_graph(df_elements=df_elements[df_elements['work_zone']==1])
 
     # st.plotly_chart(graph_fig, use_container_width=True)
     st.success("Network graph built successfully.")
@@ -186,30 +187,26 @@ if ifc_file:
     # st.dataframe(edges)
 
     build_gds_graph()
-    short_path = shortest_path('242065', '235678', 'inv_time')
-    st.markdown(short_path)
+    short_path = shortest_path(242065, 235678)
+    costs = short_path[0]['costs']
+    longest_cost = 0
+    for cost in costs:
+        if cost>0:
+            longest_cost+= (1/cost)
 
-    # import gravis as gv
-    # renderer = gv.three(
-    #             G,
-    #             use_node_size_normalization=True, 
-    #             node_size_normalization_max=30,
-    #             use_edge_size_normalization=True,
-    #             edge_size_data_source='weight', 
-    #             edge_curvature=0.3,
-    #             node_hover_neighborhood=True,
-    #             show_edge_label=True,
-    #             edge_label_data_source='weight',
-    #             node_label_size_factor=0.5,
-    #             edge_size_factor=0.5,
-    #             edge_label_size_factor=0.5,
-    #             node_size_data_source='depth',
-    #             layout_algorithm_active=True,
-    #             # use_links_force=True,
-    #             # links_force_distance=200,
-    #             use_many_body_force=True,
-    #             many_body_force_strength=-300,
-    #             zoom_factor=1.5,
-    #             graph_height=550,
-    #         )
-    # st.components.v1.html(renderer.to_html(), height=550)
+    with open('./gds_shortest_path.json', 'w') as f:
+        json.dump(short_path[0], f)
+    st.json(short_path[0])
+
+    critical_nodes = short_path[0]['GlobalIdPath']
+
+    df_elements['critical'] = df_elements['id'].isin(critical_nodes)
+
+    st.markdown("### the critical path for work zone 1 is {} hours".format(longest_cost))
+    st.dataframe(df_elements)
+
+    critical_fig = plot_critical_path(df_elements)
+
+    st.plotly_chart(critical_fig)
+
+    write_parameters_to_ifc(ifc_file, './updated_ifc', df_elements=df_elements)

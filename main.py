@@ -4,7 +4,7 @@
 
 import ifcopenshell
 import ifcopenshell.util.element
-
+from ifcopenshell.util.element import get_pset
 import ifcopenshell.geom
 import ifcopenshell.util.shape
 from pprint import pprint
@@ -85,44 +85,78 @@ def create_all_elements_dict(ifc_file):
                 'volume': ifcopenshell.util.shape.get_volume(geometry)*unit_scale**3 * 1.09**3,  # Convert to cubic yards
             }
 
-    # def create_element_dict(element):
-    #     """
-    #     Create a dictionary representation of an IFC element.
-        
-    #     :param element: IFC element to convert.
-    #     :return: Dictionary representation of the element.
-    #     """
-    #     # if element.is_a() not in ifc_elements:
-    #     #     return None
-    #     # else:
-    #     shape = ifcopenshell.geom.create_shape(settings, element)
-    #     occ_shape = shape.geometry
-
-    #     element_dict = {
-    #         'id': element.id(),
-    #         'type': element.is_a(),
-    #         'name': getattr(element, 'Name', None),
-    #         'location': {
-    #             'x': element.ObjectPlacement.RelativePlacement.Location.Coordinates[0],
-    #             'y': element.ObjectPlacement.RelativePlacement.Location.Coordinates[1],
-    #             'z': element.ObjectPlacement.RelativePlacement.Location.Coordinates[2]
-    #         },
-    #         'height': ifcopenshell.util.shape.get_z(occ_shape),
-    #         'length': ifcopenshell.util.shape.get_max_xyz(occ_shape),
-    #         'volume': ifcopenshell.util.shape.get_volume(occ_shape),
-    #         'area': ifcopenshell.util.shape.get_max_side_area(occ_shape),
-
-    #     }
-    #     return element_dict
-
-    # elements = ifc_file.by_type("IfcElement")
-    # footings = ifc_file.by_type("IfcFooting")
-    # elements.extend(footings)  # Include footings as well
-    # all_elements_dict = {}
-    # for element in elements:
-    #     element_dict = create_element_dict(element)
-    #     all_elements_dict[element.id()] = element_dict
     return element_dict
+
+def write_parameters_to_ifc(ifc_file, ifc_path, df_elements):
+    # Helper to create a property set and assign it to an element
+    def add_or_update_pset(ifc_file, element, pset_name, props):
+        # Remove existing property set if present
+        for rel in getattr(element, "IsDefinedBy", []):
+            if rel.is_a("IfcRelDefinesByProperties"):
+                definition = rel.RelatingPropertyDefinition
+                if definition.is_a("IfcPropertySet") and definition.Name == pset_name:
+                    ifc_file.remove(definition)
+                    ifc_file.remove(rel)
+
+        # Create IfcPropertySingleValue objects for each property
+        property_objs = []
+        for key, value in props.items():
+            # Choose the correct IFC type for the value
+            if isinstance(value, bool):
+                val = int(value)
+            elif isinstance(value, (int, float)):
+                val = float(value)
+            else:
+                val = str(value)
+            prop = ifc_file.create_entity(
+                "IfcPropertySingleValue",
+                Name=key,
+                Description=None,
+                # NominalValue=ifcopenshell.util.element.get_value_wrapper(val),
+                Unit=None,
+            )
+            property_objs.append(prop)
+
+        # Create the property set
+        pset = ifc_file.create_entity(
+            "IfcPropertySet",
+            GlobalId=ifcopenshell.guid.new(),
+            OwnerHistory=element.OwnerHistory,
+            Name=pset_name,
+            HasProperties=property_objs,
+        )
+
+        # Relate the property set to the element
+        ifc_file.create_entity(
+            "IfcRelDefinesByProperties",
+            GlobalId=ifcopenshell.guid.new(),
+            OwnerHistory=element.OwnerHistory,
+            Name=None,
+            Description=None,
+            RelatedObjects=[element],
+            RelatingPropertyDefinition=pset,
+        )
+
+    # Loop through DataFrame rows
+    for idx, row in df_elements.iterrows():
+        # Find the IFC element by GlobalId or id
+        element = ifc_file.by_id(int(row['id'])) if 'id' in row else None
+        if not element:
+            continue  # Skip if not found
+
+        # Prepare property set values
+        props = {
+            "work_zone": str(row.get("work_zone", "")),
+            "level": int(row.get("level", -1)),
+            "total_work_hours": float(row.get("total_work_hours", 0)),
+            "critical_path": bool(row.get("critical_path", False)),
+        }
+
+        # Add or update property set
+        add_or_update_pset(ifc_file, element, "AIA25_Properties", props)
+
+    # Save the modified IFC file
+    ifc_file.write(ifc_path.replace(".ifc", "_with_params.ifc"))
 
 def assign_levels(all_elements_dict, ifc_file, threshold=0.1, plot=False):
     """
@@ -204,7 +238,53 @@ def assign_levels(all_elements_dict, ifc_file, threshold=0.1, plot=False):
 
     return all_elements_dict, fig if plot else None
 
+
+def plot_critical_path(df_element, plot=True):
+
+    if plot:
+        # Prepare data for plotting
+        xyz = df_element['location']
+        xs = [df['x'] for df in xyz]
+        ys = [df['y'] for df in xyz]
+        zs = [df['z'] for df in xyz]
+        names = df_element['name']
+        critical_path_nodes = df_element['critical'].astype(int)
+        fig = go.Figure(data=[
+            go.Scatter3d(
+                x=xs,
+                y=ys,
+                z=zs,
+                mode='markers',
+                marker=dict(
+                    size=6,
+                    color=critical_path_nodes,
+                    colorscale='jet',
+                    colorbar=dict(title='Level'),
+                    opacity=0.8
+                ),
+                text=names,
+                hoverinfo='text+x+y+z'
+            )
+        ])
+        fig.update_layout(
+            scene=dict(
+                xaxis_title='X',
+                yaxis_title='Y',
+                zaxis_title='Z',
+            ),
+            title='IFC Elements on critical path',
+            margin=dict(l=0, r=0, b=0, t=40)
+        )
+        # Show the plot interactively
+        # fig.show()
+        # Save the plot as an HTML file
+        fig.write_html("./plots/critical_plot.html")
+        print("Plot saved as critical_plot.html. Open this file in your browser to view the plot.")
+
+    return fig if plot else None
+
 def assign_work_zones(all_elements_dict, ifc_file, num_clusters=6, plot=False):
+
     """
     Assign work zones to elements in the dictionary based on their placement.
     Using a clustering algorithm to group elements by their X and Y coordinates without defining a specific threshold or zone count.

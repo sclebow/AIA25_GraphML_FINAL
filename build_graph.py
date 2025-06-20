@@ -8,6 +8,9 @@ import numpy as np
 from neo4j import GraphDatabase
 from tqdm import tqdm
 from collections import defaultdict
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 
 import streamlit as st
 
@@ -18,7 +21,7 @@ USERNAME = "neo4j"
 PASSWORD = "macad2025"
 DATABASE = 'wbsgraph'
 
-def build_wbs_graph(df_elements):
+def build_wbs_graph(df_elements, key_path_nodes=None):
     
     work_zones = df_elements['work_zone'].unique()
 
@@ -85,19 +88,27 @@ def build_wbs_graph(df_elements):
     #         pos_3d[node] = np.array([0, 0, 0])  # Default position if no data is available
 
     unique_labels = df_elements['name'].unique()
-    color_map = {label: f"rgb({random.randint(100, 255)},{random.randint(100, 255)},{random.randint(100, 255)})" for label in unique_labels}
+    color_map = {label: f"rgb({random.randint(50, 200)},{random.randint(50, 200)},{random.randint(50, 200)})" for label in unique_labels}
 
+    work_hours = [G.nodes[n].get('total_work_hours', 0) for n in G.nodes]
+    min_hours = min(work_hours)
+    max_hours = max(work_hours)
+    norm = mcolors.Normalize(vmin=min_hours, vmax=max_hours)
+    cmap = plt.get_cmap('jet')
     edge_traces = []
     for source, target in G.edges():
         x0, y0, z0 = pos_3d[source]
         x1, y1, z1 = pos_3d[target]
+        edge_color = cmap(norm(G.nodes[source]['total_work_hours']))
+        rgb = tuple(int(255 * x) for x in edge_color[:3])
         edge_traces.append(go.Scatter3d(
             x=[x0, x1, None],
             y=[y0, y1, None],
             z=[z0, z1, None],
             mode='lines',
-            line=dict(color='gray', width=1),
-            hoverinfo='none'
+            line=dict(color=f'rgb{rgb}', width=2),
+            text="time {} hr".format(G.nodes[source]['total_work_hours'],
+            hoverinfo='text')
         ))
     
     node_trace = go.Scatter3d(
@@ -116,13 +127,13 @@ def build_wbs_graph(df_elements):
 
     graph_fig = go.Figure(data=[node_trace] + edge_traces)
     graph_fig.update_layout(
-        title="3D Spring Layout of IFC Graph",
+        title="Construction sequence dependency graph - work zone 1",
         scene=dict(xaxis=dict(title='X'), yaxis=dict(title='Y'), zaxis=dict(title='Z')),
         margin=dict(l=0, r=0, b=0, t=40),
-        showlegend=False
+        showlegend=True
     )
 
-    graph_fig.write_html("./plots/graph.html")
+    graph_fig.write_html("./plots/wbs_graph.html")
 
     edges = pd.DataFrame(G.edges(data=True), columns=['source', 'target', 'attributes'])
 
@@ -294,7 +305,7 @@ def build_gds_graph():
         B1011_026_CIP_RC_Elevator_Core_Wall_ID: { properties: []}
     },
     {
-        RELATED_TO: { orientation: 'UNDIRECTED' }
+        RELATED_TO: { orientation: 'UNDIRECTED', properties: ['inv_time', 'time']  }
     }
     )
 
@@ -307,7 +318,7 @@ def build_gds_graph():
         RETURN
         id(n) AS id,
         labels(n)[0] AS label,
-        n.GlobalId AS Id,
+        n.GlobalId AS Id
     """
     edge_query = """
         MATCH (a)-[r]->(b)
@@ -333,25 +344,25 @@ def build_gds_graph():
     # result_data = run_cypher(query_create, write=True)
     print("Graph 'myGraph' created successfully!")
 
-def shortest_path(start_id, end_id, parameter):
+def shortest_path(start_id, end_id):
     query = f"""
-    MATCH (start {{GlobalId: '{start_id}'}}),
-        (end {{GlobalId: '{end_id}'}})
+    MATCH (start {{GlobalId: {start_id}}}),
+        (end {{GlobalId: {end_id}}})
     CALL gds.shortestPath.dijkstra.stream('myGraph', {{
         sourceNode: id(start),
-        targetNode: id(end)
+        targetNode: id(end),
+        relationshipWeightProperty: 'inv_time'
     }})
     YIELD index, nodeIds, costs, totalCost
     UNWIND nodeIds AS nodeId
-    WITH index, totalCost, gds.util.asNode(nodeId).GlobalId AS GlobalId
-    RETURN index, totalCost, collect(GlobalId) AS GlobalIdPath
+    WITH index, costs, totalCost, gds.util.asNode(nodeId).GlobalId AS GlobalId
+    RETURN index, costs, totalCost, collect(GlobalId) AS GlobalIdPath
 
     """#relationshipWeightProperty: 'inv_time'
 
     result_data = run_cypher(query)
     print(result_data)
     return result_data
-
 
 def batch_merge_edges_without_apoc(tx, relation_type, batch):
     query = f"""
