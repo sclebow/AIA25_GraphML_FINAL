@@ -9,6 +9,8 @@ from neo4j import GraphDatabase
 from tqdm import tqdm
 from collections import defaultdict
 
+import streamlit as st
+
 # Connect to Neo4j
 URI = "bolt://localhost:7687"
 
@@ -145,7 +147,9 @@ def load_to_neo4j(G, reset=False):
             session.run("SHOW DATABASES")
             print("Database reset successfully!")
     
-    nodes = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient='index')
+    nodes_01 = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient='index')
+
+    
 
     def replace_nans(df):
         for col in df.columns:
@@ -155,21 +159,58 @@ def load_to_neo4j(G, reset=False):
                 df.fillna({col: 'N/A'}, inplace=True)
         return df
 
-    nodes = replace_nans(nodes)
+    nodes_01 = replace_nans(nodes_01)
 
-    edges = pd.DataFrame(G.edges(data=True), columns=['source', 'target', 'attributes'])
+    with st.expander("Nodes DataFrame before processing"):
+        st.dataframe(nodes_01)
+
+    # nodes dataframe headers: wbs,label,level,work_zone,total_work_hours,LocationX,LocationY,LocationZ
+    # Add a 'GlobalId' column that is the index
+    nodes_01['GlobalId'] = nodes_01.index
+    # Add a 'Name' column that is the wbs of the node
+    nodes_01['Name'] = nodes_01.apply(lambda row: row['wbs'] if 'wbs' in row else 'Unknown', axis=1)
+    # Add a 'Description' column that is all None
+    nodes_01['Description'] = None
+    # Add a 'ObjectType' column that is None
+    nodes_01['ObjectType'] = None
+    # Add a 'IfcType' column that is the label of the node
+    nodes_01['IfcType'] = nodes_01.apply(lambda row: row['label'] if 'label' in row else 'Unknown', axis=1)
+    # Add a 'category' column that is the label of the node
+    nodes_01['category'] = nodes_01.apply(lambda row: row['label'] if 'label' in row else 'Unknown', axis=1)
+
+
+    # Drop all other columns except for GlobalId, Name, Description, ObjectType, IfcType, category
+    columns_to_keep = ['GlobalId', 'Name', 'Description', 'ObjectType', 'IfcType', 'category']
+    nodes_01 = nodes_01[columns_to_keep]
+    
+    with st.expander("Nodes DataFrame after processing"):
+        st.dataframe(nodes_01)
+
+    edges_01 = pd.DataFrame(G.edges(data=True), columns=['source', 'target', 'attributes'])
+    with st.expander("Edges DataFrame before processing"):
+        st.dataframe(edges_01)
     # Check for edges types
-    edges['relation_type'] = edges['attributes'].apply(lambda x: x.get('relation', None))
+    edges_01['relation_type'] = 'RELATED_TO'  # Default relation type
 
+    with st.expander("Edges DataFrame after adding relation_type"):
+        st.dataframe(edges_01)
+
+    # Save nodes and edges to CSV files
+    nodes_01.to_csv("./data/nodes_01.csv", index=False)
+    edges_01.to_csv("./data/edges_01.csv", index=False)
+
+    # Batch size
     batch_size = 500
-    with driver.session(database=DATABASE) as session:
-        for i in tqdm(range(0, len(nodes), batch_size), desc="Batch merging nodes"):
-            batch = nodes.iloc[i:i+batch_size].to_dict('records')
+    with driver.session() as session:
+        for i in tqdm(range(0, len(nodes_01), batch_size), desc="Batch merging nodes"):
+            batch = nodes_01.iloc[i:i+batch_size].to_dict('records')
             session.execute_write(batch_merge_nodes, batch)
+
+    driver.close()
     print("Nodes loaded successfully!")
 
     edges_data = []
-    for _, row in edges.iterrows():
+    for _, row in edges_01.iterrows():
         props = {}
         # Flatten the 'attributes' dictionary if present
         if isinstance(row['attributes'], dict):
@@ -181,38 +222,88 @@ def load_to_neo4j(G, reset=False):
         edges_data.append({
             'source': row['source'],
             'target': row['target'],
+            'relation_type': row['relation_type'],
             'props': props
         })
 
-    # Batch size
-    batch_size = 500
-    with driver.session(database=DATABASE) as session:
-        for i in tqdm(range(0, len(edges_data), batch_size), desc="Merging edges"):
-            batch = edges_data[i:i + batch_size]
-            session.execute_write(batch_merge_edges, batch)
+    grouped_edges = defaultdict(list)
+    for row in edges_data:
+        grouped_edges[row['relation_type']].append(row)
 
+    with driver.session() as session:
+        for relation_type, group in grouped_edges.items():
+            for i in tqdm(range(0, len(group), batch_size), desc=f"Merging {relation_type}"):
+                batch = group[i:i+batch_size]
+                session.execute_write(batch_merge_edges_without_apoc, relation_type, batch)
+
+    driver.close()
     print("Edges loaded successfully!")
 
+    def run_cypher(query, params=None, write=False):
+        """
+        Executes a Cypher query on the Neo4j database.
 
+        Parameters:
+        - query (str): The Cypher query to be executed.
+        - params (dict, optional): A dictionary of parameters for the query.
+        - write (bool, optional): Set to True if this is a write transaction, otherwise False (default).
+
+        Returns:
+        - list[dict]: The query result as a list of dictionaries.
+        """
+        if params is None:
+            params = {}
+
+        # Open a new session with the database
+        with driver.session() as session:
+            # Depending on the type of transaction, use read or write
+            if write:
+                result = session.write_transaction(lambda tx: tx.run(query, **params).data())
+            else:
+                result = session.execute_read(lambda tx: tx.run(query, **params).data())
+        return result
+
+    
+
+def batch_merge_edges_without_apoc(tx, relation_type, batch):
+    query = f"""
+    UNWIND $rows AS row
+    MATCH (a {{GlobalId: row.source}})
+    MATCH (b {{GlobalId: row.target}})
+    MERGE (a)-[r:{relation_type}]->(b)
+    SET r += row.props
+    """
+    tx.run(query, rows=batch)
 
 def batch_merge_nodes(tx, batch):
-    """
-    Merges a batch of nodes into Neo4j with dynamic labels from 'IfcType'
-    """
+    # """
+    # Merges a batch of nodes into Neo4j with dynamic labels from 'IfcType'
+    # """
 
-    label_groups = defaultdict(list)
-    for row in batch:
-        label = row.get("IfcType")
-        if label:
-            label_groups[label].append(row)
+    # label_groups = defaultdict(list)
+    # for row in batch:
+    #     label = row.get("IfcType")
+    #     if label:
+    #         label_groups[label].append(row)
 
-    for label, records in label_groups.items():
-        query = f"""
-        UNWIND $rows AS row
-        MERGE (n:{label} {{GlobalId: row.GlobalId}})
-        SET n += row
-        """
-        tx.run(query, rows=records)
+    # for label, records in label_groups.items():
+    #     query = f"""
+    #     UNWIND $rows AS row
+    #     MERGE (n:{label} {{GlobalId: row.GlobalId}})
+    #     SET n += row
+    #     """
+    #     tx.run(query, rows=records)
+    """
+    Merges a batch of nodes into Neo4j using GlobalId for matching and updates all properties.
+
+    Uses UNWIND to process each node in the batch.
+    """
+    query = """
+    UNWIND $rows AS row
+    MERGE (n:YourLabel {GlobalId: row.GlobalId})
+    SET n += row
+    """  # Removed the comment inside the query string
+    tx.run(query, rows=batch)
 
 def batch_merge_edges(tx, batch):
     query = """
