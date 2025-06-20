@@ -7,6 +7,7 @@ from main import load_ifc_file, create_all_elements_dict, assign_levels, assign_
 from dependency_utils import get_wbs_from_directory, load_wbs
 import numpy as np
 
+
 st.set_page_config(page_title="IFC Level & Work Zone Visualizer", layout="wide")
 st.title("IFC Level & Work Zone Visualizer")
 
@@ -175,14 +176,18 @@ if ifc_file:
     st.markdown("---")
     st.markdown("### Build the Network Graph")
 
-    from build_graph import build_wbs_graph
+    from build_graph import build_wbs_graph, shortest_path, build_gds_graph
 
-    graph_fig, edges = build_wbs_graph(df_elements=df_elements[df_elements['work_zone']==1])
+    # graph_fig, edges = build_wbs_graph(df_elements=df_elements[df_elements['work_zone']==1])
 
-    st.plotly_chart(graph_fig, use_container_width=True)
+    # st.plotly_chart(graph_fig, use_container_width=True)
     st.success("Network graph built successfully.")
 
-    st.dataframe(edges)
+    # st.dataframe(edges)
+
+    build_gds_graph()
+    short_path = shortest_path('242065', '235678', 'inv_time')
+    st.markdown(short_path)
 
     # import gravis as gv
     # renderer = gv.three(

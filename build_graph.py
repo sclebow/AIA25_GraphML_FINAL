@@ -16,7 +16,7 @@ URI = "bolt://localhost:7687"
 
 USERNAME = "neo4j"
 PASSWORD = "macad2025"
-DATABASE = 'neo4j'
+DATABASE = 'wbsgraph'
 
 def build_wbs_graph(df_elements):
     
@@ -60,7 +60,7 @@ def build_wbs_graph(df_elements):
             for prev_node in previous_node_list:
                 for curr_node in node_list:
                     time_of_work = G.nodes[curr_node]['total_work_hours']
-                    G.add_edge(prev_node, curr_node, time=time_of_work)
+                    G.add_edge(prev_node, curr_node, time=time_of_work, inv_time=1./time_of_work)
 
     # Remove blank nodes
     blank_nodes = [node for node, data in G.nodes(data=True) if 'label' not in data]
@@ -126,7 +126,7 @@ def build_wbs_graph(df_elements):
 
     edges = pd.DataFrame(G.edges(data=True), columns=['source', 'target', 'attributes'])
 
-    load_to_neo4j(G)
+    # load_to_neo4j(G)
 
     return graph_fig, edges
 
@@ -141,15 +141,14 @@ def load_to_neo4j(G, reset=False):
     except Exception as e:
         print("Connection failed:", e)
     if reset:
-        with driver.session(database=DATABASE) as session:
-        # Reset the database
+        with driver.session() as session:
+            # Reset the database
             session.run("DROP DATABASE neo4j IF EXISTS")
-            session.run("SHOW DATABASES")
+            # session.run("SHOW DATABASES")
             print("Database reset successfully!")
     
     nodes_01 = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient='index')
 
-    
 
     def replace_nans(df):
         for col in df.columns:
@@ -239,31 +238,120 @@ def load_to_neo4j(G, reset=False):
     driver.close()
     print("Edges loaded successfully!")
 
-    def run_cypher(query, params=None, write=False):
+def run_cypher(query, params=None, write=False):
+    """
+    Executes a Cypher query on the Neo4j database.
+
+    Parameters:
+    - query (str): The Cypher query to be executed.
+    - params (dict, optional): A dictionary of parameters for the query.
+    - write (bool, optional): Set to True if this is a write transaction, otherwise False (default).
+
+    Returns:
+    - list[dict]: The query result as a list of dictionaries.
+    """
+    driver = GraphDatabase.driver(URI, auth=(USERNAME, PASSWORD))
+    if params is None:
+        params = {}
+
+    # Open a new session with the database
+    with driver.session() as session:
+        # Depending on the type of transaction, use read or write
+        if write:
+            result = session.write_transaction(lambda tx: tx.run(query, **params).data())
+        else:
+            result = session.execute_read(lambda tx: tx.run(query, **params).data())
+    return result
+
+def build_gds_graph():
+    # Check if 'myGraph' exists, if so - drop it
+    query_check = """
+    CALL gds.graph.exists('myGraph')
+    YIELD exists
+    """
+
+    result_data = run_cypher(query_check)
+
+    # If the graph exists, drop it
+    if result_data and result_data[0]['exists']:
+        query_drop = """
+        CALL gds.graph.drop('myGraph')
         """
-        Executes a Cypher query on the Neo4j database.
+        run_cypher(query_drop)
+        print("Existing graph 'myGraph' was dropped successfully.")
 
-        Parameters:
-        - query (str): The Cypher query to be executed.
-        - params (dict, optional): A dictionary of parameters for the query.
-        - write (bool, optional): Set to True if this is a write transaction, otherwise False (default).
+    # Now create the graph projection
+    # ---------------------------------------------------------------------
+    # Properties could be only NUM or BOOL
 
-        Returns:
-        - list[dict]: The query result as a list of dictionaries.
+    query_create = """
+    CALL gds.graph.project(
+    'myGraph',
+    {
+        A1034_005_Elevator_Pit_Wall_ID: { properties: [] },
+        B1012_HSS_C_060_HSS_Steel_Column_12x12x3_8: { properties: [] },
+        B2011_150_Rainscreen__Wall__ID: { properties: [] },
+        B1011_026_CIP_RC_Elevator_Core_Wall_ID: { properties: []}
+    },
+    {
+        RELATED_TO: { orientation: 'UNDIRECTED' }
+    }
+    )
+
+    """ #, properties: 'inv_time
+
+    result_data = run_cypher(query_create, write=True)
+    node_query = """
+        MATCH (n)
+        WHERE any(lbl IN labels(n) WHERE lbl IN ['A1034_005_Elevator_Pit_Wall_ID','B1012_HSS_C_060_HSS_Steel_Column_12x12x3_8', 'B2011_150_Rainscreen__Wall__ID', 'B1011_026_CIP_RC_Elevator_Core_Wall_ID'])
+        RETURN
+        id(n) AS id,
+        labels(n)[0] AS label,
+        n.GlobalId AS Id,
+    """
+    edge_query = """
+        MATCH (a)-[r]->(b)
+        WHERE type(r) IN ['RELATED_TO']
+        AND any(lbl IN labels(a) WHERE lbl IN ['A1034_005_Elevator_Pit_Wall_ID','B1012_HSS_C_060_HSS_Steel_Column_12x12x3_8', 'B2011_150_Rainscreen__Wall__ID', 'B1011_026_CIP_RC_Elevator_Core_Wall_ID'])
+        AND any(lbl IN labels(b) WHERE lbl IN ['A1034_005_Elevator_Pit_Wall_ID','B1012_HSS_C_060_HSS_Steel_Column_12x12x3_8', 'B2011_150_Rainscreen__Wall__ID', 'B1011_026_CIP_RC_Elevator_Core_Wall_ID'])
+        RETURN id(a) AS source, id(b) AS target, type(r) AS relationshipType
         """
-        if params is None:
-            params = {}
 
-        # Open a new session with the database
-        with driver.session() as session:
-            # Depending on the type of transaction, use read or write
-            if write:
-                result = session.write_transaction(lambda tx: tx.run(query, **params).data())
-            else:
-                result = session.execute_read(lambda tx: tx.run(query, **params).data())
-        return result
+    edges = run_cypher(edge_query)
+    print(f'Number of edges retrieved: {len(edges)}')
 
-    
+    nodes = run_cypher(node_query)
+    print(f'Number of nodes retrieved: {len(nodes)}')
+
+    # query_inv_time_edge = """MATCH (source:Location)-[r:ROAD]->(target:Location)
+    # RETURN gds.graph.project(
+    # 'myGraph',
+    # source,
+    # target,
+    # { relationshipProperties: r { .inv_time } }
+    # )"""
+    # result_data = run_cypher(query_create, write=True)
+    print("Graph 'myGraph' created successfully!")
+
+def shortest_path(start_id, end_id, parameter):
+    query = f"""
+    MATCH (start {{GlobalId: '{start_id}'}}),
+        (end {{GlobalId: '{end_id}'}})
+    CALL gds.shortestPath.dijkstra.stream('myGraph', {{
+        sourceNode: id(start),
+        targetNode: id(end)
+    }})
+    YIELD index, nodeIds, costs, totalCost
+    UNWIND nodeIds AS nodeId
+    WITH index, totalCost, gds.util.asNode(nodeId).GlobalId AS GlobalId
+    RETURN index, totalCost, collect(GlobalId) AS GlobalIdPath
+
+    """#relationshipWeightProperty: 'inv_time'
+
+    result_data = run_cypher(query)
+    print(result_data)
+    return result_data
+
 
 def batch_merge_edges_without_apoc(tx, relation_type, batch):
     query = f"""
@@ -276,34 +364,36 @@ def batch_merge_edges_without_apoc(tx, relation_type, batch):
     tx.run(query, rows=batch)
 
 def batch_merge_nodes(tx, batch):
-    # """
-    # Merges a batch of nodes into Neo4j with dynamic labels from 'IfcType'
-    # """
-
-    # label_groups = defaultdict(list)
-    # for row in batch:
-    #     label = row.get("IfcType")
-    #     if label:
-    #         label_groups[label].append(row)
-
-    # for label, records in label_groups.items():
-    #     query = f"""
-    #     UNWIND $rows AS row
-    #     MERGE (n:{label} {{GlobalId: row.GlobalId}})
-    #     SET n += row
-    #     """
-    #     tx.run(query, rows=records)
     """
-    Merges a batch of nodes into Neo4j using GlobalId for matching and updates all properties.
-
-    Uses UNWIND to process each node in the batch.
+    Merges a batch of nodes into Neo4j with dynamic labels from 'IfcType'
     """
-    query = """
-    UNWIND $rows AS row
-    MERGE (n:YourLabel {GlobalId: row.GlobalId})
-    SET n += row
-    """  # Removed the comment inside the query string
-    tx.run(query, rows=batch)
+    bad_characters = [" ","-","(",")",".","/"]
+    label_groups = defaultdict(list)
+    for row in batch:
+        label = row.get("Name")
+        for verboten in bad_characters:
+            label = label.replace(verboten,"_")
+        if label:
+            label_groups[label].append(row)
+
+    for label, records in label_groups.items():
+        query = f"""
+        UNWIND $rows AS row
+        MERGE (n:{label} {{GlobalId: row.GlobalId}})
+        SET n += row
+        """
+        tx.run(query, rows=records)
+    # """
+    # Merges a batch of nodes into Neo4j using GlobalId for matching and updates all properties.
+
+    # Uses UNWIND to process each node in the batch.
+    # """
+    # query = """
+    # UNWIND $rows AS row
+    # MERGE (n:YourLabel {GlobalId: row.GlobalId})
+    # SET n += row
+    # """  # Removed the comment inside the query string
+    # tx.run(query, rows=batch)
 
 def batch_merge_edges(tx, batch):
     query = """
