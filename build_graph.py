@@ -139,7 +139,7 @@ def build_wbs_graph(df_elements, key_path_nodes=None):
 
     return graph_fig, edges, G
 
-def load_to_neo4j(G, neo4j_input_dir, reset=False):
+def load_to_neo4j(G, reset=False):
     # Create a Neo4j driver
     driver = GraphDatabase.driver(URI, auth=(USERNAME, PASSWORD))
 
@@ -206,9 +206,25 @@ def load_to_neo4j(G, neo4j_input_dir, reset=False):
     nodes_01.to_csv("./data/nodes_01.csv", index=False)
     edges_01.to_csv("./data/edges_01.csv", index=False)
 
-    # Save nodes and edges to Neo4j input directory
-    nodes_01.to_csv(os.path.join(neo4j_input_dir, "nodes_01.csv"), index=False)
-    edges_01.to_csv(os.path.join(neo4j_input_dir, "edges_01.csv"), index=False)
+    # Load nodes and edges into Neo4j using Cypher LOAD CSV
+    load_nodes_cypher = """
+    LOAD CSV WITH HEADERS FROM 'file:///nodes_01.csv' AS row
+    MERGE (n:Node {GlobalId: row.GlobalId})
+    SET n.Name = row.Name,
+        n.Description = row.Description,
+        n.ObjectType = row.ObjectType,
+        n.IfcType = row.IfcType,
+        n.category = row.category;
+    """
+    run_cypher(load_nodes_cypher, write=True)
+
+    load_edges_cypher = """
+    LOAD CSV WITH HEADERS FROM 'file:///edges_01.csv' AS row
+    MATCH (a:Node {GlobalId: row.source})
+    MATCH (b:Node {GlobalId: row.target})
+    MERGE (a)-[r:RELATED_TO]->(b);
+    """
+    run_cypher(load_edges_cypher, write=True)
 
     # Batch size
     batch_size = 500
