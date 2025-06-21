@@ -1,115 +1,774 @@
 GlobalId,Name,Description,ObjectType,IfcType,category
+235202,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235242,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235222,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235262,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+237314,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237334,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237355,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237375,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237395,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237416,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+269946,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+270700,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+270530,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+271832,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+239199,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239233,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239289,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239311,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239334,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239323,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239511,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239557,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239613,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239567,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239647,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239635,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239623,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239669,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239713,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239737,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239759,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239803,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239781,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239827,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239849,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+237456,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237496,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237476,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237517,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237436,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237537,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+278290,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+277912,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+278386,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+278592,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279018,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279631,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279964,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280058,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280208,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280776,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280868,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280926,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281064,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281199,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281262,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281393,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281714,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281654,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282200,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282298,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282247,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282502,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282351,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282456,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282662,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282611,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282879,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282981,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283022,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283069,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283163,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283250,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283346,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283440,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+240051,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240063,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240097,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240085,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240073,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240333,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240343,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240377,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240401,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240513,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240479,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240523,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240557,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240569,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240603,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240613,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240637,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240671,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+237557,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237578,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237598,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237618,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237638,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237658,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+284320,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284288,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284543,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284725,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284759,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284950,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285044,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285077,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285514,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285467,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285543,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285574,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285659,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285688,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285774,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285888,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286091,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286063,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286034,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+240883,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240873,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241053,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241063,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241153,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241187,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241211,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241199,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+235282,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235323,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235303,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235343,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+237719,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237699,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237679,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237740,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237760,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237780,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+270334,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+270892,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+239075,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239154,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239176,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239143,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239468,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239457,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239479,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239501,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239533,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+237800,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237820,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237841,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237902,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237861,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237881,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+280636,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280706,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281327,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281458,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281592,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281540,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281890,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281945,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282062,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282004,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282124,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282720,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282764,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+239961,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240243,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240265,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240253,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240311,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240321,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240647,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+237922,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237942,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237962,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+237982,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238023,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238003,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+285920,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285949,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286007,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285975,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286120,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286150,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286193,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286220,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286245,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286320,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286347,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286604,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287033,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287055,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+240761,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240973,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240963,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240985,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241031,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241041,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241233,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+238043,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238064,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238084,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238104,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238124,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238144,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+287352,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287375,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287465,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287951,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287991,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287971,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288073,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288093,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288189,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288207,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288113,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288261,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288441,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+241311,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241323,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241447,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241457,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241537,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241547,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+238185,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238205,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238165,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238226,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238266,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238246,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+288513,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288585,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288603,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288621,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288567,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+241649,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241661,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241851,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241863,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241873,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+288711,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288729,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288765,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+242077,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+235364,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235404,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235384,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235424,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235444,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235465,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235505,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235485,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+238286,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238306,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238327,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238347,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238388,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238367,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238529,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238570,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238550,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238590,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238610,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238630,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+269727,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+271463,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+271634,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+239210,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239221,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239244,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239255,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239277,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239266,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239300,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239356,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239345,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239544,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239579,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239591,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239601,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239657,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239691,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239681,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239703,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239725,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239747,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239771,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239815,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239793,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+238428,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238448,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238408,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238468,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238509,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238489,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238651,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238691,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238712,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238671,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238732,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238752,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+273326,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+273532,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+273695,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+274272,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+274075,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+273892,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+275210,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+275377,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+275008,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+276436,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+276707,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+276578,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+278146,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+278489,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+278698,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+278808,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+278894,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279392,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279476,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280136,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280475,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280379,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280558,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280997,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281130,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282403,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282820,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283115,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283206,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283302,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283393,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+240029,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239995,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240041,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240017,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240107,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240119,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240131,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240141,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240153,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240163,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240355,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240367,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240389,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240491,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240501,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240535,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240547,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240591,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240581,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240625,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+238792,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238813,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238833,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238772,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238853,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+238874,B1011_027_CIP RC Stair Core Wall-ID,,,IfcWall,IfcWall
+284080,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284118,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284158,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284248,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284616,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284690,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284654,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284880,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284914,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285141,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285108,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285209,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285272,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285239,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285436,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285629,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285602,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286655,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286631,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286706,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286679,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+240827,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240839,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240851,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240861,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241165,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241177,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241221,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+287627,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287667,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287809,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+241469,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 235557,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
 235577,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
-235618,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
 235598,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235618,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
 235762,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-235822,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-235843,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 235802,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-235863,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 235782,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-270152,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+235843,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+235822,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+235863,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 239007,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-238996,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-239030,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-239019,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 239041,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-239086,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239064,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239053,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239423,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239446,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 239883,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-235883,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-235904,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 235944,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+235904,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 235924,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+235883,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 235964,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 235984,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+276884,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+277672,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+277798,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279310,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279886,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+280295,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 281831,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+281773,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+282564,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 282934,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-283582,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-283668,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-283708,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-283748,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 283486,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-283792,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-283994,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-283872,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-283910,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 284036,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-240187,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239939,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239951,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240175,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 240197,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-240221,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 240231,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-240209,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-240411,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240299,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 240703,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-236025,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236005,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236025,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236045,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236086,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236066,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236106,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+284471,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 286271,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286372,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286295,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286399,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286527,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286551,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 286578,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-286811,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-286731,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-286895,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-286963,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-240917,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-240941,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-240929,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240783,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240771,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240895,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 240907,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 240951,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241075,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241019,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 241267,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-236167,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-236126,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236146,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-236207,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236126,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236187,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236167,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236207,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236228,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+287237,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287261,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287283,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287443,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287546,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287587,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288011,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 288032,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 288053,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 288153,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288133,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 288243,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-288297,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-288315,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288225,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 288333,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-288351,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-288405,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-288387,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 288369,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 288423,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288405,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 241289,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 241277,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241379,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241367,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241481,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241491,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241301,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241581,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241571,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241593,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 241637,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 236248,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-236308,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236288,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236329,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236268,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-236288,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236349,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-288495,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-241727,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241717,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+236308,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+241705,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241795,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 241783,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241807,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241817,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 241907,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241885,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241897,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-236390,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236369,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236390,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236410,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-236450,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236430,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
 236470,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
-288693,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+236450,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+288657,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
 288747,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
-241941,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241963,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
-241953,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 241975,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+242021,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+242031,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 242009,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+235638,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235658,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235678,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+235699,A1034_005_Elevator Pit Wall-ID,,,IfcWall,IfcWall
+236511,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236491,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236531,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236552,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236572,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236592,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+271060,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+239109,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239131,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239120,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239187,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239165,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239367,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239390,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239435,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239490,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239522,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239871,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239837,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+236612,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236632,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236653,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236673,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236693,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236714,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+272014,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+272204,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+272396,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+272768,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+272572,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+272956,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+273147,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+274840,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+274440,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+274642,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+275565,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+275768,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+275918,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+276098,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+276293,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283543,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283626,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283831,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283953,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+239893,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239917,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239905,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239927,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240007,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240423,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240433,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240457,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240445,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240467,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240659,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240693,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+236734,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236754,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236774,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236815,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236794,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236835,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+284211,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284576,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284848,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284798,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284981,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285013,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285174,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285399,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285831,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285805,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285861,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286425,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286475,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286451,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286499,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286757,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286782,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286851,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286873,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286919,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286986,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286941,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287011,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+240715,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240727,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240737,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240749,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240817,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241087,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241097,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241109,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241121,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241143,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241131,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241255,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+236855,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236896,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236876,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236936,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236916,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236956,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+287193,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287215,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287420,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287607,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287647,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287687,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287749,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287708,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287789,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287829,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287729,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287769,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287849,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287870,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287911,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287931,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287891,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288279,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+241357,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241333,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241345,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241391,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241413,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241401,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241423,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241435,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241603,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241615,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241627,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+236977,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237017,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+236997,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237038,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237058,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237078,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+288477,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288549,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288531,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+241683,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241671,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241693,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241773,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241829,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241919,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241931,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+237098,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237118,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237179,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237159,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237139,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+237200,B1011_026_CIP RC Elevator Core Wall-ID,,,IfcWall,IfcWall
+288675,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288801,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288783,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+242043,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+242053,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+242065,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+270152,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+271270,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+238996,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239019,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239030,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239086,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239097,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239401,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239413,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239379,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239861,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+277006,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+277276,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+277150,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+277425,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+277557,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+278033,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279114,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279223,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279800,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279716,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+279551,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283582,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283668,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283708,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283748,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283792,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283910,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283872,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+283994,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+239973,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+239983,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240187,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240209,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240221,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240287,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240277,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240411,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240681,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+284398,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284360,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284501,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+284434,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285338,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285304,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285368,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285746,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+285719,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286731,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286811,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286895,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+286963,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+240805,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240793,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240941,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240917,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240929,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241007,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+240997,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241075,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241243,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+287078,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287101,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287123,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287170,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287145,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287305,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287327,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287397,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287487,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287525,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+287567,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288315,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288297,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288351,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288387,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+241367,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241379,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241491,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241481,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241503,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241525,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241513,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241559,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+288459,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288495,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+241717,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241727,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241739,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241751,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241761,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241841,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241885,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241897,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+288639,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+288693,B2011_150_Rainscreen (Wall)-ID,,,IfcWall,IfcWall
+241941,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241953,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241987,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
 241997,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
+241963,B1012_HSS-C.060_HSS Steel Column-12x12x3/8,,,IfcColumn,IfcColumn
