@@ -6,3 +6,5 @@ __pycache__/dependency_utils.cpython-311.pyc
 *.pyc
 .streamlit/
 .data/
+gds_shortest_path.json
+updated_ifc

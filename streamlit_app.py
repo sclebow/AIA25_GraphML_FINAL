@@ -177,9 +177,13 @@ if ifc_file:
     st.markdown("---")
     st.markdown("### Build the Network Graph")
 
-    from build_graph import build_wbs_graph, shortest_path, build_gds_graph
+    from build_graph import build_wbs_graph, shortest_path, build_gds_graph, load_to_neo4j
 
-    graph_fig, edges = build_wbs_graph(df_elements=df_elements)
+    graph_fig, edges, G = build_wbs_graph(df_elements=df_elements)
+    
+    # Load the graph into Neo4j
+    path_to_neo4j_input = st.text_input("Enter the path to Neo4j input directory", r"C:\Users\scleb\.Neo4jDesktop\relate-data\dbmss\dbms-a73c996d-f745-4ad0-bd8c-c1cc3d62cd72\import")
+    load_to_neo4j(G, neo4j_input_dir=path_to_neo4j_input, reset=True)
 
     # st.plotly_chart(graph_fig, use_container_width=True)
     st.success("Network graph built successfully.")

@@ -137,11 +137,9 @@ def build_wbs_graph(df_elements, key_path_nodes=None):
 
     edges = pd.DataFrame(G.edges(data=True), columns=['source', 'target', 'attributes'])
 
-    load_to_neo4j(G)
+    return graph_fig, edges, G
 
-    return graph_fig, edges
-
-def load_to_neo4j(G, reset=False):
+def load_to_neo4j(G, neo4j_input_dir, reset=False):
     # Create a Neo4j driver
     driver = GraphDatabase.driver(URI, auth=(USERNAME, PASSWORD))
 
@@ -152,11 +150,10 @@ def load_to_neo4j(G, reset=False):
     except Exception as e:
         print("Connection failed:", e)
     if reset:
-        with driver.session() as session:
-            # Reset the database
-            session.run("DROP DATABASE neo4j IF EXISTS")
-            # session.run("SHOW DATABASES")
-            print("Database reset successfully!")
+        with driver.session(database=DATABASE) as session:
+            # Instead of dropping/creating the database, clear all nodes and relationships
+            session.run("MATCH (n) DETACH DELETE n")
+            print("Database cleared successfully!")
     
     nodes_01 = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient='index')
 
@@ -209,9 +206,13 @@ def load_to_neo4j(G, reset=False):
     nodes_01.to_csv("./data/nodes_01.csv", index=False)
     edges_01.to_csv("./data/edges_01.csv", index=False)
 
+    # Save nodes and edges to Neo4j input directory
+    nodes_01.to_csv(os.path.join(neo4j_input_dir, "nodes_01.csv"), index=False)
+    edges_01.to_csv(os.path.join(neo4j_input_dir, "edges_01.csv"), index=False)
+
     # Batch size
     batch_size = 500
-    with driver.session() as session:
+    with driver.session(database=DATABASE) as session:
         for i in tqdm(range(0, len(nodes_01), batch_size), desc="Batch merging nodes"):
             batch = nodes_01.iloc[i:i+batch_size].to_dict('records')
             session.execute_write(batch_merge_nodes, batch)
@@ -240,7 +241,7 @@ def load_to_neo4j(G, reset=False):
     for row in edges_data:
         grouped_edges[row['relation_type']].append(row)
 
-    with driver.session() as session:
+    with driver.session(database=DATABASE) as session:
         for relation_type, group in grouped_edges.items():
             for i in tqdm(range(0, len(group), batch_size), desc=f"Merging {relation_type}"):
                 batch = group[i:i+batch_size]
@@ -265,8 +266,8 @@ def run_cypher(query, params=None, write=False):
     if params is None:
         params = {}
 
-    # Open a new session with the database
-    with driver.session() as session:
+    # Open a new session with the correct database
+    with driver.session(database=DATABASE) as session:
         # Depending on the type of transaction, use read or write
         if write:
             result = session.write_transaction(lambda tx: tx.run(query, **params).data())
