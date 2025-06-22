@@ -2,11 +2,10 @@ import streamlit as st
 import os
 import plotly.graph_objects as go
 import pandas as pd
-# import random
+import json
+
 from main import load_ifc_file, create_all_elements_dict, assign_levels, assign_work_zones, write_parameters_to_ifc, plot_critical_path
 from dependency_utils import get_wbs_from_directory, load_wbs
-# import numpy as np
-import json
 
 # Print some newlines to the console for better readability
 print("\n" * 5)
@@ -22,19 +21,15 @@ if not os.path.exists(ifc_dir):
     st.error(f"IFC directory '{ifc_dir}' not found.")
     st.stop()
 
-# ifc_files = [f for f in os.listdir(ifc_dir) if f.endswith('.ifc')]
-# if not ifc_files:
-#     st.error("No IFC files found in the './ifc' directory.")
-#     st.stop()
-
-# selected_ifc = st.selectbox("Select IFC file", ifc_files)
-# ifc_path = os.path.join(ifc_dir, selected_ifc)
 ifc_files = [f for f in os.listdir(ifc_dir) if f.endswith('.ifc')]
 if not ifc_files:
     st.error("No IFC files found in the './ifc' directory.")
     st.stop()
 
-latest_ifc_index = max(range(len(ifc_files)), key=lambda i: os.path.getmtime(os.path.join(ifc_dir, ifc_files[i])))
+latest_ifc_index = max(
+    range(len(ifc_files)),
+    key=lambda i: os.path.getmtime(os.path.join(ifc_dir, ifc_files[i]))
+)
 ifc_files.sort(key=lambda f: os.path.getmtime(os.path.join(ifc_dir, f)), reverse=False)
 st.write(f"Latest IFC file: {ifc_files[latest_ifc_index]}")
 
@@ -47,19 +42,14 @@ with st.spinner("Loading IFC file and processing..."):
         st.error("Failed to load IFC file.")
         st.stop()
 
-with st.spinner("Loading IFC file and processing..."):
-    ifc_file = load_ifc_file(ifc_path)
-    if ifc_file is None:
-        st.error("Failed to load IFC file.")
-        st.stop()
-
 if ifc_file:
     all_elements_dict = create_all_elements_dict(ifc_file)
 
     # Filter elements by Name
-    # Name does not start with 'LVL' or '1000'
     df_elements = pd.DataFrame.from_dict(all_elements_dict, orient='index')
-    df_elements = df_elements[~df_elements['name'].str.startswith(('LVL', '1000', 'Stair'), na=False)]
+    df_elements = df_elements[
+        ~df_elements['name'].str.startswith(('LVL', '1000', 'Stair'), na=False)
+    ]
     df_elements = df_elements[df_elements['name'].notna() & (df_elements['name'] != '')]
     all_elements_dict = df_elements.to_dict(orient='index')
 
@@ -69,22 +59,31 @@ if ifc_file:
     with st.expander("View unique element names", expanded=False):
         unique_names = sorted(set(e['name'] for e in all_elements_dict.values() if e['name']))
         st.table(pd.DataFrame(unique_names, columns=["Unique Element Names"]))
-    
+
     st.markdown("---")
     st.markdown("### Assign Levels")
-    level_threshold = st.slider("Level clustering threshold (Z, meters)", min_value=0.01, max_value=2.0, value=0.1, step=0.01)
-    all_elements_dict, levels_fig = assign_levels(all_elements_dict, ifc_file, threshold=level_threshold, plot=True)
+    level_threshold = st.slider(
+        "Level clustering threshold (Z, meters)",
+        min_value=0.01, max_value=2.0, value=0.1, step=0.01
+    )
+    all_elements_dict, levels_fig = assign_levels(
+        all_elements_dict, ifc_file, threshold=level_threshold, plot=True
+    )
     st.success("Levels assigned.")
     unique_levels = sorted(set(e['level'] for e in all_elements_dict.values() if e['level'] != -1))
     st.write(f"**Number of unique levels found:** {len(unique_levels)}")
     st.subheader("Levels Plot")
     if levels_fig:
         st.plotly_chart(levels_fig, use_container_width=True)
-    
+
     st.markdown("---")
     st.markdown("### Assign Work Zones")
-    number_of_zones = st.slider("Number of work zones to assign", min_value=1, max_value=20, value=6, step=1)
-    all_elements_dict, work_zones_fig = assign_work_zones(all_elements_dict, ifc_file, num_clusters=number_of_zones, plot=True)
+    number_of_zones = st.slider(
+        "Number of work zones to assign", min_value=1, max_value=20, value=6, step=1
+    )
+    all_elements_dict, work_zones_fig = assign_work_zones(
+        all_elements_dict, ifc_file, num_clusters=number_of_zones, plot=True
+    )
     st.success("Work zones assigned.")
     unique_zones = sorted(set(e['work_zone'] for e in all_elements_dict.values() if e['work_zone'] != 'Unassigned'))
     st.write(f"**Number of unique work zones found:** {len(unique_zones)}")
@@ -117,17 +116,13 @@ if ifc_file:
 
     # Replace 'Parent.Quantity' with None in 'Source Qty' column
     wbs_df['Source Qty'] = wbs_df['Source Qty'].replace('Parent.Quantity', None)
-    # Fill down in 'Source Qty' column
     wbs_df['Source Qty'] = wbs_df['Source Qty'].ffill()
-    # 'Input Unit' is 'Units' split by '/' and take the last part
-    wbs_df['Input Unit'] = wbs_df['Units'].apply(lambda x: x.split('/')[-1] if isinstance(x, str) else None)
-    # Keep only relevant columns
+    wbs_df['Input Unit'] = wbs_df['Units'].apply(
+        lambda x: x.split('/')[-1] if isinstance(x, str) else None
+    )
     wbs_df = wbs_df[['Source Qty', 'Unit', 'Input Unit', 'Consumption']]
-    # Filter out columns that are not 'HR' in Unit
     wbs_df = wbs_df[wbs_df['Unit'] == 'HR']
-
-    wbs_df['Source Qty'] = wbs_df['Source Qty'].astype(str).str.split('.').str[:-1].str.join('.')  # Split by '.' and join all but last part
-
+    wbs_df['Source Qty'] = wbs_df['Source Qty'].astype(str).str.split('.').str[:-1].str.join('.')
     wbs_df = wbs_df[wbs_df['Source Qty'].apply(lambda x: any(name in str(x) for name in unique_names))]
     wbs_df = wbs_df[wbs_df['Input Unit'] != 'TON']
 
@@ -137,38 +132,39 @@ if ifc_file:
     st.markdown("---")
     st.markdown("### Calculate Total Work Hours for Each Element")
 
-    # Calculate total work hours for each element
-    # First combine the 'Consumption' for each unique pair of 'Source Qty' and 'Input Unit'
     wbs_df['Consumption'] = pd.to_numeric(wbs_df['Consumption'], errors='coerce')
     total_work_hours = wbs_df.groupby(['Source Qty', 'Input Unit'])['Consumption'].sum().reset_index()
-    
+
     st.markdown("### Total Work Hours for Each Pair of Source Qty and Input Unit")
     st.dataframe(total_work_hours)
 
-    # Calculate total work hours for each element
-    # Assume 'Consumption' is in hours
     for _, element in df_elements.iterrows():
-        mask_length = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'LF')
+        mask_length = (
+            (total_work_hours['Source Qty'] == element['name']) &
+            (total_work_hours['Input Unit'] == 'LF')
+        )
         length_consumption = total_work_hours.loc[mask_length, 'Consumption'].sum()
-        mask_area = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'SF')
+        mask_area = (
+            (total_work_hours['Source Qty'] == element['name']) &
+            (total_work_hours['Input Unit'] == 'SF')
+        )
         area_consumption = total_work_hours.loc[mask_area, 'Consumption'].sum()
-        mask_volume = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'CY')
+        mask_volume = (
+            (total_work_hours['Source Qty'] == element['name']) &
+            (total_work_hours['Input Unit'] == 'CY')
+        )
         volume_consumption = total_work_hours.loc[mask_volume, 'Consumption'].sum()
-        # mask_weight = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'TON')
-        # weight_consumption = total_work_hours.loc[mask_weight, 'Consumption'].sum()
-        quanity_mask = (total_work_hours['Source Qty'] == element['name']) & (total_work_hours['Input Unit'] == 'EA')
+        quanity_mask = (
+            (total_work_hours['Source Qty'] == element['name']) &
+            (total_work_hours['Input Unit'] == 'EA')
+        )
         quantity_consumption = total_work_hours.loc[quanity_mask, 'Consumption'].sum()
 
-        # Update the element with the calculated work hours
         length_hours = length_consumption * element['length']
         area_hours = area_consumption * element['area']
         volume_hours = volume_consumption * element['volume']
-        quantity_hours = quantity_consumption * 1 # Assuming quantity is one per element
-        # weight_hours = weight_consumption * 0.6  # Assuming weight is converted to hours with a factor of 0.6
-
-        # total_hours = length_hours + area_hours + volume_hours + weight_hours
+        quantity_hours = quantity_consumption * 1
         total_hours = length_hours + area_hours + volume_hours + quantity_hours
-        # Store the result in the DataFrame
         df_elements.at[element.name, 'total_work_hours'] = total_hours
 
     st.markdown("### Total Work Hours for Each Element")
@@ -184,36 +180,24 @@ if ifc_file:
     from build_graph import build_wbs_graph, shortest_path, build_gds_graph, load_to_neo4j
 
     graph_fig, edges, G = build_wbs_graph(df_elements=df_elements)
-    
-    # Load the graph into Neo4j
     load_to_neo4j(G, reset=True)
-
-    # st.plotly_chart(graph_fig, use_container_width=True)
     st.success("Network graph built successfully.")
-
-    # st.dataframe(edges)
 
     build_gds_graph()
     short_path = shortest_path(242065, 235678)
     costs = short_path[0]['costs']
-    longest_cost = 0
-    for cost in costs:
-        if cost>0:
-            longest_cost+= (1/cost)
+    longest_cost = sum(1 / cost for cost in costs if cost > 0)
 
     with open('./gds_shortest_path.json', 'w') as f:
         json.dump(short_path[0], f)
     st.json(short_path[0])
 
     critical_nodes = short_path[0]['GlobalIdPath']
-
     df_elements['critical'] = df_elements['id'].isin(critical_nodes)
 
-    st.markdown("### the critical path for work zone 1 is {} hours".format(longest_cost))
+    st.markdown(f"### the critical path for work zone 1 is {longest_cost} hours")
     st.dataframe(df_elements)
 
     critical_fig = plot_critical_path(df_elements)
-
-    # st.plotly_chart(critical_fig)
 
     write_parameters_to_ifc(ifc_file, './updated_ifc', df_elements=df_elements)
