@@ -41,21 +41,16 @@ async function loadViewer() {
 
   // Add a directional light that follows the camera
   const cameraLight = new THREE.DirectionalLight(0xffffff, 1.0);
-  cameraLight.position.copy(world.camera.three.position + new THREE.Vector3(0, 10, 0));
+  cameraLight.position.copy(world.camera.three.position.clone().add(new THREE.Vector3(0, 10, 0)));
   world.scene.three.add(cameraLight);
 
-  // Update the light position on each render
-  renderer.setAnimationLoop(() => {
-    cameraLight.position.copy(world.camera.three.position + new THREE.Vector3(0, 10, 0));
-    renderer.render(world.scene.three, world.camera.three);
-  });
+  // Add a point light that follows the camera
+  const cameraPointLight = new THREE.PointLight(0xffffff, 0.7, 100);
+  cameraPointLight.position.copy(world.camera.three.position);
+  world.scene.three.add(cameraPointLight);
 
-  // Add grid and axes
-  const grids = components.get(OBC.Grids);
-  grids.create(world);
-
-  // Set up lighting
-  world.scene.setup();
+  // Store reference to model for animation loop
+  let loadedModel = null;
 
   if (ifcUrl) {
     console.log('Loading IFC from URL:', ifcUrl);
@@ -69,18 +64,23 @@ async function loadViewer() {
       const data = await response.arrayBuffer();
       const buffer = new Uint8Array(data);
       const model = await ifcLoader.load(buffer);
+      loadedModel = model;
 
       world.scene.three.add(model);
 
       // Apply materials and scaling
       model.traverse((child) => {
         if (child.isMesh) {
-          // Use a simple material for better performance
-          child.material = new THREE.MeshStandardMaterial({
-            color: 0xeeeeee, 
-            metalness: 0.3,
-            roughness: 0.6
+          // Create the material
+          const material = new THREE.MeshLambertMaterial({
+            color: 0x1f618d,
           });
+          // Use fragment API if available
+          if (child.fragment && typeof child.fragment.setMaterial === 'function') {
+            child.fragment.setMaterial(material);
+          } else {
+            child.material = material;
+          }
           child.castShadow = true;
           child.receiveShadow = true;
         }
@@ -163,6 +163,47 @@ async function loadViewer() {
   } else {
     container.innerHTML = '<h3>No IFC file URL provided.</h3>';
   }
+
+  // Update the light positions and mesh opacity on each render
+  renderer.setAnimationLoop(() => {
+    cameraLight.position.copy(world.camera.three.position.clone().add(new THREE.Vector3(0, 10, 0)));
+    cameraPointLight.position.copy(world.camera.three.position);
+    // Opacity control based on distance
+    if (loadedModel) {
+      loadedModel.traverse((child) => {
+        if (child.isMesh) {
+          const camPos = world.camera.three.position;
+          const meshPos = new THREE.Vector3();
+          child.getWorldPosition(meshPos);
+          const dist = camPos.distanceTo(meshPos);
+          // Set your threshold and opacity mapping
+          const threshold = 3.0; // units
+          let opacity = 0.2;
+          if (dist < threshold) {
+            opacity = 0.0;
+          }
+          // Use fragment API if available
+          if (child.fragment && typeof child.fragment.setMaterial === 'function') {
+            const mat = child.material.clone();
+            mat.opacity = opacity;
+            mat.transparent = true;
+            child.fragment.setMaterial(mat);
+          } else if (child.material) {
+            child.material.opacity = opacity;
+            child.material.transparent = true;
+          }
+        }
+      });
+    }
+    renderer.render(world.scene.three, world.camera.three);
+  });
+
+  // Add grid and axes
+  const grids = components.get(OBC.Grids);
+  grids.create(world);
+
+  // Set up lighting
+  world.scene.setup();
 
   // Handle window resize
   window.addEventListener('resize', () => {
