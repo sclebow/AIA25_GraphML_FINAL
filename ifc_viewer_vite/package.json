@@ -8,7 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "web-ifc-viewer": "^1.0.218"
+    "@thatopen/components": "^2.0.0",
+    "@thatopen/ui": "^2.0.0"
   },
   "devDependencies": {
     "vite": "^5.0.0"
