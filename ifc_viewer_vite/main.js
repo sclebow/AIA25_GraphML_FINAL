@@ -51,6 +51,28 @@ async function loadViewer() {
 
   // Store reference to model for animation loop
   let loadedModel = null;
+  // Store mesh references for opacity control
+  let meshList = [];
+
+  // Show loading bar
+  const loadingBar = document.createElement('div');
+  loadingBar.id = 'loading-bar';
+  loadingBar.style.position = 'fixed';
+  loadingBar.style.top = '50%';
+  loadingBar.style.left = '50%';
+  loadingBar.style.transform = 'translate(-50%, -50%)';
+  loadingBar.style.width = '300px';
+  loadingBar.style.height = '30px';
+  loadingBar.style.background = '#eee';
+  loadingBar.style.border = '1px solid #aaa';
+  loadingBar.style.zIndex = '1000';
+  loadingBar.innerHTML = `<div id='loading-bar-progress' style='height:100%;width:0%;background:#3498db;transition:width 0.2s;'></div>`;
+  document.body.appendChild(loadingBar);
+
+  function setLoadingProgress(percent) {
+    const bar = document.getElementById('loading-bar-progress');
+    if (bar) bar.style.width = percent + '%';
+  }
 
   if (ifcUrl) {
     console.log('Loading IFC from URL:', ifcUrl);
@@ -60,20 +82,31 @@ async function loadViewer() {
       await ifcLoader.setup();
 
       // Load IFC file
+      setLoadingProgress(10);
       const response = await fetch(ifcUrl);
+      setLoadingProgress(30);
       const data = await response.arrayBuffer();
+      setLoadingProgress(60);
       const buffer = new Uint8Array(data);
       const model = await ifcLoader.load(buffer);
+      setLoadingProgress(90);
       loadedModel = model;
-
       world.scene.three.add(model);
+      setLoadingProgress(100);
+      setTimeout(() => {
+        const bar = document.getElementById('loading-bar');
+        if (bar) bar.remove();
+      }, 500);
 
       // Apply materials and scaling
+      meshList = [];
       model.traverse((child) => {
         if (child.isMesh) {
           // Create the material
           const material = new THREE.MeshLambertMaterial({
             color: 0x1f618d,
+            transparent: true,
+            opacity: 0.6
           });
           // Use fragment API if available
           if (child.fragment && typeof child.fragment.setMaterial === 'function') {
@@ -83,6 +116,7 @@ async function loadViewer() {
           }
           child.castShadow = true;
           child.receiveShadow = true;
+          meshList.push(child);
         }
       });
 
@@ -145,10 +179,8 @@ async function loadViewer() {
           if (intersect.object.isMesh) {
             highlighted = intersect.object;
             originalMaterial = highlighted.material;
-            highlighted.material = new THREE.MeshStandardMaterial({
+            highlighted.material = new THREE.MeshLambertMaterial({
               color: 0xffff00,
-              metalness: 0.1,
-              roughness: 0.6
             });
             break;
           }
@@ -168,33 +200,6 @@ async function loadViewer() {
   renderer.setAnimationLoop(() => {
     cameraLight.position.copy(world.camera.three.position.clone().add(new THREE.Vector3(0, 10, 0)));
     cameraPointLight.position.copy(world.camera.three.position);
-    // Opacity control based on distance
-    if (loadedModel) {
-      loadedModel.traverse((child) => {
-        if (child.isMesh) {
-          const camPos = world.camera.three.position;
-          const meshPos = new THREE.Vector3();
-          child.getWorldPosition(meshPos);
-          const dist = camPos.distanceTo(meshPos);
-          // Set your threshold and opacity mapping
-          const threshold = 3.0; // units
-          let opacity = 0.2;
-          if (dist < threshold) {
-            opacity = 0.0;
-          }
-          // Use fragment API if available
-          if (child.fragment && typeof child.fragment.setMaterial === 'function') {
-            const mat = child.material.clone();
-            mat.opacity = opacity;
-            mat.transparent = true;
-            child.fragment.setMaterial(mat);
-          } else if (child.material) {
-            child.material.opacity = opacity;
-            child.material.transparent = true;
-          }
-        }
-      });
-    }
     renderer.render(world.scene.three, world.camera.three);
   });
 
