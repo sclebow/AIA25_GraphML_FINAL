@@ -33,7 +33,7 @@ async function loadViewer() {
   const renderer = world.renderer.three;
   renderer.setClearColor(new THREE.Color(0.95, 0.96, 0.98));
   renderer.setSize(window.innerWidth, window.innerHeight);
-
+  renderer.shadowMap.enabled = false; // Disable shadows
   components.init();
 
   // Set up camera controls
@@ -169,7 +169,8 @@ async function loadViewer() {
         const camera = world.camera.three;
         const raycaster = new THREE.Raycaster();
         raycaster.setFromCamera(mouse, camera);
-        const intersects = raycaster.intersectObjects(model.children, true);
+        // Use meshList for raycasting instead of model.children
+        const intersects = raycaster.intersectObjects(meshList, true);
         if (highlighted && originalMaterial) {
           highlighted.material = originalMaterial;
           highlighted = null;
@@ -217,6 +218,11 @@ async function loadViewer() {
     world.renderer.three.setSize(width, height); // Use .three here
     world.camera.updateAspect();
   });
+
+  world.camera.controls.addEventListener('change', () => {
+    renderer.render(world.scene.three, world.camera.three);
+  });
+  renderer.setAnimationLoop(null); // Stop continuous rendering
 }
 
 loadViewer();
