@@ -33,13 +33,22 @@ async function loadViewer() {
   const renderer = world.renderer.three;
   renderer.setClearColor(new THREE.Color(0.95, 0.96, 0.98));
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   components.init();
 
   // Set up camera controls
   world.camera.controls.setLookAt(12, 6, 8, 0, 0, -10);
+
+  // Add a directional light that follows the camera
+  const cameraLight = new THREE.DirectionalLight(0xffffff, 1.0);
+  cameraLight.position.copy(world.camera.three.position + new THREE.Vector3(0, 10, 0));
+  world.scene.three.add(cameraLight);
+
+  // Update the light position on each render
+  renderer.setAnimationLoop(() => {
+    cameraLight.position.copy(world.camera.three.position + new THREE.Vector3(0, 10, 0));
+    renderer.render(world.scene.three, world.camera.three);
+  });
 
   // Add grid and axes
   const grids = components.get(OBC.Grids);
@@ -69,7 +78,7 @@ async function loadViewer() {
           // Use a simple material for better performance
           child.material = new THREE.MeshStandardMaterial({
             color: 0xeeeeee, 
-            metalness: 0.1,
+            metalness: 0.3,
             roughness: 0.6
           });
           child.castShadow = true;
