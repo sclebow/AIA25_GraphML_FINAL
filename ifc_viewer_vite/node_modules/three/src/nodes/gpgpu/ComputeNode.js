@@ -165,7 +165,7 @@ class ComputeNode extends Node {
 
 	setup( builder ) {
 
-		const result = this.computeNode.build( builder );
+		const result = this.computeNode.setup( builder );
 
 		if ( result ) {
 

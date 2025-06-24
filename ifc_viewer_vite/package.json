@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@thatopen/components": "^2.0.0",
-    "@thatopen/ui": "^2.0.0"
+    "@thatopen/ui": "^2.4.5",
+    "@thatopen/ui-obc": "^2.4.4"
   },
   "devDependencies": {
     "vite": "^5.0.0"

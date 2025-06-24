@@ -34,14 +34,6 @@ class SpotLightShadow extends LightShadow {
 		 */
 		this.focus = 1;
 
-		/**
-		 * Texture aspect ratio.
-		 *
-		 * @type {number}
-		 * @default 1
-		 */
-		this.aspect = 1;
-
 	}
 
 	updateMatrices( light ) {
@@ -49,7 +41,7 @@ class SpotLightShadow extends LightShadow {
 		const camera = this.camera;
 
 		const fov = RAD2DEG * 2 * light.angle * this.focus;
-		const aspect = ( this.mapSize.width / this.mapSize.height ) * this.aspect;
+		const aspect = this.mapSize.width / this.mapSize.height;
 		const far = light.distance || camera.far;
 
 		if ( fov !== camera.fov || aspect !== camera.aspect || far !== camera.far ) {

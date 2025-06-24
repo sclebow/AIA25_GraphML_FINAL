@@ -63,7 +63,7 @@ const barrier = nodeProxy( BarrierNode );
  * @function
  * @returns {BarrierNode}
  */
-export const workgroupBarrier = () => barrier( 'workgroup' ).toStack();
+export const workgroupBarrier = () => barrier( 'workgroup' ).append();
 
 /**
  * TSL function for creating a storage barrier. All invocations must
@@ -74,7 +74,7 @@ export const workgroupBarrier = () => barrier( 'workgroup' ).toStack();
  * @function
  * @returns {BarrierNode}
  */
-export const storageBarrier = () => barrier( 'storage' ).toStack();
+export const storageBarrier = () => barrier( 'storage' ).append();
 
 /**
  * TSL function for creating a texture barrier. All invocations must
@@ -85,5 +85,5 @@ export const storageBarrier = () => barrier( 'storage' ).toStack();
  * @function
  * @returns {BarrierNode}
  */
-export const textureBarrier = () => barrier( 'texture' ).toStack();
+export const textureBarrier = () => barrier( 'texture' ).append();
 

@@ -12,7 +12,6 @@ import { Pass } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @three_import import { MaskPass } from 'three/addons/postprocessing/MaskPass.js';
  */
 class MaskPass extends Pass {
 

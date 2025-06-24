@@ -49,7 +49,6 @@ function getUv( faceDirVector, normal, uvAxis, projectionAxis, radius, sideLengt
  * ```
  *
  * @augments BoxGeometry
- * @three_import import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
  */
 class RoundedBoxGeometry extends BoxGeometry {
 

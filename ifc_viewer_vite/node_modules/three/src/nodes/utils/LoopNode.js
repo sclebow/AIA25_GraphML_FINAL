@@ -1,6 +1,6 @@
 import Node from '../core/Node.js';
 import { expression } from '../code/ExpressionNode.js';
-import { nodeObject, nodeArray, Fn } from '../tsl/TSLBase.js';
+import { nodeObject, nodeArray } from '../tsl/TSLBase.js';
 
 /**
  * This module offers a variety of ways to implement loops in TSL. In it's basic form it's:
@@ -101,16 +101,8 @@ class LoopNode extends Node {
 
 		const stack = builder.addStack(); // TODO: cache() it
 
-		properties.returnsNode = this.params[ this.params.length - 1 ]( inputs, builder );
+		properties.returnsNode = this.params[ this.params.length - 1 ]( inputs, stack, builder );
 		properties.stackNode = stack;
-
-		const baseParam = this.params[ 0 ];
-
-		if ( baseParam.isNode !== true && typeof baseParam.update === 'function' ) {
-
-			properties.updateNode = Fn( this.params[ 0 ].update )( inputs );
-
-		}
 
 		builder.removeStack();
 
@@ -230,69 +222,30 @@ class LoopNode extends Node {
 				const startSnippet = internalParam.start;
 				const endSnippet = internalParam.end;
 
-				let updateSnippet;
+				let declarationSnippet = '';
+				let conditionalSnippet = '';
+				let updateSnippet = '';
 
-				const deltaOperator = () => condition.includes( '<' ) ? '+=' : '-=';
-
-				if ( update !== undefined && update !== null ) {
-
-					switch ( typeof update ) {
-
-						case 'function':
-
-							const flow = builder.flowStagesNode( properties.updateNode, 'void' );
-							const snippet = flow.code.replace( /\t|;/g, '' );
-
-							updateSnippet = snippet;
-
-							break;
-
-						case 'number':
-
-							updateSnippet = name + ' ' + deltaOperator() + ' ' + builder.generateConst( type, update );
-
-							break;
-
-						case 'string':
-
-							updateSnippet = name + ' ' + update;
-
-							break;
-
-						default:
-
-							if ( update.isNode ) {
-
-								updateSnippet = name + ' ' + deltaOperator() + ' ' + update.build( builder );
-
-							} else {
-
-								console.error( 'THREE.TSL: \'Loop( { update: ... } )\' is not a function, string or number.' );
-
-								updateSnippet = 'break /* invalid update */';
-
-							}
-
-					}
-
-				} else {
+				if ( ! update ) {
 
 					if ( type === 'int' || type === 'uint' ) {
 
-						update = condition.includes( '<' ) ? '++' : '--';
+						if ( condition.includes( '<' ) ) update = '++';
+						else update = '--';
 
 					} else {
 
-						update = deltaOperator() + ' 1.';
+						if ( condition.includes( '<' ) ) update = '+= 1.';
+						else update = '-= 1.';
 
 					}
 
-					updateSnippet = name + ' ' + update;
-
 				}
 
-				const declarationSnippet = builder.getVar( type, name ) + ' = ' + startSnippet;
-				const conditionalSnippet = name + ' ' + condition + ' ' + endSnippet;
+				declarationSnippet += builder.getVar( type, name ) + ' = ' + startSnippet;
+
+				conditionalSnippet += name + ' ' + condition + ' ' + endSnippet;
+				updateSnippet += name + ' ' + update;
 
 				loopSnippet = `for ( ${ declarationSnippet }; ${ conditionalSnippet }; ${ updateSnippet } )`;
 
@@ -332,7 +285,7 @@ export default LoopNode;
  * @param {...any} params - A list of parameters.
  * @returns {LoopNode}
  */
-export const Loop = ( ...params ) => nodeObject( new LoopNode( nodeArray( params, 'int' ) ) ).toStack();
+export const Loop = ( ...params ) => nodeObject( new LoopNode( nodeArray( params, 'int' ) ) ).append();
 
 /**
  * TSL function for creating a `Continue()` expression.
@@ -341,7 +294,7 @@ export const Loop = ( ...params ) => nodeObject( new LoopNode( nodeArray( params
  * @function
  * @returns {ExpressionNode}
  */
-export const Continue = () => expression( 'continue' ).toStack();
+export const Continue = () => expression( 'continue' ).append();
 
 /**
  * TSL function for creating a `Break()` expression.
@@ -350,7 +303,7 @@ export const Continue = () => expression( 'continue' ).toStack();
  * @function
  * @returns {ExpressionNode}
  */
-export const Break = () => expression( 'break' ).toStack();
+export const Break = () => expression( 'break' ).append();
 
 // Deprecated
 

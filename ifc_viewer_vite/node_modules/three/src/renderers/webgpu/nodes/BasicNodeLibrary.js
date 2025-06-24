@@ -9,7 +9,6 @@ import { AmbientLight } from '../../../lights/AmbientLight.js';
 import { HemisphereLight } from '../../../lights/HemisphereLight.js';
 import { LightProbe } from '../../../lights/LightProbe.js';
 import IESSpotLight from '../../../lights/webgpu/IESSpotLight.js';
-import ProjectorLight from '../../../lights/webgpu/ProjectorLight.js';
 import {
 	PointLightNode,
 	DirectionalLightNode,
@@ -18,8 +17,7 @@ import {
 	AmbientLightNode,
 	HemisphereLightNode,
 	LightProbeNode,
-	IESSpotLightNode,
-	ProjectorLightNode
+	IESSpotLightNode
 } from '../../../nodes/Nodes.js';
 
 // Tone Mapping
@@ -50,7 +48,6 @@ class BasicNodeLibrary extends NodeLibrary {
 		this.addLight( HemisphereLightNode, HemisphereLight );
 		this.addLight( LightProbeNode, LightProbe );
 		this.addLight( IESSpotLightNode, IESSpotLight );
-		this.addLight( ProjectorLightNode, ProjectorLight );
 
 		this.addToneMapping( linearToneMapping, LinearToneMapping );
 		this.addToneMapping( reinhardToneMapping, ReinhardToneMapping );
