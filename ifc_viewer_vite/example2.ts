@@ -94,6 +94,40 @@ async function loadIfc() {
 
 await loadIfc();
 
+// Move the grid to the lowest point in the model
+if (model) {
+  // Compute bounding box
+  const box = new THREE.Box3().setFromObject(model);
+  const minY = box.min.y;
+  // Shift model up so its lowest point is at Y=0.01
+  if (minY < 0.01) {
+    model.position.y += (0.01 - minY);
+  } else {
+    model.position.y -= (minY - 0.01);
+  }
+
+  // --- Camera framing logic ---
+  // Compute bounding sphere to get center and radius
+  const sphere = box.getBoundingSphere(new THREE.Sphere());
+  const center = sphere.center;
+  const radius = sphere.radius;
+
+  // Calculate camera position: place it back along Z and up along Y
+  // so the model is nicely visible (adjust factor as needed)
+  const cameraDistance = radius * 2.2; // 2.2 gives some margin
+  const cameraPos = new THREE.Vector3(
+    center.x + cameraDistance * 0.7,
+    center.y + cameraDistance * 0.5,
+    center.z + cameraDistance
+  );
+
+  // Set camera position and aim
+  world.camera.controls.setLookAt(
+    cameraPos.x, cameraPos.y, cameraPos.z,
+    center.x, center.y, center.z
+  );
+}
+
 fragments.onFragmentsLoaded.add((model) => {
   console.log(model);
 });
