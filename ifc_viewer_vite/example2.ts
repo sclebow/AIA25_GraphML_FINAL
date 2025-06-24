@@ -314,37 +314,14 @@ const categorySection = BUI.Component.create<BUI.PanelSection>(() => {
 panel.append(categorySection);
 document.body.append(panel);
 
-// Apply default materials to the model based on categories
-// IFCSPACE should always get the same default material
-const defaultMaterial = new THREE.MeshStandardMaterial({
-  color: 0xaaaaaa,
-    transparent: true,
-    opacity: 0.1
-});
-
-// The other categories will be set to evenly distributed colors, one for each category extracted from the model, except for IFCSPACE
-const colors = Array.from({ length: numberOfCategories }, (_, i) => {
-    const hue = i / numberOfCategories;
-    return new THREE.Color().setHSL(hue, 0.5, 0.5);
-});
-
-// Set the default material for each category
-
-// Store default color and opacity for each category
+// Set the default color and opacity for each category using the DRY arrays
 const categoryDefaults: Record<string, { color: THREE.Color; opacity: number }> = {};
-const defaultOpacity = 0.5;
 categoryNames.forEach((name, i) => {
   categoryDefaults[name] = {
     color: defaultColors[i],
-    opacity: defaultOpacity,
+    opacity: defaultOpacities[i],
   };
 });
-if (classes['IFCSPACE']) {
-  categoryDefaults['IFCSPACE'] = {
-    color: new THREE.Color(0xaaaaaa),
-    opacity: 0.1,
-  };
-}
 
 // Add a header row for the controls
 const header = document.createElement('div');
