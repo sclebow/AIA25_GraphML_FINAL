@@ -22,6 +22,7 @@ import Stats from "stats.js";
 import * as BUI from "@thatopen/ui";
 import * as WEBIFC from "web-ifc";
 import * as OBC from "@thatopen/components";
+import * as THREE from "three";
 
 const urlParams = new URLSearchParams(window.location.search);
 const ifcUrl = urlParams.get('ifcUrl') || '';
@@ -132,7 +133,6 @@ const hider = components.get(OBC.Hider);
 
 const classifier = components.get(OBC.Classifier);
 classifier.byEntity(model);
-
 /* MD
   ### ⏱️ Measuring the performance (optional)
   ---
@@ -167,6 +167,109 @@ for (const name of classNames) {
   classes[name] = true;
 }
 
+// After classifier.byEntity(model);
+
+// Define categoryNames and defaultColors at the top-level scope
+const categoryNames = Object.keys(classes).filter(name => name !== 'IFCSPACE');
+const numberOfCategories = categoryNames.length;
+const defaultColors = categoryNames.map((_, i) => {
+  const hue = i / numberOfCategories;
+  return new THREE.Color().setHSL(hue, 0.5, 0.5);
+});
+
+// Assign default colors to each category after model is loaded
+for (const name of classNames) {
+  classes[name] = true;
+}
+
+// Assign default colors to each category after model is loaded
+(async () => {
+  // Generate evenly distributed colors for categories (except IFCSPACE)
+  const categoryNames = Object.keys(classes).filter(name => name !== 'IFCSPACE');
+  const numberOfCategories = categoryNames.length;
+  const defaultColors = categoryNames.map((_, i) => {
+    const hue = i / numberOfCategories;
+    return new THREE.Color().setHSL(hue, 0.5, 0.5);
+  });
+
+  // Set default color for each category
+  categoryNames.forEach((name, i) => {
+    const found = classifier.find({ entities: [name] });
+    for (const fragmentID in found) {
+      const fragment = fragments.list.get(fragmentID);
+      if (!fragment) continue;
+      let meshes: any[] = [];
+      if (Array.isArray(fragment.mesh)) {
+        meshes = fragment.mesh;
+      } else if (fragment.mesh) {
+        meshes = [fragment.mesh];
+      }
+      const expressIDs = Array.from(found[fragmentID]);
+      // Create a transparent material for this category
+      const color = defaultColors[i];
+      const material = new THREE.MeshStandardMaterial({
+        color: color,
+        transparent: true,
+        opacity: 0.5
+      });
+      for (const mesh of meshes) {
+        // For instanced meshes, set color per instance and assign material
+        if (mesh && mesh.isInstancedMesh && mesh.instanceColor && fragment.itemToInstances) {
+          mesh.material = material;
+          for (const expressID of expressIDs) {
+            const instances = fragment.itemToInstances.get(expressID);
+            if (!instances) continue;
+            for (const instanceIndex of instances) {
+              mesh.instanceColor.setXYZ(instanceIndex, color.r, color.g, color.b);
+            }
+          }
+          mesh.instanceColor.needsUpdate = true;
+        } else if (mesh) {
+          // For non-instanced meshes, assign the material directly
+          mesh.material = material;
+        }
+      }
+    }
+  });
+
+  // Set IFCSPACE to transparent gray
+  if (classes['IFCSPACE']) {
+    const found = classifier.find({ entities: ['IFCSPACE'] });
+    for (const fragmentID in found) {
+      const fragment = fragments.list.get(fragmentID);
+      if (!fragment) continue;
+      let meshes: any[] = [];
+      if (Array.isArray(fragment.mesh)) {
+        meshes = fragment.mesh;
+      } else if (fragment.mesh) {
+        meshes = [fragment.mesh];
+      }
+      const expressIDs = Array.from(found[fragmentID]);
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xaaaaaa,
+        transparent: true,
+        opacity: 0.1
+      });
+      for (const mesh of meshes) {
+        if (mesh && mesh.isInstancedMesh && mesh.instanceColor && fragment.itemToInstances) {
+          mesh.material = material;
+          for (const expressID of expressIDs) {
+            const instances = fragment.itemToInstances.get(expressID);
+            if (!instances) continue;
+            for (const instanceIndex of instances) {
+              mesh.instanceColor.setXYZ(instanceIndex, 0.67, 0.67, 0.67); // gray
+            }
+          }
+          mesh.instanceColor.needsUpdate = true;
+        } else if (mesh) {
+          mesh.material = material;
+        }
+      }
+    }
+  }
+})();
+
+
 /* MD
 Now we will add some UI to control the visibility of items per category using simple checkboxes.
 */
@@ -187,7 +290,70 @@ const categorySection = BUI.Component.create<BUI.PanelSection>(() => {
 panel.append(categorySection);
 document.body.append(panel);
 
+// Apply default materials to the model based on categories
+// IFCSPACE should always get the same default material
+const defaultMaterial = new THREE.MeshStandardMaterial({
+  color: 0xaaaaaa,
+    transparent: true,
+    opacity: 0.1
+});
+
+// The other categories will be set to evenly distributed colors, one for each category extracted from the model, except for IFCSPACE
+const colors = Array.from({ length: numberOfCategories }, (_, i) => {
+    const hue = i / numberOfCategories;
+    return new THREE.Color().setHSL(hue, 0.5, 0.5);
+});
+
+// Set the default material for each category
+
+// Store default color and opacity for each category
+const categoryDefaults: Record<string, { color: THREE.Color; opacity: number }> = {};
+const defaultOpacity = 0.5;
+categoryNames.forEach((name, i) => {
+  categoryDefaults[name] = {
+    color: defaultColors[i],
+    opacity: defaultOpacity,
+  };
+});
+if (classes['IFCSPACE']) {
+  categoryDefaults['IFCSPACE'] = {
+    color: new THREE.Color(0xaaaaaa),
+    opacity: 0.1,
+  };
+}
+
+// Add a header row for the controls
+const header = document.createElement('div');
+header.style.display = 'flex';
+header.style.alignItems = 'center';
+header.style.fontWeight = 'bold';
+header.style.marginBottom = '4px';
+
+const labelCheckbox = document.createElement('span');
+labelCheckbox.textContent = 'Category';
+labelCheckbox.style.display = 'inline-block';
+labelCheckbox.style.width = '120px';
+
+const labelColor = document.createElement('span');
+labelColor.textContent = 'Color';
+labelColor.style.display = 'inline-block';
+labelColor.style.width = '60px';
+labelColor.style.textAlign = 'center';
+
+const labelOpacity = document.createElement('span');
+labelOpacity.textContent = 'Opacity';
+labelOpacity.style.display = 'inline-block';
+labelOpacity.style.width = '100px';
+labelOpacity.style.textAlign = 'center';
+
+header.appendChild(labelCheckbox);
+header.appendChild(labelColor);
+header.appendChild(labelOpacity);
+categorySection.append(header);
+
 for (const name in classes) {
+  const defaultColor = categoryDefaults[name]?.color || new THREE.Color('#ffffff');
+  const defaultOpacity = categoryDefaults[name]?.opacity ?? 0.5;
   const checkbox = BUI.Component.create<BUI.Checkbox>(() => {
     return BUI.html`
       <bim-checkbox checked label="${name}"
@@ -198,23 +364,34 @@ for (const name in classes) {
       </bim-checkbox>
     `;
   });
+  checkbox.style.width = '120px';
 
   // Create a color input for material color
   const colorInput = document.createElement('input');
   colorInput.type = 'color';
   colorInput.style.marginLeft = '8px';
-  colorInput.value = '#ffffff'; // default color
+  colorInput.style.width = '60px';
+  colorInput.value = '#' + defaultColor.getHexString();
   colorInput.title = `Change color for ${name}`;
-  colorInput.addEventListener('input', (event) => {
-    const hex = (event.target as HTMLInputElement).value;
-    // Convert hex to [r, g, b] array (0-1 range)
-    const bigint = parseInt(hex.slice(1), 16);
-    const r = ((bigint >> 16) & 255) / 255;
-    const g = ((bigint >> 8) & 255) / 255;
-    const b = (bigint & 255) / 255;
-    const color = [r, g, b];
+
+  // Create a range input for opacity
+  const opacityInput = document.createElement('input');
+  opacityInput.type = 'range';
+  opacityInput.min = '0';
+  opacityInput.max = '1';
+  opacityInput.step = '0.01';
+  opacityInput.value = String(defaultOpacity);
+  opacityInput.title = `Change opacity for ${name}`;
+  opacityInput.style.marginLeft = '8px';
+  opacityInput.style.width = '100px';
+
+  // Handler to update color and opacity
+  function updateMaterial() {
+    const hex = colorInput.value;
+    const opacity = parseFloat(opacityInput.value);
+    const color = new THREE.Color(hex);
+    const r = color.r, g = color.g, b = color.b;
     const found = classifier.find({ entities: [name] });
-    const modelIdMap = fragments.getModelIdMap(found);
     for (const fragmentID in found) {
       const fragment = fragments.list.get(fragmentID);
       if (!fragment) continue;
@@ -224,10 +401,15 @@ for (const name in classes) {
       } else if (fragment.mesh) {
         meshes = [fragment.mesh];
       }
-      // Get express IDs for this fragment/category
       const expressIDs = Array.from(found[fragmentID]);
+      const material = new THREE.MeshStandardMaterial({
+        color: color,
+        transparent: true,
+        opacity: opacity
+      });
       for (const mesh of meshes) {
         if (mesh && mesh.isInstancedMesh && mesh.instanceColor && fragment.itemToInstances) {
+          mesh.material = material;
           for (const expressID of expressIDs) {
             const instances = fragment.itemToInstances.get(expressID);
             if (!instances) continue;
@@ -236,28 +418,24 @@ for (const name in classes) {
             }
           }
           mesh.instanceColor.needsUpdate = true;
-        } else if (mesh && mesh.material) {
-          // fallback: set color for the whole material (not ideal)
-          if (Array.isArray(mesh.material)) {
-            for (const mat of mesh.material) {
-              if (mat && mat.color) {
-                mat.color.setRGB(r, g, b);
-              }
-            }
-          } else if (mesh.material.color) {
-            mesh.material.color.setRGB(r, g, b);
-          }
+        } else if (mesh) {
+          mesh.material = material;
         }
       }
     }
-  });
+  }
 
-  // Wrap checkbox and color input in a div for layout
+  colorInput.addEventListener('input', updateMaterial);
+  opacityInput.addEventListener('input', updateMaterial);
+
+  // Wrap checkbox, color input, and opacity slider in a div for layout
   const wrapper = document.createElement('div');
   wrapper.style.display = 'flex';
   wrapper.style.alignItems = 'center';
+  wrapper.style.marginBottom = '2px';
   wrapper.appendChild(checkbox);
   wrapper.appendChild(colorInput);
+  wrapper.appendChild(opacityInput);
 
   categorySection.append(wrapper);
 }
