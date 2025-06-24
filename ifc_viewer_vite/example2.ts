@@ -201,16 +201,36 @@ for (const name of classNames) {
   classes[name] = true;
 }
 
-// After classifier.byEntity(model);
-
 // Define categoryNames and defaultColors at the top-level scope
-const categoryNames = Object.keys(classes).filter(name => name !== 'IFCSPACE');
-const numberOfCategories = categoryNames.length;
-const defaultColors = categoryNames.map((_, i) => {
-  const hue = i / numberOfCategories;
+// Define a map of category names to colors and opacities for hardcoded categories
+// IFCSPACE is transparent gray, 
+// IFCSLAB is neon orange,
+// IFCWALL is neon pink,
+const hardcodedCategories = {
+  IFCSPACE: { color: new THREE.Color(0xaaaaaa), opacity: 0.1 },
+    IFCSLAB: { color: new THREE.Color(0xffa500), opacity: 0.2 },
+    IFCWALL: { color: new THREE.Color(0xff69b4), opacity: 0.4 },
+};
+const categoryNames = Object.keys(classes).filter((name => !hardcodedCategories[name]));
+const numberOfHardcodedCategories = Object.keys(hardcodedCategories).length;
+const numberOfCategories = categoryNames.length + numberOfHardcodedCategories;
+const numberOfCategoriesToGenerate = numberOfCategories - numberOfHardcodedCategories;
+const defaultColors = Array.from({ length: numberOfCategoriesToGenerate }, (_, i) => {
+  const hue = i / numberOfCategoriesToGenerate;
   return new THREE.Color().setHSL(hue, 0.5, 0.5);
-});
-
+}).concat(
+  Object.values(hardcodedCategories).map(({ color }) => color)
+);
+categoryNames.push(...Object.keys(hardcodedCategories));
+defaultColors.push(
+  ...Object.values(hardcodedCategories).map(({ color }) => color)
+);
+const defaultOpacities = Array.from({ length: numberOfCategoriesToGenerate }, (_, i) => {
+  const opacity = 0.8;
+  return opacity;
+}).concat(
+  Object.values(hardcodedCategories).map(({ opacity }) => opacity)
+);
 // Assign default colors to each category after model is loaded
 for (const name of classNames) {
   classes[name] = true;
@@ -218,14 +238,7 @@ for (const name of classNames) {
 
 // Assign default colors to each category after model is loaded
 (async () => {
-  // Generate evenly distributed colors for categories (except IFCSPACE)
-  const categoryNames = Object.keys(classes).filter(name => name !== 'IFCSPACE');
-  const numberOfCategories = categoryNames.length;
-  const defaultColors = categoryNames.map((_, i) => {
-    const hue = i / numberOfCategories;
-    return new THREE.Color().setHSL(hue, 0.5, 0.5);
-  });
-
+  // Use the top-level categoryNames, numberOfCategories, and defaultColors
   // Set default color for each category
   categoryNames.forEach((name, i) => {
     const found = classifier.find({ entities: [name] });
@@ -241,10 +254,17 @@ for (const name of classNames) {
       const expressIDs = Array.from(found[fragmentID]);
       // Create a transparent material for this category
       const color = defaultColors[i];
+      const opacity = defaultOpacities[i];
+      let transparent;
+      if (opacity < 1) {
+        transparent = true;
+      } else {
+        transparent = false;
+      }
       const material = new THREE.MeshStandardMaterial({
         color: color,
-        transparent: true,
-        opacity: 0.5
+        transparent: transparent,
+        opacity: opacity
       });
       for (const mesh of meshes) {
         // For instanced meshes, set color per instance and assign material
@@ -265,42 +285,6 @@ for (const name of classNames) {
       }
     }
   });
-
-  // Set IFCSPACE to transparent gray
-  if (classes['IFCSPACE']) {
-    const found = classifier.find({ entities: ['IFCSPACE'] });
-    for (const fragmentID in found) {
-      const fragment = fragments.list.get(fragmentID);
-      if (!fragment) continue;
-      let meshes: any[] = [];
-      if (Array.isArray(fragment.mesh)) {
-        meshes = fragment.mesh;
-      } else if (fragment.mesh) {
-        meshes = [fragment.mesh];
-      }
-      const expressIDs = Array.from(found[fragmentID]);
-      const material = new THREE.MeshStandardMaterial({
-        color: 0xaaaaaa,
-        transparent: true,
-        opacity: 0.1
-      });
-      for (const mesh of meshes) {
-        if (mesh && mesh.isInstancedMesh && mesh.instanceColor && fragment.itemToInstances) {
-          mesh.material = material;
-          for (const expressID of expressIDs) {
-            const instances = fragment.itemToInstances.get(expressID);
-            if (!instances) continue;
-            for (const instanceIndex of instances) {
-              mesh.instanceColor.setXYZ(instanceIndex, 0.67, 0.67, 0.67); // gray
-            }
-          }
-          mesh.instanceColor.needsUpdate = true;
-        } else if (mesh) {
-          mesh.material = material;
-        }
-      }
-    }
-  }
 })();
 
 
