@@ -225,6 +225,19 @@ if (categoryColorsParam) {
 }
 console.log(categoryColorOverrides);
 
+// Parse categoryOpacity URL param (format: Category1:0.5,Category2:0.8)
+const categoryOpacityParam = urlParams.get('categoryOpacity');
+let categoryOpacityOverrides: Record<string, number> = {};
+if (categoryOpacityParam) {
+  categoryOpacityParam.split(',').forEach(pair => {
+    const [cat, opacity] = pair.split(':');
+    if (cat && opacity && !isNaN(parseFloat(opacity))) {
+      categoryOpacityOverrides[cat.trim()] = parseFloat(opacity);
+    }
+  });
+}
+console.log(categoryOpacityOverrides);
+
 // Define categoryNames and defaultColors at the top-level scope
 // Define a map of category names to colors and opacities for hardcoded categories
 // IFCSPACE is transparent gray, 
@@ -240,6 +253,13 @@ const hardcodedCategories = {
 for (const name in hardcodedCategories) {
   if (categoryColorOverrides[name]) {
     hardcodedCategories[name].color = new THREE.Color(categoryColorOverrides[name]);
+  }
+}
+
+// If categoryOpacityParam is provided, we need to override or add to the hardcoded categories
+for (const name in hardcodedCategories) {
+  if (categoryOpacityOverrides[name] !== undefined) {
+    hardcodedCategories[name].opacity = categoryOpacityOverrides[name];
   }
 }
 
