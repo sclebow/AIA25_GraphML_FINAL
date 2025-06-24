@@ -195,10 +195,20 @@ BUI.Manager.init();
   Now, let's create a simple object for categories only:
 */
 
+const visibleCategoriesParam = urlParams.get('visibleCategories');
+let visibleCategories: string[] | null = null;
+if (visibleCategoriesParam) {
+  visibleCategories = visibleCategoriesParam.split(',').map(s => s.trim()).filter(Boolean);
+}
+
 const classes: Record<string, any> = {};
 const classNames = Object.keys(classifier.list.entities);
 for (const name of classNames) {
-  classes[name] = true;
+  if (visibleCategories) {
+    classes[name] = visibleCategories.includes(name);
+  } else {
+    classes[name] = true;
+  }
 }
 
 // Define categoryNames and defaultColors at the top-level scope
@@ -232,11 +242,7 @@ const defaultOpacities = Array.from({ length: numberOfCategoriesToGenerate }, (_
   Object.values(hardcodedCategories).map(({ opacity }) => opacity)
 );
 // Assign default colors to each category after model is loaded
-for (const name of classNames) {
-  classes[name] = true;
-}
-
-// Assign default colors to each category after model is loaded
+// (Removed the loop that sets all classes[name] = true)
 (async () => {
   // Use the top-level categoryNames, numberOfCategories, and defaultColors
   // Set default color for each category
@@ -374,7 +380,7 @@ for (const name in classes) {
   const defaultOpacity = categoryDefaults[name]?.opacity ?? 0.5;
   const checkbox = BUI.Component.create<BUI.Checkbox>(() => {
     return BUI.html`
-      <bim-checkbox checked label="${name}"
+      <bim-checkbox ?checked="${classes[name]}" label="${name}"
         @change="${({ target }: { target: BUI.Checkbox }) => {
           const found = classifier.find({ entities: [name] });
           hider.set(target.value, found);
@@ -456,6 +462,12 @@ for (const name in classes) {
   wrapper.appendChild(opacityInput);
 
   categorySection.append(wrapper);
+}
+
+// Set initial visibility using hider
+for (const name of classNames) {
+  const found = classifier.find({ entities: [name] });
+  hider.set(classes[name], found);
 }
 
 /* MD
