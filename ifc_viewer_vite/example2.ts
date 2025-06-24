@@ -211,6 +211,20 @@ for (const name of classNames) {
   }
 }
 
+// Parse categoryColors URL param (format: Category1:ff0000,Category2:00ff00)
+const categoryColorsParam = urlParams.get('categoryColors');
+let categoryColorOverrides: Record<string, string> = {};
+if (categoryColorsParam) {
+  categoryColorsParam.split(',').forEach(pair => {
+    const [cat, hex] = pair.split(':');
+    // Accept hex without leading #, e.g., 'ff0000'
+    if (cat && hex && /^[0-9a-fA-F]{6}$/.test(hex.trim())) {
+      categoryColorOverrides[cat.trim()] = '#' + hex.trim();
+    }
+  });
+}
+console.log(categoryColorOverrides);
+
 // Define categoryNames and defaultColors at the top-level scope
 // Define a map of category names to colors and opacities for hardcoded categories
 // IFCSPACE is transparent gray, 
@@ -221,6 +235,14 @@ const hardcodedCategories = {
     IFCSLAB: { color: new THREE.Color(0xffa500), opacity: 0.2 },
     IFCWALL: { color: new THREE.Color(0xff69b4), opacity: 0.4 },
 };
+
+// If categoryColorsParam is provided, we need to override or add to the hardcoded categories
+for (const name in hardcodedCategories) {
+  if (categoryColorOverrides[name]) {
+    hardcodedCategories[name].color = new THREE.Color(categoryColorOverrides[name]);
+  }
+}
+
 const categoryNames = Object.keys(classes).filter((name => !hardcodedCategories[name]));
 const numberOfHardcodedCategories = Object.keys(hardcodedCategories).length;
 const numberOfCategories = categoryNames.length + numberOfHardcodedCategories;
