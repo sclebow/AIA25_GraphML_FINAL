@@ -4,3 +4,8 @@ pandas
 scikit-learn
 plotly
 tqdm
+streamlit
+openpyxl
+networkx
+neo4j
+matplotlib

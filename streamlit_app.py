@@ -16,6 +16,9 @@ print()
 st.set_page_config(page_title="IFC Level & Work Zone Visualizer", layout="wide")
 st.title("IFC Level & Work Zone Visualizer")
 
+st.session_state.setdefault('ifc_file_processed', False)
+st.session_state.setdefault('selected_ifc', None)
+
 # File selection from ./ifc directory
 ifc_dir = "./ifc"
 if not os.path.exists(ifc_dir):

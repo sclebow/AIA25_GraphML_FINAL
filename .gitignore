@@ -8,3 +8,6 @@ __pycache__/dependency_utils.cpython-311.pyc
 .data/
 gds_shortest_path.json
 updated_ifc
+.venv/
+__pycache__/main.cpython-312.pyc
+__pycache__/dependency_utils.cpython-312.pyc

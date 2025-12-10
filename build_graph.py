@@ -133,6 +133,8 @@ def build_wbs_graph(df_elements, key_path_nodes=None):
         showlegend=True
     )
 
+    # Create plots directory if it doesn't exist
+    os.makedirs("./plots", exist_ok=True)
     graph_fig.write_html("./plots/wbs_graph.html")
 
     edges = pd.DataFrame(G.edges(data=True), columns=['source', 'target', 'attributes'])
@@ -202,38 +204,40 @@ def load_to_neo4j(G, reset=False):
     with st.expander("Edges DataFrame after adding relation_type"):
         st.dataframe(edges_01)
 
-    # Save nodes and edges to CSV files
+    # Save nodes and edges to CSV files for reference
     nodes_01.to_csv("./data/nodes_01.csv", index=False)
     edges_01.to_csv("./data/edges_01.csv", index=False)
 
-    # Load nodes and edges into Neo4j using Cypher LOAD CSV
-    load_nodes_cypher = """
-    LOAD CSV WITH HEADERS FROM 'file:///nodes_01.csv' AS row
-    MERGE (n:Node {GlobalId: row.GlobalId})
-    SET n.Name = row.Name,
-        n.Description = row.Description,
-        n.ObjectType = row.ObjectType,
-        n.IfcType = row.IfcType,
-        n.category = row.category;
-    """
-    run_cypher(load_nodes_cypher, write=True)
-
-    load_edges_cypher = """
-    LOAD CSV WITH HEADERS FROM 'file:///edges_01.csv' AS row
-    MATCH (a:Node {GlobalId: row.source})
-    MATCH (b:Node {GlobalId: row.target})
-    MERGE (a)-[r:RELATED_TO]->(b);
-    """
-    run_cypher(load_edges_cypher, write=True)
-
     # Batch size
     batch_size = 500
+    
+    # Load nodes using batch merge with dynamic labels
+    bad_characters = [" ", "-", "(", ")", ".", "/"]
+    
     with driver.session(database=DATABASE) as session:
         for i in tqdm(range(0, len(nodes_01), batch_size), desc="Batch merging nodes"):
             batch = nodes_01.iloc[i:i+batch_size].to_dict('records')
-            session.execute_write(batch_merge_nodes, batch)
+            
+            # Group by Name to create label-specific batches
+            label_groups = defaultdict(list)
+            for row in batch:
+                label = row.get("Name", "Unknown")
+                # Clean label for Neo4j
+                for char in bad_characters:
+                    label = label.replace(char, "_")
+                label_groups[label].append(row)
+            
+            # Merge nodes with their specific labels
+            for label, records in label_groups.items():
+                session.run(
+                    f"""
+                    UNWIND $rows AS row
+                    MERGE (n:{label} {{GlobalId: row.GlobalId}})
+                    SET n += row
+                    """,
+                    rows=records
+                )
 
-    driver.close()
     print("Nodes loaded successfully!")
 
     edges_data = []
@@ -257,11 +261,21 @@ def load_to_neo4j(G, reset=False):
     for row in edges_data:
         grouped_edges[row['relation_type']].append(row)
 
+    # Load edges using batch merge
     with driver.session(database=DATABASE) as session:
         for relation_type, group in grouped_edges.items():
             for i in tqdm(range(0, len(group), batch_size), desc=f"Merging {relation_type}"):
                 batch = group[i:i+batch_size]
-                session.execute_write(batch_merge_edges_without_apoc, relation_type, batch)
+                session.run(
+                    f"""
+                    UNWIND $rows AS row
+                    MATCH (a {{GlobalId: row.source}})
+                    MATCH (b {{GlobalId: row.target}})
+                    MERGE (a)-[r:{relation_type}]->(b)
+                    SET r += row.props
+                    """,
+                    rows=batch
+                )
 
     driver.close()
     print("Edges loaded successfully!")
@@ -286,9 +300,10 @@ def run_cypher(query, params=None, write=False):
     with driver.session(database=DATABASE) as session:
         # Depending on the type of transaction, use read or write
         if write:
-            result = session.write_transaction(lambda tx: tx.run(query, **params).data())
+            result = session.run(query, **params).data()
         else:
-            result = session.execute_read(lambda tx: tx.run(query, **params).data())
+            result = session.run(query, **params).data()
+    driver.close()
     return result
 
 def build_gds_graph():
@@ -308,40 +323,55 @@ def build_gds_graph():
         run_cypher(query_drop)
         print("Existing graph 'myGraph' was dropped successfully.")
 
-    # Now create the graph projection
-    # ---------------------------------------------------------------------
-    # Properties could be only NUM or BOOL
-
-    query_create = """
+    # Get all unique labels in the database dynamically
+    labels_query = """
+    CALL db.labels() YIELD label
+    RETURN collect(label) AS labels
+    """
+    labels_result = run_cypher(labels_query)
+    available_labels = labels_result[0]['labels'] if labels_result else []
+    
+    if not available_labels:
+        print("No labels found in the database. Cannot create GDS graph.")
+        return
+    
+    print(f"Available labels in database: {available_labels}")
+    
+    # Build node configuration dynamically
+    node_config_parts = [f"{label}: {{ properties: [] }}" for label in available_labels]
+    node_config = ",\n        ".join(node_config_parts)
+    
+    # Now create the graph projection with dynamic labels
+    query_create = f"""
     CALL gds.graph.project(
     'myGraph',
-    {
-        A1034_005_Elevator_Pit_Wall_ID: { properties: [] },
-        B1012_HSS_C_060_HSS_Steel_Column_12x12x3_8: { properties: [] },
-        B2011_150_Rainscreen__Wall__ID: { properties: [] },
-        B1011_026_CIP_RC_Elevator_Core_Wall_ID: { properties: []}
-    },
-    {
-        RELATED_TO: { orientation: 'UNDIRECTED', properties: ['inv_time', 'time']  }
-    }
+    {{
+        {node_config}
+    }},
+    {{
+        RELATED_TO: {{ orientation: 'UNDIRECTED', properties: ['inv_time', 'time']  }}
+    }}
     )
-
-    """ #, properties: 'inv_time
+    """
 
     result_data = run_cypher(query_create, write=True)
-    node_query = """
+    
+    # Build label list for queries
+    labels_list_str = str(available_labels).replace("'", "'")
+    
+    node_query = f"""
         MATCH (n)
-        WHERE any(lbl IN labels(n) WHERE lbl IN ['A1034_005_Elevator_Pit_Wall_ID','B1012_HSS_C_060_HSS_Steel_Column_12x12x3_8', 'B2011_150_Rainscreen__Wall__ID', 'B1011_026_CIP_RC_Elevator_Core_Wall_ID'])
+        WHERE any(lbl IN labels(n) WHERE lbl IN {labels_list_str})
         RETURN
         id(n) AS id,
         labels(n)[0] AS label,
         n.GlobalId AS Id
     """
-    edge_query = """
+    edge_query = f"""
         MATCH (a)-[r]->(b)
         WHERE type(r) IN ['RELATED_TO']
-        AND any(lbl IN labels(a) WHERE lbl IN ['A1034_005_Elevator_Pit_Wall_ID','B1012_HSS_C_060_HSS_Steel_Column_12x12x3_8', 'B2011_150_Rainscreen__Wall__ID', 'B1011_026_CIP_RC_Elevator_Core_Wall_ID'])
-        AND any(lbl IN labels(b) WHERE lbl IN ['A1034_005_Elevator_Pit_Wall_ID','B1012_HSS_C_060_HSS_Steel_Column_12x12x3_8', 'B2011_150_Rainscreen__Wall__ID', 'B1011_026_CIP_RC_Elevator_Core_Wall_ID'])
+        AND any(lbl IN labels(a) WHERE lbl IN {labels_list_str})
+        AND any(lbl IN labels(b) WHERE lbl IN {labels_list_str})
         RETURN id(a) AS source, id(b) AS target, type(r) AS relationshipType
         """
 
